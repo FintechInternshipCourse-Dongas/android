@@ -42,50 +42,15 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <!-- 각 멤버를 위한 이미지뷰와 텍스트뷰 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginEnd="8dp">
+            <!-- 멤버 아이템 include -->
 
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_member"
-                    android:layout_gravity="center_horizontal" />
+            <include
+                android:id="@+id/member1"
+                layout="@layout/member_item" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="민선"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:layout_gravity="center_horizontal" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginEnd="8dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_member"
-                    android:layout_gravity="center_horizontal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="가온"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:layout_gravity="center_horizontal" />
-            </LinearLayout>
-
-            <!-- 추가 멤버를 위한 이미지뷰와 텍스트뷰 -->
+            <include
+                android:id="@+id/member2"
+                layout="@layout/member_item" />
 
             <!-- + 아이콘 -->
             <ImageView
@@ -98,7 +63,7 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <!-- 정산 내역 -->
+    <!-- 정산 내역 리스트 -->
     <LinearLayout
         android:id="@+id/settlement_layout"
         android:layout_width="match_parent"
@@ -115,108 +80,14 @@
             android:textColor="@android:color/holo_orange_dark"
             android:layout_gravity="center_vertical"/>
 
-        <!-- 예시 트랜잭션 아이템 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:layout_marginTop="8dp"
-            android:elevation="4dp">
+        <!-- 정산내역 아이템 include -->
+        <include
+            layout="@layout/settlement_item"
+            android:id="@+id/transaction_item1"/>
 
-            <!-- 식당 이름 -->
-            <TextView
-                android:id="@+id/restaurant_name2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="버거킹"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/restaurant_price2"
-                app:layout_constraintHorizontal_bias="0" />
-
-            <!-- 가격 -->
-            <TextView
-                android:id="@+id/restaurant_price2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="54,000원"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1" />
-
-            <!-- 날짜 -->
-            <TextView
-                android:id="@+id/transaction_date2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2024.07.20"
-                android:textSize="12sp"
-                android:textColor="@android:color/darker_gray"
-                app:layout_constraintTop_toBottomOf="@id/restaurant_name2"
-                app:layout_constraintStart_toStartOf="@id/restaurant_name2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:layout_marginTop="8dp"
-            android:elevation="4dp">
-
-            <!-- 식당 이름 -->
-            <TextView
-                android:id="@+id/restaurant_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="버거킹"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/restaurant_price"
-                app:layout_constraintHorizontal_bias="0" />
-
-            <!-- 가격 -->
-            <TextView
-                android:id="@+id/restaurant_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="54,000원"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1" />
-
-            <!-- 날짜 -->
-            <TextView
-                android:id="@+id/transaction_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2024.07.20"
-                android:textSize="12sp"
-                android:textColor="@android:color/darker_gray"
-                app:layout_constraintTop_toBottomOf="@id/restaurant_name"
-                app:layout_constraintStart_toStartOf="@id/restaurant_name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-        <!-- 다른 트랜잭션 아이템 추가 -->
+        <include
+            layout="@layout/settlement_item"
+            android:id="@+id/transaction_item2"/>
 
     </LinearLayout>
 
