@@ -1,0 +1,131 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- 상단 헤더: 뒤로 가기 버튼과 타이틀 -->
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내역 상세"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- 정산 정보 -->
+    <LinearLayout
+        android:id="@+id/settlement_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/header_layout"
+        android:padding="16dp">
+
+        <!-- 가게 이름 및 총 금액 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/store_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="샐러디"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="start" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_pencil"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="Edit"
+                android:padding="8dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/total_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="66,000원"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="start" />
+
+        <!-- Include row_label_value.xml for 모임 날짜 -->
+        <include
+            layout="@layout/row_label_value"
+            android:id="@+id/meeting_date_row" />
+
+        <!-- Include row_label_value.xml for 정산 날짜 -->
+        <include
+            layout="@layout/row_label_value"
+            android:id="@+id/settlement_date_row" />
+
+        <!-- Include row_label_value.xml for 모임 장소 -->
+        <include
+            layout="@layout/row_label_value"
+            android:id="@+id/location_row" />
+
+    </LinearLayout>
+
+    <!-- 참여 멤버 리스트 -->
+    <LinearLayout
+        android:id="@+id/members_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/settlement_info_layout"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/participant_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="참여 멤버"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:layout_marginTop="0dp"
+            android:gravity="center_vertical" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"/>
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_nav_menu"/>
+
+</RelativeLayout>

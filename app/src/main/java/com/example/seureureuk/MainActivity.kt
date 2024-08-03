@@ -2,55 +2,86 @@ package com.example.seureureuk
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_settlement_detail)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationBar)
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    // Handle Home navigation
-                    true
-                }
-                R.id.navigation_my -> {
-                    // Handle MY navigation
-                    true
-                }
-                else -> false
-            }
-        }
+        val meetingDateLabel: TextView = findViewById<View>(R.id.meeting_date_row).findViewById(R.id.label)
+        val meetingDateValue: TextView = findViewById<View>(R.id.meeting_date_row).findViewById(R.id.value)
+        meetingDateLabel.text = "모임 날짜:"
+        meetingDateValue.text = "2024.07.29"
 
-        val favoriteGroupContainer = findViewById<LinearLayout>(R.id.favoriteGroupContainer)
-        val groupContainer = findViewById<LinearLayout>(R.id.groupContainer)
+        val settlementDateLabel: TextView = findViewById<View>(R.id.settlement_date_row).findViewById(R.id.label)
+        val settlementDateValue: TextView = findViewById<View>(R.id.settlement_date_row).findViewById(R.id.value)
+        settlementDateLabel.text = "정산 날짜:"
+        settlementDateValue.text = "2024.07.29"
 
-        val favoriteGroups = listOf(
-            GroupData("핀인코 - 돈가스", "2024.07.13", 6, true)
+        val locationLabel: TextView = findViewById<View>(R.id.location_row).findViewById(R.id.label)
+        val locationValue: TextView = findViewById<View>(R.id.location_row).findViewById(R.id.value)
+        locationLabel.text = "모임 장소:"
+        locationValue.text = "샐러디 사당점"
+
+        // Sample data
+        val members = listOf(
+            MemberSettlement("민선", "11,000원"),
+            MemberSettlement("가은", "12,000원"),
+            MemberSettlement("해성", "13,000원"),
+            MemberSettlement("나영", "14,000원")
         )
 
-        val groups = listOf(
-            GroupData("HNRC", "2024.08.22", 10),
-            GroupData("핀인코 - 돈가스", "2024.07.13", 6, true),
-            GroupData("개발 2팀", "2024.04.10", 8),
-            GroupData("조김이최", "2024.01.20", 4)
-        )
+        // Set up RecyclerView
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = MemberSettlementAdapter(members)
 
-        favoriteGroups.forEach {
-            favoriteGroupContainer.addView(createGroupCard(it))
-        }
-
-        groups.forEach {
-            groupContainer.addView(createGroupCard(it))
-        }
+//        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationBar)
+//        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+//            when (item.itemId) {
+//                R.id.navigation_home -> {
+//                    // Handle Home navigation
+//                    true
+//                }
+//                R.id.navigation_my -> {
+//                    // Handle MY navigation
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+//
+//        val favoriteGroupContainer = findViewById<LinearLayout>(R.id.favoriteGroupContainer)
+//        val groupContainer = findViewById<LinearLayout>(R.id.groupContainer)
+//
+//        val favoriteGroups = listOf(
+//            GroupData("핀인코 - 돈가스", "2024.07.13", 6, true)
+//        )
+//
+//        val groups = listOf(
+//            GroupData("HNRC", "2024.08.22", 10),
+//            GroupData("핀인코 - 돈가스", "2024.07.13", 6, true),
+//            GroupData("개발 2팀", "2024.04.10", 8),
+//            GroupData("조김이최", "2024.01.20", 4)
+//        )
+//
+//        favoriteGroups.forEach {
+//            favoriteGroupContainer.addView(createGroupCard(it))
+//        }
+//
+//        groups.forEach {
+//            groupContainer.addView(createGroupCard(it))
+//        }
     }
 
     private fun createGroupCard(group: GroupData): CardView {
