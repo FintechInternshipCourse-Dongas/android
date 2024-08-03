@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:padding="16dp"
     android:layout_marginTop="8dp"
-    android:elevation="4dp">
+    android:elevation="4dp"
+    android:background="@drawable/settlement_item_background">
 
     <!-- 가게 이름 -->
     <TextView
