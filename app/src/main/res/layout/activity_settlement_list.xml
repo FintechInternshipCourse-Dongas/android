@@ -227,7 +227,7 @@
         android:layout_height="wrap_content"
         android:text="+ 정산 추가하기"
         android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/holo_blue_light"
+        android:backgroundTint="@color/button"
         android:layout_above="@id/bottom_navigation"
         android:layout_margin="16dp"/>
 
