@@ -1,0 +1,241 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- 상단 헤더: 뒤로 가기 버튼과 타이틀 -->
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="핀인코 - 돈가스"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- 멤버 리스트 (아이콘) -->
+    <HorizontalScrollView
+        android:id="@+id/members_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_layout"
+        android:padding="8dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- 각 멤버를 위한 이미지뷰와 텍스트뷰 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_member"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="민선"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_member"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가온"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <!-- 추가 멤버를 위한 이미지뷰와 텍스트뷰 -->
+
+            <!-- + 아이콘 -->
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_add"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- 정산 내역 -->
+    <LinearLayout
+        android:id="@+id/settlement_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/members_layout"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정산 내역"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:layout_gravity="center_vertical"/>
+
+        <!-- 예시 트랜잭션 아이템 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp">
+
+            <!-- 식당 이름 -->
+            <TextView
+                android:id="@+id/restaurant_name2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="버거킹"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/restaurant_price2"
+                app:layout_constraintHorizontal_bias="0" />
+
+            <!-- 가격 -->
+            <TextView
+                android:id="@+id/restaurant_price2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="54,000원"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1" />
+
+            <!-- 날짜 -->
+            <TextView
+                android:id="@+id/transaction_date2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2024.07.20"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/restaurant_name2"
+                app:layout_constraintStart_toStartOf="@id/restaurant_name2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp">
+
+            <!-- 식당 이름 -->
+            <TextView
+                android:id="@+id/restaurant_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="버거킹"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/restaurant_price"
+                app:layout_constraintHorizontal_bias="0" />
+
+            <!-- 가격 -->
+            <TextView
+                android:id="@+id/restaurant_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="54,000원"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1" />
+
+            <!-- 날짜 -->
+            <TextView
+                android:id="@+id/transaction_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2024.07.20"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/restaurant_name"
+                app:layout_constraintStart_toStartOf="@id/restaurant_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <!-- 다른 트랜잭션 아이템 추가 -->
+
+    </LinearLayout>
+
+    <!-- 정산 추가하기 버튼 -->
+    <Button
+        android:id="@+id/add_settlement_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+ 정산 추가하기"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_margin="16dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>
