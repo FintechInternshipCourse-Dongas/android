@@ -99,14 +99,15 @@
         android:text="+ 정산 추가하기"
         android:textColor="@android:color/white"
         android:backgroundTint="@color/button"
-        android:layout_above="@id/bottom_navigation"
+        android:layout_above="@id/bottomNavigationBar"
         android:layout_margin="16dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/bottomNavigationBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_nav_menu" />
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_nav_menu"/>
 
 </RelativeLayout>
