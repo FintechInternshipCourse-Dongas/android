@@ -12,7 +12,6 @@ class SettlementParticipationAdapter(private val memberList: List<SettlementPart
     class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val memberName: TextView = itemView.findViewById(R.id.memberName)
         val memberAmount: TextView = itemView.findViewById(R.id.memberAmount)
-        val memberAvatar: ImageView = itemView.findViewById(R.id.memberAvatar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
@@ -24,8 +23,6 @@ class SettlementParticipationAdapter(private val memberList: List<SettlementPart
         val currentMember = memberList[position]
         holder.memberName.text = currentMember.name
         holder.memberAmount.text = currentMember.amount
-        // Optionally set avatar here if needed
-        // holder.memberAvatar.setImageResource(R.drawable.some_avatar) if you have dynamic avatars
     }
 
     override fun getItemCount() = memberList.size

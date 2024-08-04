@@ -5,7 +5,8 @@
     android:padding="12dp"
     android:background="@drawable/member_item_background"
     android:gravity="center_vertical"
-    android:layout_marginTop="8dp">
+    android:layout_marginTop="8dp"
+    android:elevation="4dp">
 
     <ImageView
         android:id="@+id/memberAvatar"
