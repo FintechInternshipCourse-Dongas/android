@@ -30,16 +30,16 @@ class SettlementDetailActivity: AppCompatActivity() {
 
         // Sample data
         val members = listOf(
-            MemberSettlement("민선", "11,000원"),
-            MemberSettlement("가은", "12,000원"),
-            MemberSettlement("해성", "13,000원"),
-            MemberSettlement("나영", "14,000원")
+            SettlementParticipation("민선", "11,000원"),
+            SettlementParticipation("가은", "12,000원"),
+            SettlementParticipation("해성", "13,000원"),
+            SettlementParticipation("나영", "14,000원")
         )
 
         // Set up RecyclerView
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MemberSettlementAdapter(members)
+        recyclerView.adapter = SettlementParticipationAdapter(members)
     }
 
 }

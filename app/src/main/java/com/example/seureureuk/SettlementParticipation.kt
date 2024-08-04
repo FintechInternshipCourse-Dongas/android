@@ -1,6 +1,6 @@
 package com.example.seureureuk
 
-data class MemberSettlement(
+data class SettlementParticipation(
     val name: String,
     val amount: String
 )

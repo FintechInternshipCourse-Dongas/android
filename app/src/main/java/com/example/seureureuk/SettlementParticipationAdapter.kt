@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MemberSettlementAdapter(private val memberList: List<MemberSettlement>) : RecyclerView.Adapter<MemberSettlementAdapter.MemberViewHolder>() {
+class SettlementParticipationAdapter(private val memberList: List<SettlementParticipation>) : RecyclerView.Adapter<SettlementParticipationAdapter.MemberViewHolder>() {
 
     class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val memberName: TextView = itemView.findViewById(R.id.memberName)
@@ -16,7 +16,7 @@ class MemberSettlementAdapter(private val memberList: List<MemberSettlement>) : 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.member_settlement_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.settlement_participation_item, parent, false)
         return MemberViewHolder(itemView)
     }
 

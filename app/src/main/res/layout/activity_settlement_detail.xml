@@ -75,17 +75,17 @@
 
         <!-- Include row_label_value.xml for 모임 날짜 -->
         <include
-            layout="@layout/row_label_value"
+            layout="@layout/settlement_info_row"
             android:id="@+id/meeting_date_row" />
 
         <!-- Include row_label_value.xml for 정산 날짜 -->
         <include
-            layout="@layout/row_label_value"
+            layout="@layout/settlement_info_row"
             android:id="@+id/settlement_date_row" />
 
         <!-- Include row_label_value.xml for 모임 장소 -->
         <include
-            layout="@layout/row_label_value"
+            layout="@layout/settlement_info_row"
             android:id="@+id/location_row" />
 
     </LinearLayout>
