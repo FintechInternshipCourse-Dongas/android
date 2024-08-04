@@ -53,8 +53,8 @@ android {
         enable += "RtlHardcoded" + "RtlCompat" + "RtlEnabled"
         checkOnly += "NewApi" + "InlinedApi"
         quiet = true
-        abortOnError = false
-        ignoreWarnings = true
+        abortOnError = true
+        ignoreWarnings = false
         checkDependencies = true
     }
 }
