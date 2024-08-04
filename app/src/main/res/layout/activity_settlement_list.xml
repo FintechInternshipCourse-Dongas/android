@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- 상단 헤더: 뒤로 가기 버튼과 타이틀 -->
     <LinearLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
@@ -27,7 +26,6 @@
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
-    <!-- 멤버 리스트 (아이콘) -->
     <HorizontalScrollView
         android:id="@+id/members_layout"
         android:layout_width="match_parent"
@@ -42,8 +40,6 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <!-- 멤버 아이템 include -->
-
             <include
                 android:id="@+id/member1"
                 layout="@layout/member_item" />
@@ -52,7 +48,6 @@
                 android:id="@+id/member2"
                 layout="@layout/member_item" />
 
-            <!-- + 아이콘 -->
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
@@ -63,7 +58,6 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <!-- 정산 내역 리스트 -->
     <LinearLayout
         android:id="@+id/settlement_layout"
         android:layout_width="match_parent"
@@ -80,7 +74,6 @@
             android:textColor="@android:color/holo_orange_dark"
             android:layout_gravity="center_vertical"/>
 
-        <!-- 정산내역 아이템 include -->
         <include
             layout="@layout/settlement_item"
             android:id="@+id/transaction_item1"/>
@@ -91,7 +84,6 @@
 
     </LinearLayout>
 
-    <!-- 정산 추가하기 버튼 -->
     <Button
         android:id="@+id/add_settlement_button"
         android:layout_width="match_parent"
