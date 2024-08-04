@@ -1,0 +1,209 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정산하기"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/settlement_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/header_layout"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/store_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="모임명"
+            android:textSize="24sp"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:gravity="start" />
+
+        <EditText
+            android:id="@+id/total_amount_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="0원"
+            android:textSize="28sp"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:gravity="start" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="모임 날짜:"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/meeting_date_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="날짜를 선택하세요"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                android:background="@null"
+                android:focusable="false"
+                android:clickable="true"
+                android:gravity="end" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="정산 날짜:"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/settlement_date_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="날짜를 선택하세요"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                android:background="@null"
+                android:focusable="false"
+                android:clickable="true"
+                android:gravity="end" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="모임 장소:"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/location_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="장소를 입력하세요"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                android:background="@null"
+                android:gravity="end" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/members_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/settlement_info_layout"
+        android:layout_above="@id/add_settlement_button"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/participant_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="참여 멤버"
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_orange_dark"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp" />
+
+            <CheckBox
+                android:id="@+id/select_all_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체 선택"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="true"
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_settlement_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="정산 요청하기"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/button"
+        android:layout_above="@id/bottomNavigationBar"
+        android:layout_margin="16dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_nav_menu"/>
+</RelativeLayout>
