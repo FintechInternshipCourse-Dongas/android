@@ -39,7 +39,7 @@ class SettlementDetailActivity: AppCompatActivity() {
         // Set up RecyclerView
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = SettlementParticipationAdapter(members)
+        recyclerView.adapter = SettlementDetailParticipationAdapter(members)
     }
 
 }

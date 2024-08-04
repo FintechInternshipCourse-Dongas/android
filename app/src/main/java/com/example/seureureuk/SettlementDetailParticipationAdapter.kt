@@ -3,11 +3,10 @@ package com.example.seureureuk
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class SettlementParticipationAdapter(private val memberList: List<SettlementParticipation>) : RecyclerView.Adapter<SettlementParticipationAdapter.MemberViewHolder>() {
+class SettlementDetailParticipationAdapter(private val memberList: List<SettlementParticipation>) : RecyclerView.Adapter<SettlementDetailParticipationAdapter.MemberViewHolder>() {
 
     class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val memberName: TextView = itemView.findViewById(R.id.memberName)
