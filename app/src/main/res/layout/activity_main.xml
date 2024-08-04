@@ -18,7 +18,7 @@
         android:id="@+id/title_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="즐겨 찾기"
+        android:text="@string/bookmark"
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_below="@id/logo"
@@ -33,7 +33,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corner"
         android:padding="30dp"
-        android:text="즐겨찾는 모임을 설정해보세요!"
+        android:text="@string/add_bookmark_recommend"
         android:textColor="#808080"
         android:textAlignment="center"
         android:textSize="16sp"
@@ -43,7 +43,7 @@
         android:id="@+id/title_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="모임"
+        android:text="@string/meeting"
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_below="@id/text_favorite_description"
@@ -54,7 +54,7 @@
         android:id="@+id/text_group_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="@string/_0"
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_toEndOf="@id/title_group"
@@ -88,7 +88,7 @@
         android:id="@+id/text_create_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="모임을 생성해보세요!"
+        android:text="@string/add_meeting_recommend"
         android:textSize="16sp"
         android:textAlignment="center"
         android:layout_below="@id/title_group"
@@ -96,7 +96,7 @@
         android:background="@drawable/rounded_corner"
         android:padding="50dp"
         android:textColor="#808080"
-        android:elevation="4dp" /> <!-- Add shadow -->
+        android:elevation="4dp" />
 
     <LinearLayout
         android:id="@+id/navigation_bar"
