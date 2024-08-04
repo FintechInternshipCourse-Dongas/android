@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,8 +19,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val createMeetingBtn = findViewById<ImageView>(R.id.button_add)
-        createMeetingBtn.setOnClickListener {
+        val createGroupBtn = findViewById<ImageView>(R.id.button_add)
+        createGroupBtn.setOnClickListener {
+            val intent = Intent(this, CreateGroupActivity::class.java)
+            startActivity(intent)
+        }
+
+        val createGroupView = findViewById<CardView>(R.id.add_group_button)
+        createGroupView.setOnClickListener {
             val intent = Intent(this, CreateGroupActivity::class.java)
             startActivity(intent)
         }

@@ -25,6 +25,13 @@
         <activity android:name=".SettlementListActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".MyPageActivity" />
+        <activity android:name=".MyPageUserInfoActivity" />
+        <activity android:name=".MyPagePaymentActivity" />
+        <activity android:name=".MyPageGroupActivity" />
+        <activity android:name=".ChargePointActivity" />
+        <activity android:name=".BankTransferActivity" />
+        <activity android:name=".DeletePaymentActivity" />
+        <activity android:name=".DeleteGroupActivity" />
     </application>
 
 </manifest>
