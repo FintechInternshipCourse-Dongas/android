@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:gravity="center_vertical">
 
         <ImageView
@@ -19,12 +20,19 @@
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="정산하기"
             android:textSize="20sp"
-            android:layout_marginStart="8dp" />
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:gravity="center" />
+
     </LinearLayout>
+
+
+
 
     <LinearLayout
         android:id="@+id/settlement_info_layout"
@@ -32,7 +40,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/header_layout"
-        android:padding="16dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <EditText
             android:id="@+id/store_name_edit_text"
@@ -84,6 +93,14 @@
                 android:gravity="end" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_below="@id/meeting_date_edit_text"
+            android:layout_alignStart="@id/meeting_date_edit_text"
+            android:layout_marginTop="4dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,6 +130,14 @@
                 android:gravity="end" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_below="@id/settlement_date_edit_text"
+            android:layout_alignStart="@id/settlement_date_edit_text"
+            android:layout_marginTop="4dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -140,7 +165,16 @@
                 android:gravity="end" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_below="@id/location_edit_text"
+            android:layout_alignStart="@id/location_edit_text"
+            android:layout_marginTop="4dp" />
+
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/members_list"
@@ -197,7 +231,8 @@
         android:textColor="@android:color/white"
         android:backgroundTint="@color/button"
         android:layout_above="@id/bottomNavigationBar"
-        android:layout_margin="16dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationBar"

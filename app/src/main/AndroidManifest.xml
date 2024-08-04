@@ -22,12 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".AddSettlementActivity"
-            android:exported="false"
-            android:label="Second Activity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+        <activity android:name=".AddSettlementActivity" />
     </application>
 
 </manifest>
