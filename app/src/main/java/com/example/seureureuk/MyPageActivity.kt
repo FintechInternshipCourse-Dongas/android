@@ -56,7 +56,7 @@ class MyPageActivity : AppCompatActivity() {
         }
         val groupLayoutButton: RelativeLayout = findViewById(R.id.group_management)
         groupLayoutButton.setOnClickListener {
-            val intent = Intent(this, MyPagePaymentActivity::class.java)
+            val intent = Intent(this, MyPageGroupActivity::class.java)
             startActivity(intent)
         }
     }
