@@ -72,7 +72,7 @@ class AddSettlementActivity : AppCompatActivity() {
         )
 
         val memberAdapter = SettlementParticipationAdapter(members) { member ->
-            // Optionally handle individual member click here
+
         }
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)

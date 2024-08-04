@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:gravity="center_vertical">
 
         <ImageView
@@ -22,7 +23,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="정산하기"
+            android:text="@string/header_settlement"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="@color/black"
@@ -39,42 +40,47 @@
         android:orientation="vertical"
         android:layout_below="@id/header_layout"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingEnd="16dp" >
 
         <EditText
             android:id="@+id/store_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="모임명"
-            android:textSize="24sp"
+            android:hint="@string/meeting_name"
+            android:textSize="14sp"
             android:textColor="@color/gray"
             android:textStyle="bold"
-            android:gravity="start" />
+            android:gravity="start"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"/>
 
         <EditText
             android:id="@+id/total_amount_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:hint="0원"
-            android:textSize="28sp"
+            android:hint="@string/_0"
+            android:textSize="14sp"
             android:textColor="@color/gray"
             android:textStyle="bold"
-            android:gravity="start" />
+            android:gravity="start"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="모임 날짜:"
-                android:textSize="16sp"
+                android:text="@string/meeting_date"
+                android:textSize="14sp"
                 android:textColor="@color/black" />
 
             <EditText
@@ -82,8 +88,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:hint="날짜를 선택하세요"
-                android:textSize="16sp"
+                android:hint="@string/date_selection"
+                android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:background="@null"
                 android:focusable="false"
@@ -103,15 +109,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="정산 날짜:"
-                android:textSize="16sp"
+                android:text="@string/settlement_date"
+                android:textSize="14sp"
                 android:textColor="@color/black" />
 
             <EditText
@@ -119,8 +126,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:hint="날짜를 선택하세요"
-                android:textSize="16sp"
+                android:hint="@string/date_selection"
+                android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:background="@null"
                 android:focusable="false"
@@ -140,15 +147,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="모임 장소:"
-                android:textSize="16sp"
+                android:text="@string/meeting_place"
+                android:textSize="14sp"
                 android:textColor="@color/black" />
 
             <EditText
@@ -156,8 +164,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:hint="장소를 입력하세요"
-                android:textSize="16sp"
+                android:hint="@string/enter_place"
+                android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:background="@null"
                 android:gravity="end" />
@@ -181,19 +189,18 @@
         android:orientation="vertical"
         android:layout_below="@id/settlement_info_layout"
         android:layout_above="@id/add_settlement_button"
-        android:padding="16dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/participant_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="참여 멤버"
-                android:textSize="18sp"
+                android:text="@string/participants"
                 android:textColor="@android:color/holo_orange_dark"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
@@ -203,7 +210,7 @@
                 android:id="@+id/select_all_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전체 선택"
+                android:text="@string/select_all"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true" />
         </RelativeLayout>
@@ -215,7 +222,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
             android:nestedScrollingEnabled="true"
             android:scrollbars="vertical" />
 
@@ -225,7 +231,7 @@
         android:id="@+id/add_settlement_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="정산 요청하기"
+        android:text="@string/request_settlement"
         android:textColor="@android:color/white"
         android:backgroundTint="@color/button"
         android:layout_above="@id/bottomNavigationBar"

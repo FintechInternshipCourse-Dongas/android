@@ -19,4 +19,13 @@
     <string name="add_meeting_recommend">모임을 생성해보세요!</string>
     <string name="header_settlement_detail">내역 상세</string>
     <string name="name">이름</string>
+    <string name="header_settlement">정산하기</string>
+    <string name="meeting_name">모임명</string>
+    <string name="meeting_date">모임 날짜:</string>
+    <string name="date_selection">날짜를 선택하세요</string>
+    <string name="settlement_date">정산 날짜:</string>
+    <string name="meeting_place">모임 장소:</string>
+    <string name="enter_place">장소를 입력하세요</string>
+    <string name="select_all">전체 선택</string>
+    <string name="request_settlement">정산 요청하기</string>
 </resources>

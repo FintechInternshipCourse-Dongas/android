@@ -1,5 +1,6 @@
 package com.example.seureureuk
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -43,7 +44,8 @@ class SettlementListActivity : AppCompatActivity() {
         }
 
         addSettlementButton.setOnClickListener {
-
+            val intent = Intent(this, AddSettlementActivity::class.java)
+            startActivity(intent)
         }
 
         backButton.setOnClickListener {
