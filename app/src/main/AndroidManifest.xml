@@ -27,6 +27,7 @@
         <activity android:name=".MyPageActivity" />
         <activity android:name=".SettlementDetailActivity" />
         <activity android:name=".AddSettlementActivity" />
+        <activity android:name=".RequestSettlementActivity" />
     </application>
 
 </manifest>

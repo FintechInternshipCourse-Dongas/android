@@ -1,6 +1,7 @@
 package com.example.seureureuk
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -83,6 +84,12 @@ class AddSettlementActivity : AppCompatActivity() {
         selectAllCheckbox.setOnCheckedChangeListener { _, isChecked ->
             members.forEach { it.isSelected = isChecked }
             memberAdapter.notifyDataSetChanged()
+        }
+
+        val addSettlementButton: Button = findViewById(R.id.add_settlement_button)
+        addSettlementButton.setOnClickListener {
+            val intent = Intent(this, RequestSettlementActivity::class.java)
+            startActivity(intent)
         }
     }
 

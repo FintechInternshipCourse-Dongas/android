@@ -28,4 +28,5 @@
     <string name="enter_place">장소를 입력하세요</string>
     <string name="select_all">전체 선택</string>
     <string name="request_settlement">정산 요청하기</string>
+    <string name="pay_qr">결제 QR</string>
 </resources>
