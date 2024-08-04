@@ -4,7 +4,6 @@
     android:padding="16dp"
     android:background="#F5F5F5">
 
-    <!-- 로고 -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="160dp"
@@ -12,9 +11,9 @@
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/logo"/>
 
-    <!-- 즐겨찾기 타이틀 -->
     <TextView
         android:id="@+id/title_favorite"
         android:layout_width="wrap_content"
@@ -26,7 +25,6 @@
         android:layout_marginTop="16dp"
         android:textColor="#000000" />
 
-    <!-- 즐겨찾기 모임 설정 안내 -->
     <TextView
         android:id="@+id/text_favorite_description"
         android:layout_width="match_parent"
@@ -41,7 +39,6 @@
         android:textSize="16sp"
         android:elevation="4dp" />
 
-    <!-- 모임 타이틀 -->
     <TextView
         android:id="@+id/title_group"
         android:layout_width="wrap_content"
@@ -53,7 +50,6 @@
         android:layout_marginTop="24dp"
         android:textColor="#000000" />
 
-    <!-- 모임 개수 -->
     <TextView
         android:id="@+id/text_group_count"
         android:layout_width="wrap_content"
@@ -66,7 +62,6 @@
         android:layout_marginStart="16dp"
         android:textColor="#1F28A4" />
 
-    <!-- 모임 생성 버튼 -->
     <ImageView
         android:id="@+id/button_add"
         android:layout_width="wrap_content"
@@ -75,9 +70,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@id/title_group"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/button_add"/>
 
-    <!-- 모임 수정 버튼 -->
     <ImageView
         android:id="@+id/button_edit"
         android:layout_width="wrap_content"
@@ -86,9 +81,9 @@
         android:layout_toStartOf="@id/button_add"
         android:layout_alignBottom="@id/title_group"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/button_edit" />
 
-    <!-- 모임 생성 안내 -->
     <TextView
         android:id="@+id/text_create_group"
         android:layout_width="match_parent"
@@ -103,7 +98,6 @@
         android:textColor="#808080"
         android:elevation="4dp" /> <!-- Add shadow -->
 
-    <!-- 네비게이션 바 -->
     <LinearLayout
         android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
@@ -113,7 +107,6 @@
         android:background="#FFFFFF"
         android:weightSum="2">
 
-        <!-- 홈 버튼 -->
         <LinearLayout
             android:id="@+id/navigation_home"
             android:layout_width="0dp"
@@ -127,10 +120,10 @@
                 android:id="@+id/icon_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_home" />
+                android:src="@drawable/ic_home"
+                android:contentDescription="@string/icon_home" />
         </LinearLayout>
 
-        <!-- MY 버튼 -->
         <LinearLayout
             android:id="@+id/navigation_my"
             android:layout_width="0dp"
@@ -144,7 +137,8 @@
                 android:id="@+id/icon_my"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_my" />
+                android:src="@drawable/ic_my"
+                android:contentDescription="@string/icon_my"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

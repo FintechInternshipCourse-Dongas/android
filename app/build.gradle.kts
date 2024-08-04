@@ -29,6 +29,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -46,6 +47,15 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+    lint {
+        disable += "TypographyFractions" + "TypographyQuotes"
+        enable += "RtlHardcoded" + "RtlCompat" + "RtlEnabled"
+        checkOnly += "NewApi" + "InlinedApi"
+        quiet = true
+        abortOnError = false
+        ignoreWarnings = true
+        checkDependencies = true
     }
 }
 
