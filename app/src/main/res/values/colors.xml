@@ -19,4 +19,5 @@
     <color name="consent_complete">#1927EC</color>
     <color name="consent_waiting">#B9B9B9</color>
     <color name="consent_failed">#FF0000</color>
+    <color name="payment_method_registration_button">#1F27A4</color>
 </resources>

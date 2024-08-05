@@ -30,6 +30,7 @@
         <activity android:name=".RequestSettlementActivity" />
         <activity android:name=".PaymentQRCodeActivity" />
         <activity android:name=".PaymentConfirmationActivity" />
+        <activity android:name=".PaymentMethodRegistrationActivity" />
     </application>
 
 </manifest>
