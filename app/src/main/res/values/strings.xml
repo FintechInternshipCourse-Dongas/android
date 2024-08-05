@@ -70,4 +70,5 @@
     <string name="account_verification_instruction2">계좌로 보내진 1원의 입금자 뒷 3자리를 입력해주세요</string>
     <string name="verification">인증하기</string>
     <string name="start">시작하기</string>
+    <string name="back">Back</string>
 </resources>

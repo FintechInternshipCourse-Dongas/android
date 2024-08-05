@@ -5,33 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".AddSettlementActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:gravity="center_vertical">
+        android:padding="8dp"
+        android:layout_alignParentTop="true">
 
         <ImageView
             android:id="@+id/back_button"
-            android:layout_width="27dp"
-            android:layout_height="27dp"
-            android:src="@drawable/ic_arrow_back" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/back"/>
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/page_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/header_payment_method_registration"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textSize="20sp"
             android:textColor="@color/black"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:gravity="center" />
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/instruction_text"
