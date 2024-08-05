@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -90,6 +91,11 @@ class AddSettlementActivity : AppCompatActivity() {
         addSettlementButton.setOnClickListener {
             val intent = Intent(this, RequestSettlementActivity::class.java)
             startActivity(intent)
+        }
+
+        val backButton = findViewById<ImageView>(R.id.back_button)
+        backButton.setOnClickListener {
+            finish()
         }
     }
 

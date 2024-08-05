@@ -3,6 +3,7 @@ package com.example.seureureuk
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,11 @@ class RequestSettlementActivity : AppCompatActivity() {
         paymentQRButton.setOnClickListener {
             val intent = Intent(this, PaymentQRCodeActivity::class.java)
             startActivity(intent)
+        }
+
+        val backButton = findViewById<ImageView>(R.id.back_button)
+        backButton.setOnClickListener {
+            finish()
         }
     }
 }
