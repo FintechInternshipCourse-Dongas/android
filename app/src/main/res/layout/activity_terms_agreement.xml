@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddSettlementActivity">
+    tools:context=".TermsAgreementActivity">
 
     <LinearLayout
         android:id="@+id/header_layout"
@@ -235,7 +235,6 @@
         android:textColor="@android:color/white"
         android:backgroundTint="@color/consent_waiting"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:enabled="false" />
+        android:layout_margin="16dp" />
 
 </RelativeLayout>
