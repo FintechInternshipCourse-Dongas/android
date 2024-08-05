@@ -29,6 +29,7 @@
         <activity android:name=".AddSettlementActivity" />
         <activity android:name=".RequestSettlementActivity" />
         <activity android:name=".PaymentQRCodeActivity" />
+        <activity android:name=".PaymentConfirmationActivity" />
     </application>
 
 </manifest>

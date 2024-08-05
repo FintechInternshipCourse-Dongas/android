@@ -31,4 +31,5 @@
     <string name="pay_qr">결제 QR</string>
     <string name="header_payment_qr">결제 QR</string>
     <string name="srrk_money_qr">스르륵 머니 QR</string>
+    <string name="payment_confirmation">결제가 완료되었습니다.</string>
 </resources>
