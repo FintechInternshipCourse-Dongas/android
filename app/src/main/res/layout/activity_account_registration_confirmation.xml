@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="8dp"
-                android:text="@string/payment_confirmation"
+                android:text="@string/account_registration_confirm"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />

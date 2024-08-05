@@ -71,4 +71,5 @@
     <string name="verification">인증하기</string>
     <string name="start">시작하기</string>
     <string name="back">Back</string>
+    <string name="account_registration_confirm">계좌 등록을 완료했어요!</string>
 </resources>
