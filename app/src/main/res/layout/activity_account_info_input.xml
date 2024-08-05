@@ -55,7 +55,6 @@
                 android:textStyle="bold"
                 android:paddingBottom="24dp" />
 
-            <!-- 은행 선택 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,14 +64,18 @@
                 android:textStyle="bold"
                 android:paddingBottom="8dp" />
 
-            <Spinner
-                android:id="@+id/bank_spinner"
+            <TextView
+                android:id="@+id/bank_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"/>
+                android:padding="12dp"
+                android:background="@drawable/spinner_background"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:text="@string/bank_selection"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black" />
 
-            <!-- 계좌번호 입력 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,7 +91,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/account_number"
-                android:textSize="16sp"
                 android:inputType="number"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp" />

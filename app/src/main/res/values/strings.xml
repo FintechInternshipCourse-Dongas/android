@@ -49,4 +49,21 @@
     <string name="account_verification">계좌 인증</string>
     <string name="account_number">계좌번호</string>
     <string name="bank">은행</string>
+    <string name="nh">NH농협</string>
+    <string name="kakaobank">카카오뱅크</string>
+    <string name="kb">KB국민</string>
+    <string name="tossbank">토스뱅크</string>
+    <string name="shinhan">신한</string>
+    <string name="woori">우리</string>
+    <string name="ibk">IBK기업</string>
+    <string name="bank_selection">은행 선택</string>
+    <string name="hana_bank">하나</string>
+    <string name="mg_bank">새마을</string>
+    <string name="bnk_bank">부산</string>
+    <string name="k_bank">케이뱅크</string>
+    <string name="shinhyup_bank">신협</string>
+    <string name="epost_bank">우체국</string>
+    <string name="suhyup_bank">수협</string>
+    <string name="jeju_bank">제주</string>
+    <string name="select_bank_suggestion">은행을 선택해 주세요</string>
 </resources>
