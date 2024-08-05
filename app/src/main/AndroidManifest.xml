@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity" />
         <activity android:name=".SettlementListActivity" />
         <activity android:name=".CreateGroupActivity" />
@@ -28,10 +29,17 @@
         <activity android:name=".MyPageUserInfoActivity" />
         <activity android:name=".MyPagePaymentActivity" />
         <activity android:name=".MyPageGroupActivity" />
-        <activity android:name=".ChargePointActivity" />
-        <activity android:name=".BankTransferActivity" />
+        <activity android:name=".ShowAccountActivity" />
         <activity android:name=".DeletePaymentActivity" />
         <activity android:name=".DeleteGroupActivity" />
+        <activity
+            android:name=".ChargePointActivity"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity android:name=".FinishChargeActivity" />
+        <activity android:name=".TransferBankActivity" />
+        <activity android:name=".FinishTransferActivity" />
     </application>
 
 </manifest>

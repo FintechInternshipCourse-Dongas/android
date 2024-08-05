@@ -3,6 +3,8 @@ package com.example.seureureuk
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
@@ -12,6 +14,10 @@ class MyPagePaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_payment)
 
+        val accountContainer: LinearLayout = findViewById(R.id.account_container)
+        accountContainer.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
         val removeAccountButton: ImageView = findViewById(R.id.remove_account_button)
         removeAccountButton.setOnClickListener {
             showDeleteConfirmationDialog()

@@ -28,7 +28,7 @@
             android:id="@+id/page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="충전"
+            android:text="송금"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
@@ -53,94 +53,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_border"
-                android:padding="12dp"
                 android:layout_marginTop="16dp">
 
+                <TextView
+                    android:id="@+id/to_my_account_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내 계좌로"
+                    android:textSize="20sp"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
                 <EditText
-                    android:id="@+id/edit_recharge_amount"
+                    android:id="@+id/edit_transfer_amount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="얼마를 충전할까요?"
-                    android:textSize="18sp"
+                    android:hint="얼마를 보낼까요?"
+                    android:textAlignment="center"
+                    android:textSize="35sp"
                     android:background="@android:color/transparent"
                     android:inputType="number"
                     android:textColorHint="#B0B0B0"
                     android:textColor="#000000"
                     android:gravity="center_vertical|start"
+                    app:layout_constraintTop_toBottomOf="@id/to_my_account_text"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/error_message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="최대 충전금액은 200만원 입니다"
-                android:textSize="14sp"
-                android:textColor="#FF0000"
-                android:visibility="gone"
-                android:layout_marginTop="8dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="충전계좌"
-                        android:textSize="16sp"
-                        android:textColor="#B0B0B0"
-                        android:layout_marginEnd="16dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="김가은 국민계좌"
-                        android:textSize="16sp"
-                        android:textColor="#000000" />
-
-                    <ImageView
-                        android:id="@+id/account_dropdown"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_modify_account"
-                        android:contentDescription="Account Dropdown" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="거래 후 잔액"
-                        android:textSize="16sp"
-                        android:textColor="#B0B0B0"
-                        android:layout_marginEnd="16dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0원"
-                        android:textSize="16sp"
-                        android:textColor="#000000" />
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -151,7 +95,7 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/recharge_button"
+        app:layout_constraintBottom_toTopOf="@id/confirm_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="50dp">
@@ -201,10 +145,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/recharge_button"
+        android:id="@+id/confirm_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="충전하기"
+        android:text="확인"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

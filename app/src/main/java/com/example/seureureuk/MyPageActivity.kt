@@ -27,7 +27,7 @@ class MyPageActivity : AppCompatActivity() {
 
         val sendBtn = findViewById<Button>(R.id.send_button)
         sendBtn.setOnClickListener {
-            val intent = Intent(this, BankTransferActivity::class.java)
+            val intent = Intent(this, ShowAccountActivity::class.java)
             startActivity(intent)
         }
 

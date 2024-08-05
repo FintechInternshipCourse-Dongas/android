@@ -3,8 +3,11 @@ package com.example.seureureuk
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 
 class MyPageGroupActivity : AppCompatActivity() {
 
@@ -12,20 +15,39 @@ class MyPageGroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_group)
 
-        val removeGrouptBtn1: ImageView = findViewById(R.id.remove_group_button_1)
-        removeGrouptBtn1.setOnClickListener {
+        val removeGroup1 = findViewById<CardView>(R.id.group_1)
+        removeGroup1.setOnClickListener {
             showDeleteConfirmationDialog()
         }
-        val removeGrouptBtn2: ImageView = findViewById(R.id.remove_group_button_2)
-        removeGrouptBtn2.setOnClickListener {
+        val removeGroupBtn1: ImageView = findViewById(R.id.remove_group_button_1)
+        removeGroupBtn1.setOnClickListener {
             showDeleteConfirmationDialog()
         }
-        val removeGrouptBtn3: ImageView = findViewById(R.id.remove_group_button_3)
-        removeGrouptBtn3.setOnClickListener {
+
+        val removeGroup2 = findViewById<CardView>(R.id.group_2)
+        removeGroup2.setOnClickListener {
             showDeleteConfirmationDialog()
         }
-        val removeGrouptBtn4: ImageView = findViewById(R.id.remove_group_button_4)
-        removeGrouptBtn4.setOnClickListener {
+        val removeGroupBtn2: ImageView = findViewById(R.id.remove_group_button_2)
+        removeGroupBtn2.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
+
+        val removeGroup3 = findViewById<CardView>(R.id.group_3)
+        removeGroup3.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
+        val removeGroupBtn3: ImageView = findViewById(R.id.remove_group_button_3)
+        removeGroupBtn3.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
+
+        val removeGroup4 = findViewById<CardView>(R.id.group_4)
+        removeGroup4.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
+        val removeGroupBtn4: ImageView = findViewById(R.id.remove_group_button_4)
+        removeGroupBtn4.setOnClickListener {
             showDeleteConfirmationDialog()
         }
 
