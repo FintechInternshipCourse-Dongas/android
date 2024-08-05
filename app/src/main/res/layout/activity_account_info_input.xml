@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@id/header_layout"
-        android:layout_above="@id/next_button"
+        android:layout_above="@id/account_verification_button"
         android:layout_marginTop="16dp"
         android:fillViewport="true">
 
@@ -99,7 +100,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/next_button"
+        android:id="@+id/account_verification_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/account_verification"

@@ -66,4 +66,7 @@
     <string name="suhyup_bank">수협</string>
     <string name="jeju_bank">제주</string>
     <string name="select_bank_suggestion">은행을 선택해 주세요</string>
+    <string name="account_verification_instruction1">계좌로 1원을 입금했어요</string>
+    <string name="account_verification_instruction2">계좌로 보내진 1원의 입금자 뒷 3자리를 입력해주세요</string>
+    <string name="verification">인증하기</string>
 </resources>
