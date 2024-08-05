@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             //startActivity(Intent(this, SettlementListActivity::class.java))
-            startActivity(Intent(this, PaymentMethodRegistrationActivity::class.java))
+            startActivity(Intent(this, SettlementListActivity::class.java))
             finish()
         }, 2000)
     }

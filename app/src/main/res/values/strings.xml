@@ -72,4 +72,8 @@
     <string name="start">시작하기</string>
     <string name="back">Back</string>
     <string name="account_registration_confirm">계좌 등록을 완료했어요!</string>
+    <string name="select_invite_option">초대 방식을 선택해주세요.</string>
+    <string name="share_invite_link">초대 링크 공유하기</string>
+    <string name="invite_user">스트륵 사용자 초대하기</string>
+    <string name="cancel">취소</string>
 </resources>
