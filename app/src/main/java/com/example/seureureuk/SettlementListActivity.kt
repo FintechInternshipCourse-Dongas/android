@@ -1,5 +1,7 @@
 package com.example.seureureuk
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -84,13 +86,18 @@ class SettlementListActivity : AppCompatActivity() {
         val cancelButton = dialogView.findViewById<ImageView>(R.id.cancel_button)
 
         shareLinkButton.setOnClickListener {
+            val inviteLink = "https://yourapp.com/invite?code=ABCDE" // 예시 코드
+            val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("invite link", inviteLink)
+            clipboard.setPrimaryClip(clip)
 
+            Toast.makeText(this, "클립보드에 복사되었습니다.", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 
         inviteUserButton.setOnClickListener {
-
             dialog.dismiss()
+            showInviteCodeDialog()
         }
 
         cancelButton.setOnClickListener {
@@ -99,6 +106,22 @@ class SettlementListActivity : AppCompatActivity() {
 
         dialog.show()
     }
+
+    private fun showInviteCodeDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_invite_code, null)
+
+        val dialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            .setView(dialogView)
+            .create()
+
+        val cancelButton = dialogView.findViewById<ImageView>(R.id.cancel_button)
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
 
 
 }

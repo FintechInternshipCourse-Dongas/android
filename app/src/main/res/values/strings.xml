@@ -76,4 +76,6 @@
     <string name="share_invite_link">초대 링크 공유하기</string>
     <string name="invite_user">스트륵 사용자 초대하기</string>
     <string name="cancel">취소</string>
+    <string name="invitation_code">모임 초대 코드</string>
+    <string name="_2">2</string>
 </resources>
