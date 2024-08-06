@@ -6,4 +6,12 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/notosanskr_m</item>
     </style>
+
+    <style name="Theme.YourApp.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.YourApp.BottomSheetStyle</item>
+    </style>
+
+    <style name="Widget.YourApp.BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_bottom_sheet</item>
+    </style>
 </resources>

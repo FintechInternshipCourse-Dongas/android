@@ -5,5 +5,5 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="모임 생성 화면" />
+        android:hint="@string/create_group_hint" />
 </LinearLayout>

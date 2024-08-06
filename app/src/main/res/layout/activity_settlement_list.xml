@@ -1,37 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".SettlementListActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
+        android:padding="8dp"
+        android:layout_alignParentTop="true">
 
         <ImageView
-            android:layout_width="27dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_arrow_back" />
-
-        <TextView
+            android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="핀인코 - 돈가스"
-            android:textSize="20sp"
-            android:layout_marginStart="8dp"/>
+            android:src="@drawable/ic_arrow_back"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/back"/>
+
+        <TextView
+            android:id="@+id/page_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_dongas"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/members_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/header_layout"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/member"
+            android:textSize="18sp"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_add"
+            android:layout_gravity="center_vertical" />
     </LinearLayout>
 
     <HorizontalScrollView
         android:id="@+id/members_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header_layout"
-        android:padding="8dp"
+        android:layout_below="@id/members_title_layout"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -48,51 +82,90 @@
                 android:id="@+id/member2"
                 layout="@layout/member_item" />
 
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:src="@drawable/ic_add"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp" />
-
         </LinearLayout>
     </HorizontalScrollView>
 
+    <View
+        android:id="@+id/divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"
+        android:layout_below="@id/members_layout"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
     <LinearLayout
-        android:id="@+id/settlement_layout"
+        android:id="@+id/members_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/members_layout"
-        android:padding="16dp">
+        android:layout_below="@id/divider_line"
+        android:layout_above="@id/add_settlement_button"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="정산 내역"
-            android:textSize="18sp"
-            android:textColor="@android:color/holo_orange_dark"
-            android:layout_gravity="center_vertical"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <include
-            layout="@layout/settlement_item"
-            android:id="@+id/transaction_item1"/>
+            <TextView
+                android:id="@+id/participant_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/participants"
+                android:textColor="@android:color/holo_orange_dark"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp" />
 
-        <include
-            layout="@layout/settlement_item"
-            android:id="@+id/transaction_item2"/>
+            <TextView
+                android:id="@+id/sort_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sort_settlement_list"
+                android:textColor="@android:color/black"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="8dp" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/settlement_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="true"
+            android:scrollbars="vertical" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/empty_state_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settlemment_not_exist"
+        android:visibility="gone"
+        android:layout_below="@id/members_layout"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:paddingTop="20dp"
+        android:textColor="@android:color/darker_gray"/>
 
     <Button
         android:id="@+id/add_settlement_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="+ 정산 추가하기"
+        android:text="@string/add_settlement"
         android:textColor="@android:color/white"
         android:backgroundTint="@color/button"
         android:layout_above="@id/bottomNavigationBar"
-        android:layout_margin="16dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationBar"
