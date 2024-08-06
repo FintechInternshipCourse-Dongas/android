@@ -8,7 +8,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray">#E0E0E0</color>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
@@ -20,4 +19,6 @@
     <color name="consent_waiting">#B9B9B9</color>
     <color name="consent_failed">#FF0000</color>
     <color name="payment_method_registration_button">#1F27A4</color>
+    <color name="gray">#B0B0B0</color>
+    <color name="blue">#1927EC</color>
 </resources>

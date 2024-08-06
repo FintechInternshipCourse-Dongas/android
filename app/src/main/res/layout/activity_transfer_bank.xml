@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FF"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_alignParentStart="true"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:id="@+id/page_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="송금"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/top_bar"
+        app:layout_constraintBottom_toTopOf="@id/quick_buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_border"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/to_my_account_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내 계좌로"
+                    android:textSize="20sp"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/edit_transfer_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="얼마를 보낼까요?"
+                    android:textAlignment="center"
+                    android:textSize="35sp"
+                    android:background="@android:color/transparent"
+                    android:inputType="number"
+                    android:textColorHint="#B0B0B0"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|start"
+                    app:layout_constraintTop_toBottomOf="@id/to_my_account_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/quick_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/confirm_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="50dp">
+
+        <Button
+            android:id="@+id/quick_button_1000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+천원"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/quick_button_5000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+5천원"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/quick_button_10000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+1만"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/quick_button_50000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+5만"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1927EC"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_corner" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -30,7 +31,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_favorite"
-        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corner"
         android:padding="30dp"
         android:text="@string/add_bookmark_recommend"
@@ -47,7 +47,6 @@
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_below="@id/text_favorite_description"
-        android:layout_marginTop="24dp"
         android:textColor="#000000" />
 
     <TextView
@@ -70,6 +69,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@id/title_group"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/button_add"/>
 
@@ -81,22 +81,44 @@
         android:layout_toStartOf="@id/button_add"
         android:layout_alignBottom="@id/title_group"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/button_edit" />
 
-    <TextView
-        android:id="@+id/text_create_group"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/add_group_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_meeting_recommend"
-        android:textSize="16sp"
-        android:textAlignment="center"
         android:layout_below="@id/title_group"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_corner"
-        android:padding="50dp"
-        android:textColor="#808080"
-        android:elevation="4dp" />
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="모임을 생성해보세요!"
+                android:textSize="16sp"
+                android:textColor="#B0B0B0"
+                android:gravity="center" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_add_grey"
+                android:contentDescription="Add Group" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/navigation_bar"
