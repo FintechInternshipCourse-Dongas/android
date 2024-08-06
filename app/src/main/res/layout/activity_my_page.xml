@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity"
+    android:background="#F5F7FF">
+
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_alignParentStart="true"
+            android:contentDescription="Back"/>
+
+        <TextView
+            android:id="@+id/page_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="마이페이지"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/profile_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_bar"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_profile"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="김가은"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/profile_image"
+            android:layout_marginStart="8dp"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/manage_info_button"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:text="내 정보 관리"
+            android:background="@drawable/rounded_corner"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1927EC"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/balance_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
+        android:padding="16dp"
+        android:layout_below="@id/profile_section"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/balance_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스트록 머니"
+            android:textSize="20sp"
+            android:textColor="#B0B0B0"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/balance_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60,000원"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_below="@id/balance_label"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true">
+
+            <Button
+                android:id="@+id/recharge_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="충전"
+                android:background="@drawable/rounded_corner"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#1927EC"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/send_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="송금"
+                android:background="@drawable/rounded_corner"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#1F27A4"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/balance_section">
+
+        <RelativeLayout
+            android:id="@+id/payment_management"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결제수단 관리"
+                android:textSize="16sp"
+                android:layout_alignParentStart="true"/>
+
+            <ImageView
+                android:id="@+id/payment_management_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Go to Payment Management"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/group_management"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="모임 관리"
+                android:textSize="16sp"
+                android:layout_alignParentStart="true"/>
+
+            <ImageView
+                android:id="@+id/group_management_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Go to Group Management"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/notification_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="알림 설정"
+                android:textSize="16sp"
+                android:layout_alignParentStart="true"/>
+
+            <ImageView
+                android:id="@+id/notification_settings_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Go to Notification Settings"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/customer_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="고객 센터"
+                android:textSize="16sp"
+                android:layout_alignParentStart="true"/>
+
+            <ImageView
+                android:id="@+id/customer_center_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Go to Customer Center"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:textColor="#888888"
+            android:gravity="center" />
+    </LinearLayout>
+
+</RelativeLayout>

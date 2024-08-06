@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- 상단 헤더: 뒤로 가기 버튼과 타이틀 -->
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="핀인코 - 돈가스"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- 멤버 리스트 (아이콘) -->
+    <HorizontalScrollView
+        android:id="@+id/members_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_layout"
+        android:padding="8dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- 멤버 아이템 include -->
+
+            <include
+                android:id="@+id/member1"
+                layout="@layout/member_item" />
+
+            <include
+                android:id="@+id/member2"
+                layout="@layout/member_item" />
+
+            <!-- + 아이콘 -->
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_add"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- 정산 내역 리스트 -->
+    <LinearLayout
+        android:id="@+id/settlement_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/members_layout"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정산 내역"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:layout_gravity="center_vertical"/>
+
+        <!-- 정산내역 아이템 include -->
+        <include
+            layout="@layout/settlement_item"
+            android:id="@+id/transaction_item1"/>
+
+        <include
+            layout="@layout/settlement_item"
+            android:id="@+id/transaction_item2"/>
+
+    </LinearLayout>
+
+    <!-- 정산 추가하기 버튼 -->
+    <Button
+        android:id="@+id/add_settlement_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+ 정산 추가하기"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/button"
+        android:layout_above="@id/bottomNavigationBar"
+        android:layout_margin="16dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_nav_menu"/>
+
+</RelativeLayout>

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SeuReuReuk</string>
+    <string name="logo">앱 메인 로고</string>
+    <string name="button_add">모임 생성 버튼</string>
+    <string name="button_edit">모임 수정 버튼</string>
+    <string name="icon_home">네비게이션 바 홈 버튼</string>
+    <string name="icon_my">네비게이션 바 마이페이지 버튼</string>
+    <string name="resend_certififate_num"><u>인증번호 재전송</u></string>
+    <string name="selectTelecom"><u>통신사를 선택해주세요</u></string>
+
 </resources>
