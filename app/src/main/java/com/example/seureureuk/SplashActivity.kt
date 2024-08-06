@@ -12,7 +12,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(com.example.seureureuk.R.layout.activity_splash)
 
         Handler().postDelayed({
-            startActivity(Intent(this, SettlementListActivity::class.java))
+            //startActivity(Intent(this, SettlementListActivity::class.java))
+            startActivity(Intent(this, PaymentMethodRegistrationActivity::class.java))
             finish()
         }, 2000)
     }
