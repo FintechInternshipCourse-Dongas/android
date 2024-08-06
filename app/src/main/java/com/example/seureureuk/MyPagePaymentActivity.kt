@@ -2,6 +2,7 @@ package com.example.seureureuk
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -21,6 +22,12 @@ class MyPagePaymentActivity : AppCompatActivity() {
         val removeAccountButton: ImageView = findViewById(R.id.remove_account_button)
         removeAccountButton.setOnClickListener {
             showDeleteConfirmationDialog()
+        }
+
+        val add_account_Btn: LinearLayout = findViewById(R.id.add_account_button)
+        add_account_Btn.setOnClickListener {
+            val intent = Intent(this, PaymentMethodRegistrationActivity::class.java)
+            startActivity(intent)
         }
 
         val backBtn = findViewById<ImageView>(R.id.back_button)
