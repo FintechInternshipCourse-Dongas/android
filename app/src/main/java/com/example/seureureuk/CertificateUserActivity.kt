@@ -35,6 +35,5 @@ class CertificateUserActivity : AppCompatActivity() {
             val intent = Intent(this, PaymentMethodRegistrationActivity::class.java)
             startActivity(intent)
         }
-
     }
 }
