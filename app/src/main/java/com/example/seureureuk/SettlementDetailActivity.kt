@@ -28,7 +28,6 @@ class SettlementDetailActivity: AppCompatActivity() {
         locationLabel.text = "모임 장소:"
         locationValue.text = "샐러디 사당점"
 
-        // Sample data
         val members = listOf(
             SettlementParticipation("민선", "11,000원"),
             SettlementParticipation("가은", "12,000원"),
@@ -36,10 +35,11 @@ class SettlementDetailActivity: AppCompatActivity() {
             SettlementParticipation("나영", "14,000원")
         )
 
-        // Set up RecyclerView
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = SettlementDetailParticipationAdapter(members)
+
+
     }
 
 }

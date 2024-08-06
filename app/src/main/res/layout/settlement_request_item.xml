@@ -22,12 +22,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="14sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/memberAmount"
+        android:id="@+id/requestStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/consent_waiting" />
 </LinearLayout>

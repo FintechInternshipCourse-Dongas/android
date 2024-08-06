@@ -1,5 +1,6 @@
 package com.example.seureureuk
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -16,11 +17,6 @@ class SettlementListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settlement_list)
 
-        val emptyStateText = findViewById<TextView>(R.id.empty_state_text)
-        val addSettlementButton = findViewById<Button>(R.id.add_settlement_button)
-        val backButton = findViewById<ImageView>(R.id.back_button)
-        val bottomNavigationBar = findViewById<BottomNavigationView>(R.id.bottomNavigationBar)
-
         val settlements = listOf(
             Settlement("빨리디", 66000, "2024.07.29"),
             Settlement("버거킹", 54000, "2024.07.20"),
@@ -34,6 +30,7 @@ class SettlementListActivity : AppCompatActivity() {
         val adapter = SettlementAdapter(settlements)
         recyclerView.adapter = adapter
 
+        val emptyStateText = findViewById<TextView>(R.id.empty_state_text)
         if (settlements.isEmpty()) {
             recyclerView.visibility = View.GONE
             emptyStateText.visibility = View.VISIBLE
@@ -42,14 +39,18 @@ class SettlementListActivity : AppCompatActivity() {
             emptyStateText.visibility = View.GONE
         }
 
+        val addSettlementButton = findViewById<Button>(R.id.add_settlement_button)
         addSettlementButton.setOnClickListener {
-
+            val intent = Intent(this, AddSettlementActivity::class.java)
+            startActivity(intent)
         }
 
+        val backButton = findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener {
             finish()
         }
 
+        val bottomNavigationBar = findViewById<BottomNavigationView>(R.id.bottomNavigationBar)
         bottomNavigationBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
