@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RequestSettlementActivity">
+    tools:context=".PaymentQRCodeActivity">
 
     <RelativeLayout
         android:id="@+id/header_layout"
@@ -25,7 +24,7 @@
             android:id="@+id/page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/header_settlement"
+            android:text="@string/header_payment_qr"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -34,29 +33,42 @@
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/participants_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_below="@id/header_layout"
-        android:layout_above="@id/payment_qr_button"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1"
-        android:nestedScrollingEnabled="true"
-        android:scrollbars="vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp" />
-
-    <Button
-        android:id="@+id/payment_qr_button"
+    <LinearLayout
+        android:id="@+id/qr_code_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pay_qr"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/consent_waiting"
-        android:layout_above="@id/bottomNavigationBar"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+
+            <ImageView
+                android:id="@+id/confirmation_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_check" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:text="@string/payment_confirmation"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationBar"

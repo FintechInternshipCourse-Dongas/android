@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="12dp"
-    android:background="@drawable/member_item_background"
+    android:background="@drawable/rounded_corner"
     android:gravity="center_vertical"
     android:layout_marginTop="8dp"
     android:elevation="4dp">
@@ -14,7 +14,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/ic_member"
-        android:contentDescription="Member Avatar"
         android:layout_marginEnd="8dp" />
 
     <TextView
@@ -22,13 +21,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/requestStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@color/consent_waiting" />
 </LinearLayout>

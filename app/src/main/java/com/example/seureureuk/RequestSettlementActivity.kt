@@ -1,6 +1,9 @@
 package com.example.seureureuk
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,5 +31,16 @@ class RequestSettlementActivity : AppCompatActivity() {
 
         settlementAdapter = SettlementRequestParticipationAdapter(this, members)
         participantsRecyclerView.adapter = settlementAdapter
+
+        val paymentQRButton: Button = findViewById(R.id.payment_qr_button)
+        paymentQRButton.setOnClickListener {
+            val intent = Intent(this, PaymentQRCodeActivity::class.java)
+            startActivity(intent)
+        }
+
+        val backButton = findViewById<ImageView>(R.id.back_button)
+        backButton.setOnClickListener {
+            finish()
+        }
     }
 }

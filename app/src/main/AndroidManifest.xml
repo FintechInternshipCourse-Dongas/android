@@ -27,6 +27,14 @@
         <activity android:name=".MyPageActivity" />
         <activity android:name=".SettlementDetailActivity" />
         <activity android:name=".AddSettlementActivity" />
+        <activity android:name=".RequestSettlementActivity" />
+        <activity android:name=".PaymentQRCodeActivity" />
+        <activity android:name=".PaymentConfirmationActivity" />
+        <activity android:name=".PaymentMethodRegistrationActivity" />
+        <activity android:name=".TermsAgreementActivity" />
+        <activity android:name=".AccountInfoInputActivity" />
+        <activity android:name=".AccountVerificationActivity" />
+        <activity android:name=".AccountRegistrationConfirmationActivity" />
     </application>
 
 </manifest>
