@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_bottom_sheet">
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/gray" />
+
+    <TextView
+        android:id="@+id/selection_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/select_bank_suggestion"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <GridLayout
+        android:id="@+id/bank_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selection_title"
+        android:columnCount="3"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <Button
+            android:id="@+id/nh_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/nh"
+            android:drawableTop="@drawable/ic_nh_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/kakao_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/kakaobank"
+            android:drawableTop="@drawable/ic_kakao_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/kb_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/kb"
+            android:drawableTop="@drawable/ic_kb_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/toss_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/tossbank"
+            android:drawableTop="@drawable/ic_toss_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/shinhan_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/shinhan"
+            android:drawableTop="@drawable/ic_shinhan_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/woori_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/woori"
+            android:drawableTop="@drawable/ic_woori_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/ibk_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/ibk"
+            android:drawableTop="@drawable/ic_ibk_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/hana_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/hana_bank"
+            android:drawableTop="@drawable/ic_hana_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/mg_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/mg_bank"
+            android:drawableTop="@drawable/ic_mg_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/bnk_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/bnk_bank"
+            android:drawableTop="@drawable/ic_mg_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/k_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/k_bank"
+            android:drawableTop="@drawable/ic_k_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/shinhyup_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/shinhyup_bank"
+            android:drawableTop="@drawable/ic_shinhyup_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/epost_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/epost_bank"
+            android:drawableTop="@drawable/ic_epost_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/suhyup_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/suhyup_bank"
+            android:drawableTop="@drawable/ic_suhyup_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+        <Button
+            android:id="@+id/jeju_bank_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:text="@string/jeju_bank"
+            android:drawableTop="@drawable/ic_jeju_bank"
+            android:gravity="center"
+            android:background="@drawable/circular_background" />
+
+    </GridLayout>
+</RelativeLayout>

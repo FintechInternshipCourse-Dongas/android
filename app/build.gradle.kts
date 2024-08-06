@@ -53,8 +53,8 @@ android {
         enable += "RtlHardcoded" + "RtlCompat" + "RtlEnabled"
         checkOnly += "NewApi" + "InlinedApi"
         quiet = true
-        abortOnError = false
-        ignoreWarnings = true
+        abortOnError = true
+        ignoreWarnings = false
         checkDependencies = true
     }
 }
@@ -70,12 +70,10 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.constraintlayout)
-
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.cardview)
     implementation(libs.material)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

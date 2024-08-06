@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountInfoInputActivity">
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/back"/>
+
+        <TextView
+            android:id="@+id/page_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_account_registration"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/header_layout"
+        android:layout_above="@id/account_verification_button"
+        android:layout_marginTop="16dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bank_account_verification"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingBottom="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bank"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:id="@+id/bank_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:background="@drawable/spinner_background"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:text="@string/bank_selection"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/account_number"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingTop="24dp"
+                android:paddingBottom="8dp" />
+
+            <EditText
+                android:id="@+id/account_number_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/account_number"
+                android:inputType="number"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/account_verification_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/account_verification"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/button"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:enabled="true" />
+
+</RelativeLayout>
