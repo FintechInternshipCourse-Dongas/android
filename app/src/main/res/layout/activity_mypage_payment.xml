@@ -107,6 +107,7 @@
                         android:contentDescription="Remove Account"/>
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:id="@+id/add_account_button"
                     android:layout_width="match_parent"

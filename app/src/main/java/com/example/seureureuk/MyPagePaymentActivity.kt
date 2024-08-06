@@ -60,5 +60,6 @@ class MyPagePaymentActivity : AppCompatActivity() {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.apply {
             setTextColor(resources.getColor(R.color.blue, theme))
         }
+
     }
 }
