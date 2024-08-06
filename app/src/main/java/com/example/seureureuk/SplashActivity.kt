@@ -12,7 +12,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(com.example.seureureuk.R.layout.activity_splash)
 
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 2000)
     }

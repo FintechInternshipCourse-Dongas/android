@@ -40,6 +40,10 @@
         <activity android:name=".FinishChargeActivity" />
         <activity android:name=".TransferBankActivity" />
         <activity android:name=".FinishTransferActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".CertificateUserActivity" />
     </application>
 
 </manifest>
