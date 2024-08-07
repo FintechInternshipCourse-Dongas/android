@@ -5,14 +5,15 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class AccountRegistrationConfirmationActivity: AppCompatActivity() {
+class FinishChargeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_account_registration_confirmation)
+        setContentView(R.layout.activity_charge_finish)
 
-        val startBtn = findViewById<Button>(R.id.start_button)
-        startBtn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+        val confirmBtn = findViewById<Button>(R.id.confirm_button)
+        confirmBtn.setOnClickListener {
+            val intent = Intent(this, MyPageActivity::class.java)
             startActivity(intent)
         }
     }

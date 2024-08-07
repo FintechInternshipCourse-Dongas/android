@@ -21,10 +21,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity" />
         <activity android:name=".SettlementListActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".MyPageActivity" />
+        <activity android:name=".MyPageUserInfoActivity" />
+        <activity android:name=".MyPagePaymentActivity" />
+        <activity android:name=".MyPageGroupActivity" />
+        <activity android:name=".ShowAccountActivity" />
+        <activity android:name=".DeletePaymentActivity" />
+        <activity android:name=".DeleteGroupActivity" />
+        <activity
+            android:name=".ChargePointActivity"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity android:name=".FinishChargeActivity" />
+        <activity android:name=".TransferBankActivity" />
+        <activity android:name=".FinishTransferActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".CertificateUserActivity" />
         <activity android:name=".SettlementDetailActivity" />
         <activity android:name=".AddSettlementActivity" />
         <activity android:name=".RequestSettlementActivity" />

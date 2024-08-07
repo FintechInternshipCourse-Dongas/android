@@ -5,14 +5,15 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class AccountRegistrationConfirmationActivity: AppCompatActivity() {
+class DeletePaymentActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_account_registration_confirmation)
+        setContentView(R.layout.activity_delete)
 
-        val startBtn = findViewById<Button>(R.id.start_button)
-        startBtn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+        val userInfoBtn = findViewById<Button>(R.id.confirm_button)
+        userInfoBtn.setOnClickListener {
+            val intent = Intent(this, MyPagePaymentActivity::class.java)
             startActivity(intent)
         }
     }
