@@ -234,7 +234,8 @@
         android:text="@string/next"
         android:textColor="@android:color/white"
         android:backgroundTint="@color/consent_waiting"
+        android:background="@drawable/rounded_corner"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp" />
+        android:layout_margin="25dp" />
 
 </RelativeLayout>
