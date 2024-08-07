@@ -14,4 +14,9 @@
     <style name="Widget.YourApp.BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/rounded_bottom_sheet</item>
     </style>
+
+    <style name="CustomAlertDialog" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:background">@drawable/rounded_dialog_background</item>
+    </style>
 </resources>

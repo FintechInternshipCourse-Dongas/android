@@ -75,4 +75,16 @@
     <string name="start">시작하기</string>
     <string name="back">Back</string>
     <string name="account_registration_confirm">계좌 등록을 완료했어요!</string>
+    <string name="select_invite_option">초대 방식을 선택해주세요.</string>
+    <string name="share_invite_link">초대 링크 공유하기</string>
+    <string name="invite_user">스트륵 사용자 초대하기</string>
+    <string name="cancel">취소</string>
+    <string name="invitation_code">모임 초대 코드</string>
+    <string name="_2">2</string>
+    <string name="group_name">모임 이름</string>
+    <string name="group_name_hint">모임 이름을 작성해주세요.</string>
+    <string name="create">생성하기</string>
+    <string name="join_with_invite_code">초대 코드로 참가하기</string>
+    <string name="input_invite_code">초대 코드를 입력해주세요.</string>
+    <string name="join">참가하기</string>
 </resources>

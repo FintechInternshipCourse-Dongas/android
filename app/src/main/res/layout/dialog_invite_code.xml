@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_dialog_background"
+    android:padding="16dp"
+    android:layout_margin="16dp">
+
+    <ImageView
+        android:id="@+id/cancel_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_cancel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true" />
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/invitation_code"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/dialog_title"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/code_digit_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_2"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="4dp"/>
+
+        <TextView
+            android:id="@+id/code_digit_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_2"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="4dp"/>
+
+        <TextView
+            android:id="@+id/code_digit_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_2"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="4dp"/>
+
+        <TextView
+            android:id="@+id/code_digit_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_2"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="4dp"/>
+
+        <TextView
+            android:id="@+id/code_digit_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_2"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="4dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

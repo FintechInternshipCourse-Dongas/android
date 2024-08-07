@@ -20,6 +20,7 @@ class PaymentConfirmationActivity: AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, SettlementDetailActivity::class.java)
             startActivity(intent)
+            finish()
         }, 2000)
     }
 }

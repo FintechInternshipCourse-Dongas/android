@@ -19,6 +19,7 @@ class PaymentQRCodeActivity: AppCompatActivity() {
         QRCodeImage.setOnClickListener {
             val intent = Intent(this, PaymentConfirmationActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
