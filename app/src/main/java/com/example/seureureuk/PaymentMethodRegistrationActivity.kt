@@ -11,8 +11,8 @@ class PaymentMethodRegistrationActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_method_registration)
 
-        val registerButton = findViewById<LinearLayout>(R.id.register_button)
-        registerButton.setOnClickListener {
+        val accountRegisterButton = findViewById<LinearLayout>(R.id.account_register_button)
+        accountRegisterButton.setOnClickListener {
             val intent = Intent(this, TermsAgreementActivity::class.java)
             startActivity(intent)
         }
