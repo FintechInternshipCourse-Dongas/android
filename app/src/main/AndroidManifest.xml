@@ -24,7 +24,6 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".SettlementListActivity" />
-        <activity android:name=".CreateGroupActivity" />
         <activity android:name=".MyPageActivity" />
         <activity android:name=".MyPageUserInfoActivity" />
         <activity android:name=".MyPagePaymentActivity" />

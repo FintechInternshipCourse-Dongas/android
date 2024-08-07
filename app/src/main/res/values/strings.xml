@@ -81,4 +81,8 @@
     <string name="cancel">취소</string>
     <string name="invitation_code">모임 초대 코드</string>
     <string name="_2">2</string>
+    <string name="group_name">모임 이름</string>
+    <string name="group_name_hint">모임 이름을 작성해주세요.</string>
+    <string name="create">생성하기</string>
+    <string name="join_with_invite_code">초대 코드로 참가하기</string>
 </resources>
