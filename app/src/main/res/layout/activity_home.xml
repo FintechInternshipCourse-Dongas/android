@@ -137,7 +137,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/button_add"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/ic_add"
+        android:clickable="true"/>
 
     <ImageView
         android:id="@+id/button_edit"

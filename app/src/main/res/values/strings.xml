@@ -37,6 +37,7 @@
     <string name="payment_confirmation">결제가 완료되었습니다.</string>
     <string name="header_payment_method_registration">결제수단 등록</string>
     <string name="payment_method_registration">계좌 등록하기</string>
+    <string name="payment_method_registration_2">신용/체크카드 등록하기</string>
     <string name="select_payment_method">등록하실\n결제수단을 선택해 주세요</string>
     <string name="header_account_registration">계좌 등록</string>
     <string name="next">다음</string>
