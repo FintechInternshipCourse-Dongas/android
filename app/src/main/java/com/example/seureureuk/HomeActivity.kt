@@ -67,9 +67,34 @@ class HomeActivity : AppCompatActivity() {
         }
 
         joinWithInviteCodeButton.setOnClickListener {
-            // Handle join with invite code logic
             dialog.dismiss()
+            showJoinWithInviteCodeDialog()
         }
     }
 
+    private fun showJoinWithInviteCodeDialog() {
+        val joinDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_input_invite_code, null)
+
+        val joinDialogBuilder = androidx.appcompat.app.AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            .setView(joinDialogView)
+            .setCancelable(true)
+
+        val joinDialog = joinDialogBuilder.create()
+        joinDialog.show()
+
+        val cancelButton = joinDialogView.findViewById<ImageView>(R.id.cancel_button)
+        val groupJoinButton = joinDialogView.findViewById<Button>(R.id.group_join_button)
+        val inviteCodeEditText = joinDialogView.findViewById<EditText>(R.id.invite_code_edit_text)
+
+        cancelButton.setOnClickListener {
+            joinDialog.dismiss()
+        }
+
+        groupJoinButton.setOnClickListener {
+            val inviteCode = inviteCodeEditText.text.toString()
+            joinDialog.dismiss()
+            val intent = Intent(this, SettlementListActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }

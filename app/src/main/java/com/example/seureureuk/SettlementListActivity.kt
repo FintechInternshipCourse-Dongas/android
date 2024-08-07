@@ -48,6 +48,7 @@ class SettlementListActivity : AppCompatActivity() {
         addSettlementButton.setOnClickListener {
             val intent = Intent(this, AddSettlementActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         val backButton = findViewById<ImageView>(R.id.back_button)

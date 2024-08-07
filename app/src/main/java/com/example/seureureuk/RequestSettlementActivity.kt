@@ -36,6 +36,7 @@ class RequestSettlementActivity : AppCompatActivity() {
         paymentQRButton.setOnClickListener {
             val intent = Intent(this, PaymentQRCodeActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         val backButton = findViewById<ImageView>(R.id.back_button)
