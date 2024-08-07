@@ -27,6 +27,7 @@
             android:text="스르륵 회원가입"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_centerHorizontal="true"
             android:gravity="center"/>
     </RelativeLayout>

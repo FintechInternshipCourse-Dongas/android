@@ -33,42 +33,26 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/qr_code_layout"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/confirmation_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_check_circle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:contentDescription="Deletion Successful" />
+
+    <TextView
+        android:id="@+id/deletion_message"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="4dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="24dp">
-
-
-            <ImageView
-                android:id="@+id/confirmation_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_check" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="8dp"
-                android:text="@string/payment_confirmation"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
+        android:text="정산 완료되었습니다."
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_below="@id/confirmation_image"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationBar"
@@ -76,6 +60,8 @@
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
         app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

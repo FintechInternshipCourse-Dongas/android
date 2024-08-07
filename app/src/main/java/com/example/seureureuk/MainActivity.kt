@@ -39,11 +39,11 @@ class MainActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
-        val navigationMy = findViewById<LinearLayout>(R.id.navigation_my)
-        navigationMy.setOnClickListener {
-            val intent = Intent(this, MyPageActivity::class.java)
-            startActivity(intent)
-        }
+//        val navigationMy = findViewById<LinearLayout>(R.id.navigation_my)
+//        navigationMy.setOnClickListener {
+//            val intent = Intent(this, MyPageActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun showCreateGroupDialog() {

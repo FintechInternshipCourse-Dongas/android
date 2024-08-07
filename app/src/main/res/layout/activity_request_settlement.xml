@@ -56,7 +56,9 @@
         android:backgroundTint="@color/consent_waiting"
         android:layout_above="@id/bottomNavigationBar"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_corner"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationBar"
@@ -64,6 +66,8 @@
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
         app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>
