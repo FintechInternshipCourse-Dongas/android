@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.seureureuk.R.layout.activity_home)
+        setContentView(R.layout.activity_home)
 
 //        val logo = findViewById<ImageView>(R.id.logo)
 //        logo.setOnClickListener {
@@ -34,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val CreateGroupButton = findViewById<Button>(R.id.button_add)
+        val CreateGroupButton = findViewById<ImageView>(R.id.button_add)
         CreateGroupButton.setOnClickListener {
             showCreateGroupDialog()
         }
