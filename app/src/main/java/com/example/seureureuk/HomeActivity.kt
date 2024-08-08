@@ -8,13 +8,12 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.ui.adapter.GroupAdapter
+import com.example.seureureuk.GroupAdapter
 import com.example.seureureuk.ui.viewmodel.GroupViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

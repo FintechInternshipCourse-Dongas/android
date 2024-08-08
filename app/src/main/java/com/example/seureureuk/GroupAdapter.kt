@@ -1,4 +1,4 @@
-package com.example.seureureuk.ui.adapter
+package com.example.seureureuk
 
 import android.content.Context
 import android.content.Intent
