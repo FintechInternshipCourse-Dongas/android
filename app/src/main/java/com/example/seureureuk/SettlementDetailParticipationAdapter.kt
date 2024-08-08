@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.SettlementParticipation
 
 class SettlementDetailParticipationAdapter(private val memberList: List<SettlementParticipation>) : RecyclerView.Adapter<SettlementDetailParticipationAdapter.MemberViewHolder>() {
 

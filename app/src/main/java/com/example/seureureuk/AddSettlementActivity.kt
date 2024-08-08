@@ -65,12 +65,12 @@ class AddSettlementActivity : AppCompatActivity() {
         locationEditText.setText("")
 
         val members = listOf(
-            SettlementParticipation("민선", "17,750원"),
-            SettlementParticipation("가은", "17,750원"),
-            SettlementParticipation("해성", "17,750원"),
-            SettlementParticipation("건", "17,750원"),
-            SettlementParticipation("한비", "17,750원"),
-            SettlementParticipation("나영", "17,750원")
+            com.example.seureureuk.data.model.SettlementParticipation("민선", "17,750원"),
+            com.example.seureureuk.data.model.SettlementParticipation("가은", "17,750원"),
+            com.example.seureureuk.data.model.SettlementParticipation("해성", "17,750원"),
+            com.example.seureureuk.data.model.SettlementParticipation("건", "17,750원"),
+            com.example.seureureuk.data.model.SettlementParticipation("한비", "17,750원"),
+            com.example.seureureuk.data.model.SettlementParticipation("나영", "17,750원")
         )
 
         val memberAdapter = SettlementParticipationAdapter(members) { member ->

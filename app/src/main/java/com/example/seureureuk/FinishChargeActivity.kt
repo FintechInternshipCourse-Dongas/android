@@ -9,11 +9,11 @@ class FinishChargeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_charge_finish)
+        setContentView(com.example.seureureuk.R.layout.activity_charge_finish)
 
-        val confirmBtn = findViewById<Button>(R.id.confirm_button)
+        val confirmBtn = findViewById<Button>(com.example.seureureuk.R.id.confirm_button)
         confirmBtn.setOnClickListener {
-            val intent = Intent(this, MyPageActivity::class.java)
+            val intent = Intent(this, com.example.seureureuk.MyPageActivity::class.java)
             startActivity(intent)
         }
     }
