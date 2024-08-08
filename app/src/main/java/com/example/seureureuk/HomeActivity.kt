@@ -3,30 +3,28 @@ package com.example.seureureuk
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.GroupInfoRequest
+import com.example.seureureuk.ui.adapter.GroupAdapter
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
 
 class HomeActivity : AppCompatActivity() {
+
+    private val groupViewModel: GroupViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-//        val logo = findViewById<ImageView>(R.id.logo)
-//        logo.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
-
-//        val navigationHome = findViewById<LinearLayout>(R.id.navigation_home)
-//        navigationHome.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
 
         val navigationMy = findViewById<LinearLayout>(R.id.navigation_my)
         navigationMy.setOnClickListener {
@@ -34,10 +32,34 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val CreateGroupButton = findViewById<ImageView>(R.id.button_add)
-        CreateGroupButton.setOnClickListener {
+        val createGroupButton = findViewById<ImageView>(R.id.button_add)
+        createGroupButton.setOnClickListener {
             showCreateGroupDialog()
         }
+
+        val recyclerView: RecyclerView = findViewById(R.id.group_list_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val adapter = GroupAdapter(emptyList()) { group ->
+            Toast.makeText(this, "Selected: ${group.name}", Toast.LENGTH_SHORT).show()
+        }
+        recyclerView.adapter = adapter
+
+        groupViewModel.groups.observe(this) { groups ->
+            groups?.let {
+                Log.d("HomeActivity", "Updating adapter with groups: $it")
+                adapter.updateData(it)  // 모든 그룹을 업데이트
+            }
+        }
+
+        groupViewModel.error.observe(this) { error ->
+            error?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // 모든 그룹 정보 요청
+        groupViewModel.fetchGroups()
     }
 
     private fun showCreateGroupDialog() {
