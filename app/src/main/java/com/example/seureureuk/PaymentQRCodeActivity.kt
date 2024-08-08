@@ -2,6 +2,8 @@ package com.example.seureureuk
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -15,11 +17,10 @@ class PaymentQRCodeActivity: AppCompatActivity() {
             finish()
         }
 
-        val QRCodeImage = findViewById<ImageView>(R.id.qr_code_image)
-        QRCodeImage.setOnClickListener {
+        Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, PaymentConfirmationActivity::class.java)
             startActivity(intent)
             finish()
-        }
+        }, 3000)
     }
 }
