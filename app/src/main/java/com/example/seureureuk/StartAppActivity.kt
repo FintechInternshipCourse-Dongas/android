@@ -3,12 +3,19 @@ package com.example.seureureuk
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.example.seureureuk.data.model.GroupInfoResponse
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
 
 class StartAppActivity : AppCompatActivity() {
+
+    private val groupViewModel: GroupViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.seureureuk.R.layout.activity_app_start)
+        setContentView(R.layout.activity_app_start)
 
         val signUpBtn = findViewById<Button>(R.id.start_sign_up_button)
         signUpBtn.setOnClickListener {
@@ -18,8 +25,24 @@ class StartAppActivity : AppCompatActivity() {
 
         val kakaoBtn = findViewById<Button>(R.id.start_kakao_button)
         kakaoBtn.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            groupViewModel.groups.observe(this, Observer { groups ->
+                if (groups != null) {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    intent.putParcelableArrayListExtra("groups", ArrayList(groups))
+                    startActivity(intent)
+                }
+            })
+
+            groupViewModel.error.observe(this, Observer { error ->
+                if (error != null) {
+                    // 에러 발생 시에도 HomeActivity로 이동, 빈 리스트 전달
+                    val intent = Intent(this, HomeActivity::class.java)
+                    intent.putParcelableArrayListExtra("groups", ArrayList<GroupInfoResponse>())
+                    startActivity(intent)
+                }
+            })
+
+            groupViewModel.fetchAllGroups()
         }
 
         val loginBtn = findViewById<Button>(R.id.start_login_button)

@@ -36,4 +36,8 @@ class GroupViewModel : ViewModel() {
             }
         }
     }
+
+    fun setAllGroups(groups: List<GroupInfoResponse>) {
+        _groups.value = groups
+    }
 }

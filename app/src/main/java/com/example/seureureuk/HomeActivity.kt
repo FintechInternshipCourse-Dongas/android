@@ -13,7 +13,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.GroupAdapter
+import com.example.seureureuk.data.model.GroupInfoResponse
 import com.example.seureureuk.ui.viewmodel.GroupViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -63,7 +63,12 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        groupViewModel.fetchAllGroups()
+        val groups = intent.getParcelableArrayListExtra<GroupInfoResponse>("groups")
+        if (groups != null && groups.isNotEmpty()) {
+            groupViewModel.setAllGroups(groups)
+        } else {
+            groupViewModel.fetchAllGroups()
+        }
     }
 
     private fun showCreateGroupDialog() {
