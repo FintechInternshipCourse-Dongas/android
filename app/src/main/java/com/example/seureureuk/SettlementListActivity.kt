@@ -1,3 +1,4 @@
+// SettlementListActivity.kt
 package com.example.seureureuk
 
 import android.content.ClipData
@@ -11,44 +12,37 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.GroupMember
+import com.example.seureureuk.data.model.GroupSettlementResponse
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
+import com.example.seureureuk.data.model.Settlement
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SettlementListActivity : AppCompatActivity() {
+
+    private val groupViewModel: GroupViewModel by viewModels()
+    private lateinit var adapter: GroupSettlementAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settlement_list)
 
-        val settlements = listOf(
-            com.example.seureureuk.data.model.Settlement("빨리디", 66000, "2024.07.29"),
-            com.example.seureureuk.data.model.Settlement("버거킹", 54000, "2024.07.20"),
-            com.example.seureureuk.data.model.Settlement("샐러디", 34000, "2024.07.30"),
-            com.example.seureureuk.data.model.Settlement("써브웨이", 14000, "2024.06.30"),
-            com.example.seureureuk.data.model.Settlement("마라탕", 34000, "2024.05.30")
-        )
-
         val recyclerView = findViewById<RecyclerView>(R.id.settlement_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = SettlementAdapter(settlements)
+
+        val adapter = GroupSettlementAdapter(emptyList(), this)
         recyclerView.adapter = adapter
 
-        val emptyStateText = findViewById<TextView>(R.id.empty_state_text)
-        if (settlements.isEmpty()) {
-            recyclerView.visibility = View.GONE
-            emptyStateText.visibility = View.VISIBLE
+        val groupSettlement: GroupSettlementResponse? = intent.getParcelableExtra("group_settlement")
+        if (groupSettlement != null) {
+            adapter.updateData(listOf(groupSettlement))
         } else {
-            recyclerView.visibility = View.VISIBLE
-            emptyStateText.visibility = View.GONE
-        }
-
-        val addSettlementButton = findViewById<Button>(R.id.add_settlement_button)
-        addSettlementButton.setOnClickListener {
-            val intent = Intent(this, AddSettlementActivity::class.java)
-            startActivity(intent)
-            finish()
+            Toast.makeText(this, "SettlementListActivity - 정산 내역을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
         }
 
         val backButton = findViewById<ImageView>(R.id.back_button)
@@ -56,29 +50,37 @@ class SettlementListActivity : AppCompatActivity() {
             finish()
         }
 
-        val bottomNavigationBar = findViewById<BottomNavigationView>(R.id.bottomNavigationBar)
-        bottomNavigationBar.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    true
-                }
-                R.id.navigation_my -> {
-                    true
-                }
-                else -> false
-            }
+        val addSettlementButton = findViewById<Button>(R.id.add_settlement_button)
+        addSettlementButton.setOnClickListener {
+            val intent = Intent(this, AddSettlementActivity::class.java)
+            startActivity(intent)
         }
 
         val memberAddButton = findViewById<ImageView>(R.id.member_add_button)
         memberAddButton.setOnClickListener {
             showInviteOptionsDialog()
         }
+
+        val bottomNavigationBar = findViewById<BottomNavigationView>(R.id.bottomNavigationBar)
+        bottomNavigationBar.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    // Handle home navigation
+                    true
+                }
+                R.id.navigation_my -> {
+                    // Handle my navigation
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun showInviteOptionsDialog() {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_invite_options, null)
 
-        val dialog = AlertDialog.Builder(this, R.style.CustomAlertDialog) // 스타일 적용
+        val dialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
             .setView(dialogView)
             .create()
 
@@ -87,7 +89,7 @@ class SettlementListActivity : AppCompatActivity() {
         val cancelButton = dialogView.findViewById<ImageView>(R.id.cancel_button)
 
         shareLinkButton.setOnClickListener {
-            val inviteLink = "https://yourapp.com/invite?code=ABCDE" // 예시 코드
+            val inviteLink = "https://yourapp.com/invite?code=ABCDE"
             val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("invite link", inviteLink)
             clipboard.setPrimaryClip(clip)
@@ -123,6 +125,8 @@ class SettlementListActivity : AppCompatActivity() {
         dialog.show()
     }
 
-
-
+    private fun updateUI(groupMembers: List<GroupMember>) {
+        // Update UI with group members
+        // You can use RecyclerView or any other view to display group members
+    }
 }

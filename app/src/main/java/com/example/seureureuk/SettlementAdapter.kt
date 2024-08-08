@@ -10,9 +10,9 @@ import com.example.seureureuk.data.model.Settlement
 class SettlementAdapter(private val settlements: List<Settlement>) : RecyclerView.Adapter<SettlementAdapter.SettlementViewHolder>() {
 
     class SettlementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val transactionName: TextView = itemView.findViewById(R.id.transaction_name)
-        val transactionAmount: TextView = itemView.findViewById(R.id.transaction_amount)
-        val transactionDate: TextView = itemView.findViewById(R.id.transaction_date)
+        val transactionName: TextView = itemView.findViewById(R.id.settlement_name)
+        val transactionAmount: TextView = itemView.findViewById(R.id.settlement_amount)
+        val transactionDate: TextView = itemView.findViewById(R.id.settlement_date)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettlementViewHolder {

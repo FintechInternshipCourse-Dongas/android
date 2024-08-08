@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.AddSettlementActivity
-import com.example.seureureuk.R
-import com.example.seureureuk.SettlementListActivity
 import com.example.seureureuk.data.model.GroupInfoResponse
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
 
 class GroupAdapter(
     private var groups: List<GroupInfoResponse>,
@@ -48,9 +47,17 @@ class GroupAdapter(
             groupMembers.text = "멤버 : ${group.numOfparticipantCount}명"
 
             itemView.setOnClickListener {
-                val intent = Intent(context, SettlementListActivity::class.java)
-                intent.putExtra("group_id", group.id)
-                context.startActivity(intent)
+                val viewModel = ViewModelProvider(context as HomeActivity).get(GroupViewModel::class.java)
+                viewModel.fetchGroupSettlement(group.id)
+                viewModel.groupSettlement.observe(context) { groupSettlementResponse ->
+                    if (groupSettlementResponse != null) {
+                        val intent = Intent(context, SettlementListActivity::class.java)
+                        intent.putExtra("group_settlement", groupSettlementResponse)
+                        context.startActivity(intent)
+                    } else {
+                        Toast.makeText(context, "정산 내역을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
 
             settleButton.setOnClickListener {
