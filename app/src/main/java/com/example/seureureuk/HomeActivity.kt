@@ -12,6 +12,10 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.ui.adapter.GroupAdapter
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -20,12 +24,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        val navigationMy = findViewById<LinearLayout>(R.id.navigation_my)
-        navigationMy.setOnClickListener {
-            val intent = Intent(this, MyPageActivity::class.java)
-            startActivity(intent)
-        }
 
         val createGroupButton = findViewById<ImageView>(R.id.button_add)
         createGroupButton.setOnClickListener {
@@ -50,15 +48,13 @@ class HomeActivity : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.group_list_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val adapter = GroupAdapter(emptyList()) { group ->
-            Toast.makeText(this, "Selected: ${group.name}", Toast.LENGTH_SHORT).show()
-        }
+        val adapter = GroupAdapter(emptyList(), this)
         recyclerView.adapter = adapter
 
         groupViewModel.groups.observe(this) { groups ->
             groups?.let {
                 Log.d("HomeActivity", "Updating adapter with groups: $it")
-                adapter.updateData(it)  // 모든 그룹을 업데이트
+                adapter.updateData(it)
             }
         }
 
@@ -68,8 +64,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // 모든 그룹 정보 요청
-        groupViewModel.fetchGroups()
+        groupViewModel.fetchAllGroups()
     }
 
     private fun showCreateGroupDialog() {

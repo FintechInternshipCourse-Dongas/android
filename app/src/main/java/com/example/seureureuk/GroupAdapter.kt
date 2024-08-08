@@ -1,22 +1,27 @@
 package com.example.seureureuk.ui.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.AddSettlementActivity
 import com.example.seureureuk.R
+import com.example.seureureuk.SettlementListActivity
 import com.example.seureureuk.data.model.GroupInfoResponse
 
 class GroupAdapter(
     private var groups: List<GroupInfoResponse>,
-    private val onItemClick: (GroupInfoResponse) -> Unit
+    private val context: Context
 ) : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
 
     fun updateData(newGroups: List<GroupInfoResponse>) {
         groups = newGroups
-        notifyDataSetChanged()  // 데이터 세트가 변경되었음을 RecyclerView에 알림
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
@@ -38,16 +43,20 @@ class GroupAdapter(
         private val settleButton: Button = itemView.findViewById(R.id.settle_button)
 
         fun bind(group: GroupInfoResponse) {
-            groupName.text = group.name
-            groupDate.text = group.createAt.toString()
-            groupMembers.text = "멤버 : ${group.numOfparticipantCount}"
+            groupName.text = group.groupName
+            groupDate.text = group.createAt.replace("-", ".")
+            groupMembers.text = "멤버 : ${group.numOfparticipantCount}명"
 
             itemView.setOnClickListener {
-                onItemClick(group)
+                val intent = Intent(context, SettlementListActivity::class.java)
+                intent.putExtra("group_id", group.id)
+                context.startActivity(intent)
             }
 
             settleButton.setOnClickListener {
-                // Handle settle button click
+                val intent = Intent(context, AddSettlementActivity::class.java)
+                intent.putExtra("group_id", group.id)
+                context.startActivity(intent)
             }
         }
     }

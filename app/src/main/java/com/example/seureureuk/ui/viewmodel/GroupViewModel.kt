@@ -18,15 +18,15 @@ class GroupViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
-    fun fetchGroups() {
+    fun fetchAllGroups() {
         viewModelScope.launch {
             try {
                 val response = withContext(Dispatchers.IO) {
-                    RetrofitClient.instance.getGroups().execute().body()
+                    RetrofitClient.instance.getAllGroups().execute().body()
                 }
                 if (response != null) {
-                    _groups.value = response
-                    Log.d("GroupViewModel", "Fetched groups: $response")
+                    _groups.value = response.data
+                    Log.d("GroupViewModel", "Fetched groups: ${response.data}")
                 } else {
                     Log.e("GroupViewModel", "No data received")
                 }

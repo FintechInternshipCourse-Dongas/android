@@ -4,12 +4,12 @@ import java.time.LocalDate
 
 data class GroupInfoResponse(
     val id: String,
-    val name: String,
-    val createAt: LocalDate,
+    val groupName: String,
+    val createAt: String,
     val numOfparticipantCount: Int,
     val bookmark: Boolean
 )
 
-data class GroupInfoRequest(
-    val groupName: String
+data class GroupInfoResponseList(
+    val data: List<GroupInfoResponse>
 )

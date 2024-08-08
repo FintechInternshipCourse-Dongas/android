@@ -9,6 +9,7 @@
     app:cardBackgroundColor="#FFFFFF">
 
     <RelativeLayout
+        android:id="@+id/group_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
@@ -66,6 +67,7 @@
             android:text="정산 하기"
             android:textColor="#FFFFFF"
             android:backgroundTint="#1927EC"
+            android:background="@drawable/rounded_corner"
             android:layout_alignParentBottom="true"
             android:layout_toStartOf="@id/star_button"
             android:layout_marginEnd="8dp"
