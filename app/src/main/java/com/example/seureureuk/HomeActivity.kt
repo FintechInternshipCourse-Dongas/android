@@ -12,12 +12,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.data.model.GroupInfoRequest
-import com.example.seureureuk.ui.adapter.GroupAdapter
-import com.example.seureureuk.ui.viewmodel.GroupViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
 
@@ -35,6 +30,21 @@ class HomeActivity : AppCompatActivity() {
         val createGroupButton = findViewById<ImageView>(R.id.button_add)
         createGroupButton.setOnClickListener {
             showCreateGroupDialog()
+        }
+
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_bar)
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    true
+                }
+                R.id.navigation_my -> {
+                    startActivity(Intent(this, MyPageActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
 
         val recyclerView: RecyclerView = findViewById(R.id.group_list_recycler_view)

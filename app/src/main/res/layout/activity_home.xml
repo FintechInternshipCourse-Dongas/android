@@ -160,47 +160,13 @@
         android:layout_above="@id/navigation_bar"
         android:layout_marginTop="16dp" />
 
-    <LinearLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
         android:background="#FFFFFF"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/navigation_home"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/icon_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_home"
-                android:contentDescription="@string/icon_home" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/navigation_my"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/icon_my"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_my"
-                android:contentDescription="@string/icon_my"/>
-        </LinearLayout>
-    </LinearLayout>
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
+        app:menu="@menu/bottom_nav_menu"/>
 </RelativeLayout>

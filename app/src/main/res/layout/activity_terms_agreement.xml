@@ -230,11 +230,13 @@
     <Button
         android:id="@+id/next_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="@string/next"
         android:textColor="@android:color/white"
+        android:textSize="18sp"
         android:backgroundTint="@color/consent_waiting"
+        android:background="@drawable/rounded_corner"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp" />
+        android:layout_margin="32dp" />
 
 </RelativeLayout>

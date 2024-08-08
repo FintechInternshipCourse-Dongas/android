@@ -27,6 +27,7 @@
             android:text="내 정보 관리"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_centerHorizontal="true"
             android:gravity="center"/>
 
