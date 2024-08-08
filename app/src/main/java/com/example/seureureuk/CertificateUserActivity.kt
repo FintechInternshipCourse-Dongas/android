@@ -30,9 +30,9 @@ class CertificateUserActivity : AppCompatActivity() {
             Toast.makeText(this, "본인인증 완료", Toast.LENGTH_SHORT).show()
         }
 
-        val payment_register_Btn = findViewById<Button>(com.example.seureureuk.R.id.payment_register_button)
-        payment_register_Btn.setOnClickListener {
-            val intent = Intent(this, PaymentMethodRegistrationActivity::class.java)
+        val sign_up_finish_Btn = findViewById<Button>(com.example.seureureuk.R.id.sign_up_finish_button)
+        sign_up_finish_Btn.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }

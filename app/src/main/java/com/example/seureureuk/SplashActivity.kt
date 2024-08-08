@@ -1,6 +1,5 @@
 package com.example.seureureuk
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -12,7 +11,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(com.example.seureureuk.R.layout.activity_splash)
 
         Handler().postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, StartAppActivity::class.java))
             finish()
         }, 2000)
     }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:paddingLeft="85dp"
+        android:paddingTop="10dp"
+        android:paddingRight="80dp"
+        android:src="@drawable/main_logo" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/logo">
+
+        <Button
+            android:id="@+id/start_sign_up_button"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_corner"
+            android:drawableLeft="@drawable/ic_card_login"
+            android:backgroundTint="#1927EC"
+            android:drawablePadding="16dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center_vertical|left"
+            android:text="스르륵 ID로 시작하기"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:elevation="6dp" />
+
+        <Button
+            android:id="@+id/start_kakao_button"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#FFD700"
+            android:drawableLeft="@drawable/ic_kakao"
+            android:drawablePadding="16dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center_vertical|left"
+            android:text="카카오로 시작하기"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:elevation="6dp" />
+
+        <Button
+            android:id="@+id/start_login_button"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#F0F0F2"
+            android:textAlignment="center"
+            android:drawablePadding="16dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical|left"
+            android:text="로그인"
+            android:textColor="#1927EC"
+            android:textSize="18sp"
+            android:elevation="6dp" />
+    </LinearLayout>
+</RelativeLayout>
