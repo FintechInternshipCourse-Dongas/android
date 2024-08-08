@@ -5,10 +5,13 @@
     android:background="@color/white">
 
     <ImageView
-        android:id="@+id/splash_logo"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:padding="80dp"/>
+        android:layout_marginTop="100dp"
+        android:paddingLeft="85dp"
+        android:paddingTop="10dp"
+        android:paddingRight="80dp"
+        android:src="@drawable/main_logo" />
 
 </RelativeLayout>

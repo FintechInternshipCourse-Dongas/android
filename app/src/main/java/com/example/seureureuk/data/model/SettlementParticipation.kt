@@ -1,4 +1,4 @@
-package com.example.seureureuk
+package com.example.seureureuk.data.model
 
 data class SettlementParticipation(
     val name: String,

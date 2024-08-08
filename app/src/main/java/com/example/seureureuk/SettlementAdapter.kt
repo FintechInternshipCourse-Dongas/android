@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.Settlement
 
 class SettlementAdapter(private val settlements: List<Settlement>) : RecyclerView.Adapter<SettlementAdapter.SettlementViewHolder>() {
 

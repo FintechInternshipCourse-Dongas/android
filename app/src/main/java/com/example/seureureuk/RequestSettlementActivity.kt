@@ -21,12 +21,12 @@ class RequestSettlementActivity : AppCompatActivity() {
         participantsRecyclerView.layoutManager = LinearLayoutManager(this)
 
         val members = listOf(
-            SettlementParticipation("민선", "5000", true),
-            SettlementParticipation("가온", "4500", false),
-            SettlementParticipation("해성", "7000", true),
-            SettlementParticipation("나영", "3000", false),
-            SettlementParticipation("한비", "6000", true),
-            SettlementParticipation("건", "4000", false)
+            com.example.seureureuk.data.model.SettlementParticipation("민선", "5000", true),
+            com.example.seureureuk.data.model.SettlementParticipation("가온", "4500", false),
+            com.example.seureureuk.data.model.SettlementParticipation("해성", "7000", true),
+            com.example.seureureuk.data.model.SettlementParticipation("나영", "3000", false),
+            com.example.seureureuk.data.model.SettlementParticipation("한비", "6000", true),
+            com.example.seureureuk.data.model.SettlementParticipation("건", "4000", false)
         )
 
         settlementAdapter = SettlementRequestParticipationAdapter(this, members)
