@@ -45,7 +45,7 @@
         android:id="@+id/idInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="아이디"
+        android:hint="아이디(이메일)"
         android:layout_below="@id/nameInput"
         android:inputType="text"
         android:layout_marginTop="16dp" />
