@@ -23,11 +23,11 @@ class SettlementListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settlement_list)
 
         val settlements = listOf(
-            Settlement("빨리디", 66000, "2024.07.29"),
-            Settlement("버거킹", 54000, "2024.07.20"),
-            Settlement("샐러디", 34000, "2024.07.30"),
-            Settlement("써브웨이", 14000, "2024.06.30"),
-            Settlement("마라탕", 34000, "2024.05.30")
+            com.example.seureureuk.data.model.Settlement("빨리디", 66000, "2024.07.29"),
+            com.example.seureureuk.data.model.Settlement("버거킹", 54000, "2024.07.20"),
+            com.example.seureureuk.data.model.Settlement("샐러디", 34000, "2024.07.30"),
+            com.example.seureureuk.data.model.Settlement("써브웨이", 14000, "2024.06.30"),
+            com.example.seureureuk.data.model.Settlement("마라탕", 34000, "2024.05.30")
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.settlement_recycler_view)

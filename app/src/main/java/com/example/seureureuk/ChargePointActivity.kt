@@ -81,7 +81,7 @@ class ChargePointActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
 
-            val intent = Intent(this, FinishChargeActivity::class.java)
+            val intent = Intent(this, com.example.seureureuk.FinishChargeActivity::class.java)
             startActivity(intent)
         }
 

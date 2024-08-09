@@ -31,10 +31,10 @@ class SettlementDetailActivity: AppCompatActivity() {
         locationValue.text = "샐러디 사당점"
 
         val members = listOf(
-            SettlementParticipation("민선", "11,000원"),
-            SettlementParticipation("가은", "12,000원"),
-            SettlementParticipation("해성", "13,000원"),
-            SettlementParticipation("나영", "14,000원")
+            com.example.seureureuk.data.model.SettlementParticipation("민선", "11,000원"),
+            com.example.seureureuk.data.model.SettlementParticipation("가은", "12,000원"),
+            com.example.seureureuk.data.model.SettlementParticipation("해성", "13,000원"),
+            com.example.seureureuk.data.model.SettlementParticipation("나영", "14,000원")
         )
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)

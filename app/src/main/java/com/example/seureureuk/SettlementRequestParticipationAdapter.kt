@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.SettlementParticipation
 
 class SettlementRequestParticipationAdapter(
     private val context: Context,
@@ -30,7 +31,9 @@ class SettlementRequestParticipationAdapter(
         holder.requestStatus.text = if (member.status == true) "동의 완료" else "요청 보냄"
 
         holder.requestStatus.setTextColor(
-            if (member.status == true) context.getColor(R.color.consent_complete) else context.getColor(R.color.consent_waiting)
+            if (member.status == true) context.getColor(R.color.consent_complete) else context.getColor(
+                R.color.consent_waiting
+            )
         )
 
         holder.memberAvatar.setImageResource(R.drawable.ic_member)
