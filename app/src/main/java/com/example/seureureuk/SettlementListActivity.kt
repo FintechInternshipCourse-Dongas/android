@@ -5,8 +5,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -17,11 +17,16 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.GroupInviteResponse
+import com.example.seureureuk.data.model.GroupInviteResponseData
 import com.example.seureureuk.data.model.GroupMember
 import com.example.seureureuk.data.model.GroupSettlementResponse
 import com.example.seureureuk.ui.viewmodel.GroupViewModel
-import com.example.seureureuk.data.model.Settlement
+import com.example.seureureuk.network.RetrofitInstance
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SettlementListActivity : AppCompatActivity() {
 
@@ -43,7 +48,7 @@ class SettlementListActivity : AppCompatActivity() {
             adapter.updateData(listOf(groupSettlement))
             addMembersToLayout(groupSettlement.groupMembers)
         } else {
-            Toast.makeText(this, "SettlementListActivity - 정산 내역을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
+            Log.d("SettlementListActivity", "정산 내역을 불러오는 데 실패했습니다.")
         }
 
         val backButton = findViewById<ImageView>(R.id.back_button)
@@ -57,9 +62,10 @@ class SettlementListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val groupId = intent.getIntExtra("groupId", 1) // 두 번째 인자는 기본값
         val memberAddButton = findViewById<ImageView>(R.id.member_add_button)
         memberAddButton.setOnClickListener {
-            showInviteOptionsDialog()
+            showInviteOptionsDialog(groupId)
         }
 
         val bottomNavigationBar = findViewById<BottomNavigationView>(R.id.bottomNavigationBar)
@@ -95,7 +101,7 @@ class SettlementListActivity : AppCompatActivity() {
         }
     }
 
-    private fun showInviteOptionsDialog() {
+    private fun showInviteOptionsDialog(groupId: Int) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_invite_options, null)
 
         val dialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
@@ -118,7 +124,26 @@ class SettlementListActivity : AppCompatActivity() {
 
         inviteUserButton.setOnClickListener {
             dialog.dismiss()
-            showInviteCodeDialog()
+
+            // 초대 코드 팝업 띄우기 전에 -> api에 요청해서 초대 코드 생성 -> 인자로 넘겨주기
+            val apiService = RetrofitInstance.api
+            apiService.createInviteCode(groupId).enqueue(object : Callback<GroupInviteResponseData> {
+                override fun onResponse(call: Call<GroupInviteResponseData>, response: Response<GroupInviteResponseData>) {
+                    if (response.isSuccessful) {
+                        val inviteResponse = response.body()
+                        inviteResponse?.let {
+                            val inviteCode = it.data.invitationCode
+                            showInviteCodeDialog(inviteCode)
+                        }
+                    } else {
+                        Log.d("SettlementListActivity","createInviteCode failed with status: ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<GroupInviteResponseData>, t: Throwable) {
+                    Log.d("SettlementListActivity", "Network error: ${t.message}")
+                }
+            })
         }
 
         cancelButton.setOnClickListener {
@@ -128,7 +153,7 @@ class SettlementListActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showInviteCodeDialog() {
+    private fun showInviteCodeDialog(inviteCode: String) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_invite_code, null)
 
         val dialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
@@ -140,11 +165,13 @@ class SettlementListActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
+        // 하나의 TextView에 초대 코드를 설정
+        Log.d("SettlementListaActivity", "Created Invite Code: ${inviteCode}")
+        val inviteCodeTextView = dialogView.findViewById<TextView>(R.id.invite_code_text_view)
+        inviteCodeTextView.text = inviteCode
+
         dialog.show()
     }
 
-    private fun updateUI(groupMembers: List<GroupMember>) {
-        // Update UI with group members
-        // You can use RecyclerView or any other view to display group members
-    }
+
 }

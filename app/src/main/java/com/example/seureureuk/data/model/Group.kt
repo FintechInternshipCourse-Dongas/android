@@ -147,3 +147,13 @@ data class GroupRegisterRequest(
     val groupName: String
 )
 
+data class GroupInviteResponse(
+    val invitationCode: String
+)
+
+data class GroupInviteResponseData(
+    val status: String,
+    val statusCode: Int,
+    val message: String,
+    val data: GroupInviteResponse
+)

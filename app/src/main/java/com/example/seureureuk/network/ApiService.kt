@@ -2,11 +2,11 @@ package com.example.seureureuk.network
 
 import com.example.seureureuk.data.model.AccountRegisterRequest
 import com.example.seureureuk.data.model.GroupInfoResponseList
+import com.example.seureureuk.data.model.GroupInviteResponseData
 import com.example.seureureuk.data.model.GroupRegisterRequest
 import com.example.seureureuk.data.model.GroupSettlementResponseData
 import com.example.seureureuk.data.model.ResultResponseUserLoginResponse
 import com.example.seureureuk.data.model.ResultResponseVoid
-import com.example.seureureuk.data.model.ResultResponseUserMyPageResponse
 import com.example.seureureuk.data.model.UserLoginRequest
 import com.example.seureureuk.data.model.UserSignUpRequest
 import retrofit2.Call
@@ -17,7 +17,10 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
-    @POST("/api/groups")
+    @POST("groups/{groupId}/invite")
+    fun createInviteCode(@Path("groupId") groupId: Int): Call<GroupInviteResponseData>
+
+    @POST("groups")
     suspend fun createGroup(@Body groupRequest: GroupRegisterRequest): Response<Void>
 
     @GET("mock/groups/{groupId}")
@@ -31,9 +34,6 @@ interface ApiService {
 
     @POST("users/auth/login")
     fun loginUser(@Body request: UserLoginRequest): Call<ResultResponseUserLoginResponse>
-
-    @GET("users")
-    fun getUserMyPageInfo(): Call<ResultResponseUserMyPageResponse>
 
     @POST("accounts/register")
     fun registerAccount(@Body request: AccountRegisterRequest): Call<ResultResponseVoid>

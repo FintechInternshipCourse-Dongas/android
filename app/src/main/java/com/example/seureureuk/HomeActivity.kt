@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seureureuk.data.model.GroupInfoResponse
@@ -99,24 +100,32 @@ class HomeActivity : AppCompatActivity() {
 
                 groupViewModel.createGroupResponse.observe(this) { success ->
                     if (success) {
-                        Toast.makeText(this, "Group created successfully!", Toast.LENGTH_SHORT).show()
+                        Log.d("HomeActivity", "Group created successfully!")
                         dialog.dismiss()
-                        val intent = Intent(this, SettlementListActivity::class.java)
-                        startActivity(intent)
+
+                        val viewModel = ViewModelProvider(this).get(GroupViewModel::class.java)
+                        viewModel.fetchGroupSettlement(1)
+                        viewModel.groupSettlement.observe(this) { groupSettlementResponse ->
+                            if (groupSettlementResponse != null) {
+                                val intent = Intent(this, SettlementListActivity::class.java)
+                                intent.putExtra("group_settlement", groupSettlementResponse)
+                                startActivity(intent)
+                            } else {
+                                Log.d("HomeActivity", "정산 내역을 불러오는 데 실패했습니다.")
+                            }
+                        }
                     } else {
-                        Toast.makeText(this, "Failed to create group", Toast.LENGTH_SHORT).show()
+                        Log.d("HomeActivity", "Failed to create group")
                     }
                 }
 
                 groupViewModel.error.observe(this) { errorMessage ->
-                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                    Log.e("HomeActivity", errorMessage)
                 }
-
             } else {
-                Toast.makeText(this, "Please enter a group name", Toast.LENGTH_SHORT).show()
+                Log.d("HomeActivity", "Please enter a group name")
             }
         }
-
 
         joinWithInviteCodeButton.setOnClickListener {
             dialog.dismiss()

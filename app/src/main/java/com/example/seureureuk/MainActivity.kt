@@ -3,12 +3,12 @@ package com.example.seureureuk
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -77,32 +77,33 @@ class MainActivity : AppCompatActivity() {
 
                 groupViewModel.createGroupResponse.observe(this) { success ->
                     if (success) {
-                        Toast.makeText(this, "Group created successfully!", Toast.LENGTH_SHORT).show()
+                        Log.d("MainActivity", "Group created successfully!")
                         dialog.dismiss()
 
                         val viewModel = ViewModelProvider(this).get(GroupViewModel::class.java)
-                        viewModel.fetchGroupSettlement(1)
+                        val groupId = 1 // 나중에 수정
+                        viewModel.fetchGroupSettlement(groupId)
                         viewModel.groupSettlement.observe(this) { groupSettlementResponse ->
                             if (groupSettlementResponse != null) {
                                 val intent = Intent(this, SettlementListActivity::class.java)
                                 intent.putExtra("group_settlement", groupSettlementResponse)
+                                intent.putExtra("groupId", groupId)
                                 startActivity(intent)
                             } else {
-                                Toast.makeText(this, "정산 내역을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                                Log.d("MainActivity", "정산 내역을 불러오는 데 실패했습니다.")
                             }
                         }
-
                     } else {
-                        Toast.makeText(this, "Failed to create group", Toast.LENGTH_SHORT).show()
+                        Log.d("MainActivity", "Failed to create group")
                     }
                 }
 
                 groupViewModel.error.observe(this) { errorMessage ->
-                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                    Log.e("MainActivity", errorMessage)
                 }
 
             } else {
-                Toast.makeText(this, "Please enter a group name", Toast.LENGTH_SHORT).show()
+                Log.d("MainActivity", "Please enter a group name")
             }
         }
 

@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
     private const val BASE_URL = "http://172.191.5.168/api/"
-    private lateinit var retrofit: Retrofit
+    private var token: String? = null
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -37,8 +37,8 @@ object RetrofitInstance {
                 .create(ApiService::class.java)
         }
 
-    val api: ApiService by lazy {
-        retrofit.create(ApiService::class.java)
+    fun updateToken(newToken: String) {
+        token = newToken
     }
 
     fun getToken(): String? {
