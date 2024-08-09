@@ -39,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
                             val loginResponse = response.body()
                             if (loginResponse?.data != null) {
                                 val token = loginResponse.data.accessToken
-                                RetrofitInstance.updateToken(token)
 
                                 // 토큰을 SharedPreferences에 저장
                                 val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)

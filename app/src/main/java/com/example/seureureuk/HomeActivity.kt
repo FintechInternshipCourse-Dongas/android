@@ -69,6 +69,7 @@ class HomeActivity : AppCompatActivity() {
         } else {
             groupViewModel.fetchAllGroups()
         }
+
     }
 
     private fun showCreateGroupDialog() {
@@ -92,10 +93,30 @@ class HomeActivity : AppCompatActivity() {
 
         createGroupButton.setOnClickListener {
             val groupName = groupNameEditText.text.toString()
-            dialog.dismiss()
-            val intent = Intent(this, SettlementListActivity::class.java)
-            startActivity(intent)
+
+            if (groupName.isNotEmpty()) {
+                groupViewModel.createGroup(groupName)
+
+                groupViewModel.createGroupResponse.observe(this) { success ->
+                    if (success) {
+                        Toast.makeText(this, "Group created successfully!", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                        val intent = Intent(this, SettlementListActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, "Failed to create group", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                groupViewModel.error.observe(this) { errorMessage ->
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+
+            } else {
+                Toast.makeText(this, "Please enter a group name", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
         joinWithInviteCodeButton.setOnClickListener {
             dialog.dismiss()

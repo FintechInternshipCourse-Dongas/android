@@ -8,18 +8,24 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.ViewModelProvider
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private val groupViewModel: GroupViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val CreateGroupButton = findViewById<ImageView>(R.id.button_add)
-        CreateGroupButton.setOnClickListener {
+        val createGroupButton = findViewById<ImageView>(R.id.button_add)
+        createGroupButton.setOnClickListener {
             showCreateGroupDialog()
         }
 
@@ -65,9 +71,39 @@ class MainActivity : AppCompatActivity() {
 
         createGroupButton.setOnClickListener {
             val groupName = groupNameEditText.text.toString()
-            dialog.dismiss()
-            val intent = Intent(this, SettlementListActivity::class.java)
-            startActivity(intent)
+
+            if (groupName.isNotEmpty()) {
+                groupViewModel.createGroup(groupName)
+
+                groupViewModel.createGroupResponse.observe(this) { success ->
+                    if (success) {
+                        Toast.makeText(this, "Group created successfully!", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+
+                        val viewModel = ViewModelProvider(this).get(GroupViewModel::class.java)
+                        viewModel.fetchGroupSettlement(1)
+                        viewModel.groupSettlement.observe(this) { groupSettlementResponse ->
+                            if (groupSettlementResponse != null) {
+                                val intent = Intent(this, SettlementListActivity::class.java)
+                                intent.putExtra("group_settlement", groupSettlementResponse)
+                                startActivity(intent)
+                            } else {
+                                Toast.makeText(this, "정산 내역을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(this, "Failed to create group", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                groupViewModel.error.observe(this) { errorMessage ->
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+
+            } else {
+                Toast.makeText(this, "Please enter a group name", Toast.LENGTH_SHORT).show()
+            }
         }
 
         joinWithInviteCodeButton.setOnClickListener {

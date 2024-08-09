@@ -142,3 +142,8 @@ data class GroupSettlement(
 data class GroupSettlementResponseData(
     val data: GroupSettlementResponse
 )
+
+data class GroupRegisterRequest(
+    val groupName: String
+)
+

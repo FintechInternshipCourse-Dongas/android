@@ -35,7 +35,6 @@ class StartAppActivity : AppCompatActivity() {
 
             groupViewModel.error.observe(this, Observer { error ->
                 if (error != null) {
-                    // 에러 발생 시에도 HomeActivity로 이동, 빈 리스트 전달
                     val intent = Intent(this, HomeActivity::class.java)
                     intent.putParcelableArrayListExtra("groups", ArrayList<GroupInfoResponse>())
                     startActivity(intent)
