@@ -5,14 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.seureureuk.ui.viewmodel.GroupViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -32,6 +33,27 @@ class MainActivity : AppCompatActivity() {
         val createGroupView = findViewById<CardView>(R.id.add_group_button)
         createGroupView.setOnClickListener {
             showCreateGroupDialog()
+        }
+
+        groupViewModel.fetchAllGroups()
+
+        val recyclerView: RecyclerView = findViewById(R.id.group_list)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = GroupAdapter(emptyList(), this)
+        recyclerView.adapter = adapter
+
+        groupViewModel.groups.observe(this) { groups ->
+            if (groups.isNullOrEmpty()) {
+                createGroupView.visibility = View.VISIBLE
+            } else {
+                createGroupView.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+                adapter.updateData(groups)
+            }
+        }
+
+        groupViewModel.error.observe(this) { errorMessage ->
+            Log.e("MainActivity", errorMessage)
         }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_bar)
@@ -75,35 +97,40 @@ class MainActivity : AppCompatActivity() {
             if (groupName.isNotEmpty()) {
                 groupViewModel.createGroup(groupName)
 
-                groupViewModel.createGroupResponse.observe(this) { success ->
-                    if (success) {
-                        Log.d("MainActivity", "Group created successfully!")
-                        dialog.dismiss()
+                groupViewModel.createGroupResponse.observe(this) { response ->
+                    val groupId = response.data.groupId
+                    Log.d("MainActivity", "Group created successfully! Group ID: $groupId")
+                    dialog.dismiss()
 
-                        val viewModel = ViewModelProvider(this).get(GroupViewModel::class.java)
-                        val groupId = 1 // 나중에 수정
-                        viewModel.fetchGroupSettlement(groupId)
-                        viewModel.groupSettlement.observe(this) { groupSettlementResponse ->
-                            if (groupSettlementResponse != null) {
-                                val intent = Intent(this, SettlementListActivity::class.java)
-                                intent.putExtra("group_settlement", groupSettlementResponse)
-                                intent.putExtra("groupId", groupId)
-                                startActivity(intent)
-                            } else {
-                                Log.d("MainActivity", "정산 내역을 불러오는 데 실패했습니다.")
+                    groupViewModel.fetchAllGroups()
+
+                    groupViewModel.fetchGroupMembers(groupId)
+                    groupViewModel.fetchGroupSettlements(groupId)
+
+                    groupViewModel.groupMembers.observe(this) { membersResponse ->
+                        if (membersResponse != null) {
+                            groupViewModel.groupSettlements.observe(this) { settlementsResponse ->
+                                if (settlementsResponse != null) {
+                                    val intent = Intent(this, SettlementListActivity::class.java)
+                                    intent.putExtra("groupMembers", ArrayList(membersResponse.data))
+                                    intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
+                                    intent.putExtra("groupId", groupId)
+                                    startActivity(intent)
+                                } else {
+                                    Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")
+                                }
                             }
+                        } else {
+                            Log.d("MainActivity", "멤버 목록을 불러오는 데 실패했습니다.")
                         }
-                    } else {
-                        Log.d("MainActivity", "Failed to create group")
                     }
                 }
 
                 groupViewModel.error.observe(this) { errorMessage ->
                     Log.e("MainActivity", errorMessage)
                 }
-
             } else {
-                Log.d("MainActivity", "Please enter a group name")
+                Log.d("MainActivity", "Failed to create group")
             }
         }
 
@@ -133,9 +160,45 @@ class MainActivity : AppCompatActivity() {
 
         groupJoinButton.setOnClickListener {
             val inviteCode = inviteCodeEditText.text.toString()
-            joinDialog.dismiss()
-            val intent = Intent(this, SettlementListActivity::class.java)
-            startActivity(intent)
+//            joinDialog.dismiss()
+
+            if (inviteCode.isNotEmpty()) {
+                groupViewModel.enterGroupWithInviteCode(inviteCode)
+
+                groupViewModel.groupEntranceResponse.observe(this) { entranceResponse ->
+                    if (entranceResponse != null) {
+                        val groupId = entranceResponse.data.groupId
+
+                        groupViewModel.fetchGroupMembers(groupId)
+                        groupViewModel.fetchGroupSettlements(groupId)
+
+                        groupViewModel.groupMembers.observe(this) { membersResponse ->
+                            if (membersResponse != null) {
+                                groupViewModel.groupSettlements.observe(this) { settlementsResponse ->
+                                    if (settlementsResponse != null) {
+                                        val intent = Intent(this, SettlementListActivity::class.java)
+                                        intent.putExtra("groupMembers", ArrayList(membersResponse.data))
+                                        intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
+                                        intent.putExtra("groupId", groupId)
+                                        startActivity(intent)
+                                    } else {
+                                        Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")
+                                    }
+                                }
+                            } else {
+                                Log.d("MainActivity", "멤버 목록을 불러오는 데 실패했습니다.")
+                            }
+                        }
+                    }
+
+                    groupViewModel.error.observe(this) { errorMessage ->
+                        Log.e("MainActivity", errorMessage)
+                    }
+                }
+            } else {
+                Log.d("MainActivity", "Failed to enter group")
+            }
+
         }
     }
 }

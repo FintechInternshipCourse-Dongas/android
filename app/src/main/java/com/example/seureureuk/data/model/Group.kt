@@ -1,4 +1,3 @@
-// GroupSettlementResponse.kt
 package com.example.seureureuk.data.model
 
 import android.os.Parcel
@@ -46,18 +45,60 @@ data class GroupInfoResponseList(
     val data: List<GroupInfoResponse>
 )
 
-data class GroupSettlementResponse(
-    val groupMembers: List<GroupMember>,
-    val settlements: List<GroupSettlement>
-) : Parcelable {
+data class GroupMemberResponse(
+    val id: Int,
+    val memberName: String
+): Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.createTypedArrayList(GroupMember)!!,
-        parcel.createTypedArrayList(GroupSettlement)!!
+        parcel.readInt(),
+        parcel.readString() ?: "",
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeTypedList(groupMembers)
-        parcel.writeTypedList(settlements)
+        parcel.writeInt(id)
+        parcel.writeString(memberName)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<GroupMemberResponse> {
+        override fun createFromParcel(parcel: Parcel): GroupMemberResponse {
+            return GroupMemberResponse(parcel)
+        }
+
+        override fun newArray(size: Int): Array<GroupMemberResponse?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
+data class GroupMemberResponseData(
+    val status: String,
+    val statusCode: Int,
+    val message: String,
+    val data: List<GroupMemberResponse>
+)
+
+data class GroupSettlementResponse(
+    val id: Int,
+    val settlementName: String,
+    val totalPaymentAmount: Int,
+    val settlementAt: String
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readString() ?: "",
+        parcel.readInt(),
+        parcel.readString() ?: ""
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeString(settlementName)
+        parcel.writeInt(totalPaymentAmount)
+        parcel.writeString(settlementAt)
     }
 
     override fun describeContents(): Int {
@@ -75,76 +116,26 @@ data class GroupSettlementResponse(
     }
 }
 
-data class GroupMember(
-    val id: Int,
-    val memberName: String
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString()!!
-    )
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeString(memberName)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<GroupMember> {
-        override fun createFromParcel(parcel: Parcel): GroupMember {
-            return GroupMember(parcel)
-        }
-
-        override fun newArray(size: Int): Array<GroupMember?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
-
-data class GroupSettlement(
-    val id: Int,
-    val settlementName: String,
-    val totalPaymentAmount: Int,
-    val settlementAt: String
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString()!!,
-        parcel.readInt(),
-        parcel.readString()!!
-    )
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeString(settlementName)
-        parcel.writeInt(totalPaymentAmount)
-        parcel.writeString(settlementAt)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<GroupSettlement> {
-        override fun createFromParcel(parcel: Parcel): GroupSettlement {
-            return GroupSettlement(parcel)
-        }
-
-        override fun newArray(size: Int): Array<GroupSettlement?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
-
 data class GroupSettlementResponseData(
-    val data: GroupSettlementResponse
+    val status: String,
+    val statusCode: Int,
+    val message: String,
+    val data: List<GroupSettlementResponse>
 )
 
-data class GroupRegisterRequest(
+data class GroupCreateRequest(
     val groupName: String
+)
+
+data class GroupCreateResponse(
+    val groupId: Int
+)
+
+data class GroupCreateResponseData(
+    val status: String,
+    val statusCode: Int,
+    val message: String,
+    val data: GroupCreateResponse
 )
 
 data class GroupInviteResponse(
@@ -157,3 +148,19 @@ data class GroupInviteResponseData(
     val message: String,
     val data: GroupInviteResponse
 )
+
+data class GroupEntranceRequest(
+    val invitationCode: String
+)
+
+data class GroupEntranceResponse(
+    val groupId: Int
+)
+
+data class GroupEntranceResponseData(
+    val status: String,
+    val statusCode: Int,
+    val message: String,
+    val data: GroupEntranceResponse
+)
+

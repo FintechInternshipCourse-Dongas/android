@@ -1,6 +1,6 @@
-// SettlementListActivity.kt
 package com.example.seureureuk
 
+import GroupSettlementAdapter
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
@@ -12,16 +12,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.data.model.GroupInviteResponse
 import com.example.seureureuk.data.model.GroupInviteResponseData
-import com.example.seureureuk.data.model.GroupMember
+import com.example.seureureuk.data.model.GroupMemberResponse
 import com.example.seureureuk.data.model.GroupSettlementResponse
-import com.example.seureureuk.ui.viewmodel.GroupViewModel
 import com.example.seureureuk.network.RetrofitInstance
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
@@ -29,9 +26,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SettlementListActivity : AppCompatActivity() {
-
-    private val groupViewModel: GroupViewModel by viewModels()
-    private lateinit var adapter: GroupSettlementAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +37,12 @@ class SettlementListActivity : AppCompatActivity() {
         val adapter = GroupSettlementAdapter(emptyList(), this)
         recyclerView.adapter = adapter
 
-        val groupSettlement: GroupSettlementResponse? = intent.getParcelableExtra("group_settlement")
-        if (groupSettlement != null) {
-            adapter.updateData(listOf(groupSettlement))
-            addMembersToLayout(groupSettlement.groupMembers)
+        val groupMembers = intent.getParcelableArrayListExtra<GroupMemberResponse>("groupMembers") ?: arrayListOf()
+        val groupSettlements = intent.getParcelableArrayListExtra<GroupSettlementResponse>("groupSettlements") ?: arrayListOf()
+        val groupId = intent.getIntExtra("groupId", -1)
+        if (groupSettlements != null) {
+            adapter.updateData(groupSettlements)
+            addMembersToLayout(groupMembers)
         } else {
             Log.d("SettlementListActivity", "정산 내역을 불러오는 데 실패했습니다.")
         }
@@ -62,7 +58,6 @@ class SettlementListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val groupId = intent.getIntExtra("groupId", 1) // 두 번째 인자는 기본값
         val memberAddButton = findViewById<ImageView>(R.id.member_add_button)
         memberAddButton.setOnClickListener {
             showInviteOptionsDialog(groupId)
@@ -84,7 +79,7 @@ class SettlementListActivity : AppCompatActivity() {
         }
     }
 
-    private fun addMembersToLayout(members: List<GroupMember>) {
+    private fun addMembersToLayout(members: List<GroupMemberResponse>) {
         val membersLayout = findViewById<LinearLayout>(R.id.members_layout_inner)
 
         for (member in members) {
@@ -94,7 +89,8 @@ class SettlementListActivity : AppCompatActivity() {
             memberNameTextView.text = member.memberName
 
             val memberImageView = memberView.findViewById<ImageView>(R.id.member_image)
-            val resourceId = resources.getIdentifier("ic_member_${member.id}", "drawable", packageName)
+            val icNum = member.id % 6
+            val resourceId = resources.getIdentifier("ic_member_${icNum}", "drawable", packageName)
             memberImageView.setImageResource(resourceId)
 
             membersLayout.addView(memberView)
@@ -125,7 +121,6 @@ class SettlementListActivity : AppCompatActivity() {
         inviteUserButton.setOnClickListener {
             dialog.dismiss()
 
-            // 초대 코드 팝업 띄우기 전에 -> api에 요청해서 초대 코드 생성 -> 인자로 넘겨주기
             val apiService = RetrofitInstance.api
             apiService.createInviteCode(groupId).enqueue(object : Callback<GroupInviteResponseData> {
                 override fun onResponse(call: Call<GroupInviteResponseData>, response: Response<GroupInviteResponseData>) {
@@ -165,7 +160,6 @@ class SettlementListActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        // 하나의 TextView에 초대 코드를 설정
         Log.d("SettlementListaActivity", "Created Invite Code: ${inviteCode}")
         val inviteCodeTextView = dialogView.findViewById<TextView>(R.id.invite_code_text_view)
         inviteCodeTextView.text = inviteCode

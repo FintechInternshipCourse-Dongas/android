@@ -1,5 +1,3 @@
-package com.example.seureureuk
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +5,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.R
+import com.example.seureureuk.SubSettlementAdapter
 import com.example.seureureuk.data.model.GroupSettlementResponse
 
 class GroupSettlementAdapter(
-    private var groupSettlements: List<GroupSettlementResponse>,
+    private var groupSettlements: List<GroupSettlementResponse>,  // List<GroupSettlement>로 수정
     private val context: Context
 ) : RecyclerView.Adapter<GroupSettlementAdapter.GroupSettlementViewHolder>() {
 
@@ -34,9 +34,8 @@ class GroupSettlementAdapter(
     inner class GroupSettlementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val settlementRecyclerView: RecyclerView = itemView.findViewById(R.id.settlement_recycler_view)
 
-        fun bind(groupSettlement: GroupSettlementResponse) {
-            // 하위 어댑터를 사용하여 정산 항목 표시
-            val settlementAdapter = SubSettlementAdapter(groupSettlement.settlements)
+        fun bind(groupSettlement: GroupSettlementResponse) {  // 수정된 bind 메서드
+            val settlementAdapter = SubSettlementAdapter(listOf(groupSettlement))
             settlementRecyclerView.layoutManager = LinearLayoutManager(context)
             settlementRecyclerView.adapter = settlementAdapter
         }

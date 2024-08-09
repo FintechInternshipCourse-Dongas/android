@@ -88,4 +88,5 @@
     <string name="join_with_invite_code">초대 코드로 참가하기</string>
     <string name="input_invite_code">초대 코드를 입력해주세요.</string>
     <string name="join">참가하기</string>
+    <string name="settlement_list">정산 내역</string>
 </resources>

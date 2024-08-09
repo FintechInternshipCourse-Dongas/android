@@ -5,16 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.data.model.GroupSettlement
+import com.example.seureureuk.data.model.GroupSettlementResponse
 
-class SubSettlementAdapter(private val settlements: List<GroupSettlement>) : RecyclerView.Adapter<SubSettlementAdapter.SubSettlementViewHolder>() {
+class SubSettlementAdapter(
+    private val settlements: List<GroupSettlementResponse>
+) : RecyclerView.Adapter<SubSettlementAdapter.SubSettlementViewHolder>() {
 
     class SubSettlementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val settlementName: TextView = itemView.findViewById(R.id.settlement_name)
         val settlementAmount: TextView = itemView.findViewById(R.id.settlement_amount)
         val settlementDate: TextView = itemView.findViewById(R.id.settlement_date)
 
-        fun bind(settlement: GroupSettlement) {
+        fun bind(settlement: GroupSettlementResponse) {
             settlementName.text = settlement.settlementName
             settlementAmount.text = "${settlement.totalPaymentAmount}원"
             settlementDate.text = settlement.settlementAt

@@ -2,6 +2,7 @@ package com.example.seureureuk
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,15 +48,27 @@ class GroupAdapter(
             groupMembers.text = "멤버 : ${group.numOfparticipantCount}명"
 
             itemView.setOnClickListener {
-                val viewModel = ViewModelProvider(context as HomeActivity).get(GroupViewModel::class.java)
-                viewModel.fetchGroupSettlement(group.id)
-                viewModel.groupSettlement.observe(context) { groupSettlementResponse ->
-                    if (groupSettlementResponse != null) {
-                        val intent = Intent(context, SettlementListActivity::class.java)
-                        intent.putExtra("group_settlement", groupSettlementResponse)
-                        context.startActivity(intent)
+                val viewModel = ViewModelProvider(context as MainActivity).get(GroupViewModel::class.java)
+
+                // 그룹 멤버와 정산 내역을 가져온 후, 데이터를 전달
+                viewModel.fetchGroupMembers(group.id)
+                viewModel.fetchGroupSettlements(group.id)
+
+                viewModel.groupMembers.observe(context) { membersResponse ->
+                    if (membersResponse != null) {
+                        viewModel.groupSettlements.observe(context) { settlementsResponse ->
+                            if (settlementsResponse != null) {
+                                val intent = Intent(context, SettlementListActivity::class.java)
+                                intent.putExtra("groupMembers", ArrayList(membersResponse.data))
+                                intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
+                                intent.putExtra("groupId", group.id)
+                                context.startActivity(intent)
+                            } else {
+                                Log.d("GroupAdapter", "정산 내역이 존재하지 않습니다.")
+                            }
+                        }
                     } else {
-                        Toast.makeText(context, "정산 내역을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        Log.d("GroupAdapter", "멤버 목록을 불러오는 데 실패했습니다.")
                     }
                 }
             }
