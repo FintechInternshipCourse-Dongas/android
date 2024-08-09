@@ -41,6 +41,7 @@ class SettlementListActivity : AppCompatActivity() {
         val groupSettlement: GroupSettlementResponse? = intent.getParcelableExtra("group_settlement")
         if (groupSettlement != null) {
             adapter.updateData(listOf(groupSettlement))
+            addMembersToLayout(groupSettlement.groupMembers)
         } else {
             Toast.makeText(this, "SettlementListActivity - 정산 내역을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
         }
@@ -74,6 +75,23 @@ class SettlementListActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+    }
+
+    private fun addMembersToLayout(members: List<GroupMember>) {
+        val membersLayout = findViewById<LinearLayout>(R.id.members_layout_inner)
+
+        for (member in members) {
+            val memberView = LayoutInflater.from(this).inflate(R.layout.group_settlement_member_item, membersLayout, false)
+
+            val memberNameTextView = memberView.findViewById<TextView>(R.id.member_name)
+            memberNameTextView.text = member.memberName
+
+            val memberImageView = memberView.findViewById<ImageView>(R.id.member_image)
+            val resourceId = resources.getIdentifier("ic_member_${member.id}", "drawable", packageName)
+            memberImageView.setImageResource(resourceId)
+
+            membersLayout.addView(memberView)
         }
     }
 

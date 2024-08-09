@@ -65,21 +65,4 @@ class GroupViewModel : ViewModel() {
         }
     }
 
-    fun setGroupSettlement(groupSettlement: GroupSettlementResponse) {
-        _groupSettlement.value = groupSettlement
-    }
-
-    fun fetchGroupSettlementSync(groupId: Int, callback: (GroupSettlementResponse?) -> Unit) {
-        viewModelScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    RetrofitInstance.api.getGroupSettlement(groupId).execute().body()
-                }
-                // response가 null이 아닌 경우 data를 콜백에 전달
-                callback(response?.data)
-            } catch (e: Exception) {
-                callback(null)
-            }
-        }
-    }
 }

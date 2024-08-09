@@ -36,7 +36,7 @@ class SettlementRequestParticipationAdapter(
             )
         )
 
-        holder.memberAvatar.setImageResource(R.drawable.ic_member)
+        holder.memberAvatar.setImageResource(R.drawable.ic_member_1)
     }
 
     override fun getItemCount(): Int {
