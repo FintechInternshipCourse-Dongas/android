@@ -6,10 +6,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.seureureuk.ChargePointActivity.Companion.MAX_AMOUNT
-import java.text.NumberFormat
-import java.text.ParseException
-import java.util.Locale
 
 class CertificateUserActivity : AppCompatActivity() {
 

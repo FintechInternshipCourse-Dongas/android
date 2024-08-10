@@ -55,7 +55,65 @@ class BankSelectionBottomSheet : BottomSheetDialogFragment() {
             dismiss()
         }
 
-        // 다른 은행 버튼들에 대해서도 같은 방식으로 설정
+        view.findViewById<Button>(R.id.toss_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.tossbank), R.drawable.ic_toss_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.shinhan_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.shinhan), R.drawable.ic_shinhan_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.woori_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.woori), R.drawable.ic_woori_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.ibk_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.ibk), R.drawable.ic_ibk_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.hana_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.hana_bank), R.drawable.ic_hana_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.mg_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.mg_bank), R.drawable.ic_mg_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.bnk_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.bnk_bank), R.drawable.ic_mg_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.k_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.k_bank), R.drawable.ic_k_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.shinhyup_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.shinhyup_bank), R.drawable.ic_shinhyup_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.epost_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.epost_bank), R.drawable.ic_epost_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.suhyup_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.suhyup_bank), R.drawable.ic_suhyup_bank)
+            dismiss()
+        }
+
+        view.findViewById<Button>(R.id.jeju_bank_button).setOnClickListener {
+            listener?.onBankSelected(getString(R.string.jeju_bank), R.drawable.ic_jeju_bank)
+            dismiss()
+        }
     }
 
     override fun onDetach() {

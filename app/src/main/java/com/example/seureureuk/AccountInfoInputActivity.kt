@@ -72,6 +72,7 @@ class AccountInfoInputActivity : AppCompatActivity(), BankSelectionBottomSheet.O
                     Log.d("AccountInfoInputActivity", "계좌등록 Success")
                 } else {
                     val errorMessage = response.errorBody()?.string() ?: "계좌 등록에 실패했습니다."
+                    Log.d("AccountInfoInputActivity", "$bankName, $accountNumber")
                     Log.e("AccountInfoInputActivity", "계좌등록 Failed: $errorMessage")
                 }
             }

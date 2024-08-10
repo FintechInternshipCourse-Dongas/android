@@ -63,8 +63,6 @@ class LoginActivity : AppCompatActivity() {
                         saveTokenToPreferences(token)
                         Log.d("LoginActivity", "Token saved: $token")
 
-                        // 다음 화면으로 이동
-                        navigateToNextScreen()
                     } else {
                         Log.e("LoginActivity", "Login Failed: ${loginResponse?.message}")
                     }
@@ -75,8 +73,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ResultResponseUserLoginResponse>, t: Throwable) {
-                Log.e("LoginActivity", "Error: ${t.message}")
+                val errorMessage = t.message ?: "Unknown error occurred"
+                Log.e("LoginActivity", "Error: $errorMessage")
+                Toast.makeText(this@LoginActivity, "Login failed: $errorMessage", Toast.LENGTH_SHORT).show()
             }
+
         })
     }
 
