@@ -178,8 +178,7 @@
                     android:id="@+id/check_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_check_waiting"
-                    android:visibility="invisible" />
+                    android:src="@drawable/ic_check_waiting" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -237,5 +236,4 @@
         android:background="@drawable/rounded_corner"
         android:layout_alignParentBottom="true"
         android:layout_margin="25dp" />
-
 </RelativeLayout>

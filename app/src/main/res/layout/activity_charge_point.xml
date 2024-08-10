@@ -99,12 +99,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="충전계좌"
+                        android:text="출금 계좌"
                         android:textSize="16sp"
                         android:textColor="#B0B0B0"
                         android:layout_marginEnd="16dp" />
 
                     <TextView
+                        android:id="@+id/transfer_bank"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -129,12 +130,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="거래 후 잔액"
+                        android:text="스르륵 머니"
                         android:textSize="16sp"
                         android:textColor="#B0B0B0"
                         android:layout_marginEnd="16dp" />
 
                     <TextView
+                        android:id="@+id/balance_after_transaction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0원"
