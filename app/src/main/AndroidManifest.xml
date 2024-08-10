@@ -7,7 +7,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:icon="@drawable/main_logo"
+        android:icon="@drawable/icon_logo"
         android:label="스르륵~"
         android:roundIcon="@drawable/ic_launcher_background"
         android:supportsRtl="true"
