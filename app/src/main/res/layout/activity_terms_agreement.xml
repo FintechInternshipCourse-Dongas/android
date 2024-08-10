@@ -235,5 +235,5 @@
         android:backgroundTint="@color/consent_waiting"
         android:background="@drawable/rounded_corner"
         android:layout_alignParentBottom="true"
-        android:layout_margin="25dp" />
+        android:layout_margin="32dp" />
 </RelativeLayout>
