@@ -10,8 +10,8 @@ import com.example.seureureuk.data.model.SettlementParticipation
 class SettlementDetailParticipationAdapter(private val memberList: List<SettlementParticipation>) : RecyclerView.Adapter<SettlementDetailParticipationAdapter.MemberViewHolder>() {
 
     class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val memberName: TextView = itemView.findViewById(R.id.memberName)
-        val memberAmount: TextView = itemView.findViewById(R.id.memberAmount)
+        val memberName: TextView = itemView.findViewById(R.id.member_name)
+        val memberAmount: TextView = itemView.findViewById(R.id.member_amount)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {

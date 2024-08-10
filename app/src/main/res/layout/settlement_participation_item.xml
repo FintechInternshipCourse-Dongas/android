@@ -10,14 +10,14 @@
     android:elevation="4dp">
 
     <ImageView
-        android:id="@+id/memberAvatar"
+        android:id="@+id/member_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/ic_member_1"
         android:layout_marginEnd="8dp" />
 
     <TextView
-        android:id="@+id/memberName"
+        android:id="@+id/member_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -25,7 +25,7 @@
         android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/memberAmount"
+        android:id="@+id/member_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"

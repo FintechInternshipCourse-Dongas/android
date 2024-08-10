@@ -47,7 +47,8 @@ data class GroupInfoResponseList(
 
 data class GroupMemberResponse(
     val id: Int,
-    val memberName: String
+    val memberName: String,
+    var isSelected: Boolean? = false
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),

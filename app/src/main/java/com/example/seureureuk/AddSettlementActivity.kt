@@ -5,16 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.GroupMemberResponse
 import java.util.Calendar
 
 class AddSettlementActivity : AppCompatActivity() {
@@ -23,67 +22,42 @@ class AddSettlementActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_settlement)
 
-        val store_name_edit_text: EditText = findViewById(R.id.store_name_edit_text)
-        store_name_edit_text.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        val storeNameEditText: EditText = findViewById(R.id.store_name_edit_text)
+        storeNameEditText.addTextChangedListener(createTextWatcher(storeNameEditText))
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                store_name_edit_text.setTextColor(
-                    if (s.isNullOrEmpty()) ContextCompat.getColor(this@AddSettlementActivity, R.color.gray)
-                    else ContextCompat.getColor(this@AddSettlementActivity, R.color.black)
-                )
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
-
-        val total_amount_edit_text: EditText = findViewById(R.id.total_amount_edit_text)
-        total_amount_edit_text.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                total_amount_edit_text.setTextColor(
-                    if (s.isNullOrEmpty()) ContextCompat.getColor(this@AddSettlementActivity, R.color.gray)
-                    else ContextCompat.getColor(this@AddSettlementActivity, R.color.black)
-                )
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
+        val totalAmountEditText: EditText = findViewById(R.id.total_amount_edit_text)
+        totalAmountEditText.addTextChangedListener(createTextWatcher(totalAmountEditText))
 
         val meetingDateEditText: EditText = findViewById(R.id.meeting_date_edit_text)
         meetingDateEditText.setOnClickListener {
             showDatePickerDialog(meetingDateEditText)
         }
+        meetingDateEditText.addTextChangedListener(createTextWatcher(meetingDateEditText))
 
         val settlementDateEditText: EditText = findViewById(R.id.settlement_date_edit_text)
         settlementDateEditText.setOnClickListener {
             showDatePickerDialog(settlementDateEditText)
         }
+        settlementDateEditText.addTextChangedListener(createTextWatcher(settlementDateEditText))
 
         val locationEditText: EditText = findViewById(R.id.location_edit_text)
-        locationEditText.setText("")
+        locationEditText.addTextChangedListener(createTextWatcher(locationEditText))
 
-        val members = listOf(
-            com.example.seureureuk.data.model.SettlementParticipation("민선", "17,750원"),
-            com.example.seureureuk.data.model.SettlementParticipation("가은", "17,750원"),
-            com.example.seureureuk.data.model.SettlementParticipation("해성", "17,750원"),
-            com.example.seureureuk.data.model.SettlementParticipation("건", "17,750원"),
-            com.example.seureureuk.data.model.SettlementParticipation("한비", "17,750원"),
-            com.example.seureureuk.data.model.SettlementParticipation("나영", "17,750원")
-        )
+        // RecyclerView 설정
+        val membersLayout = findViewById<RecyclerView>(R.id.member_recycler_view)
+        membersLayout.layoutManager = LinearLayoutManager(this) // LayoutManager 설정
 
-        val memberAdapter = SettlementParticipationAdapter(members) { member ->
+        val groupMembers = intent.getParcelableArrayListExtra<GroupMemberResponse>("groupMembers") ?: arrayListOf()
+        val groupId = intent.getIntExtra("groupId", -1) // !!!나중에 add settlement 버튼 누를 때 넘겨줘야 함!!!
 
+        val memberAdapter = AddSettlementMemberAdapter(groupMembers) { member ->
+            // 클릭 이벤트 처리
         }
-
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = memberAdapter
+        membersLayout.adapter = memberAdapter
 
         val selectAllCheckbox: CheckBox = findViewById(R.id.select_all_checkbox)
         selectAllCheckbox.setOnCheckedChangeListener { _, isChecked ->
-            members.forEach { it.isSelected = isChecked }
+            groupMembers.forEach { it.isSelected = isChecked }
             memberAdapter.notifyDataSetChanged()
         }
 
@@ -97,6 +71,21 @@ class AddSettlementActivity : AppCompatActivity() {
         val backButton = findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun createTextWatcher(editText: EditText): TextWatcher {
+        return object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editText.setTextColor(
+                    if (s.isNullOrEmpty()) ContextCompat.getColor(this@AddSettlementActivity, R.color.gray)
+                    else ContextCompat.getColor(this@AddSettlementActivity, R.color.black)
+                )
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
         }
     }
 

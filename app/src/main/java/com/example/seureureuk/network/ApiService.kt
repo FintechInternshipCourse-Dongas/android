@@ -11,6 +11,8 @@ import com.example.seureureuk.data.model.GroupMemberResponseData
 import com.example.seureureuk.data.model.GroupSettlementResponseData
 import com.example.seureureuk.data.model.ResultResponseUserLoginResponse
 import com.example.seureureuk.data.model.ResultResponseVoid
+import com.example.seureureuk.data.model.SettlementAddRequest
+import com.example.seureureuk.data.model.SettlementAddResponseData
 import com.example.seureureuk.data.model.UserLoginRequest
 import com.example.seureureuk.data.model.UserSignUpRequest
 import retrofit2.Call
@@ -21,6 +23,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
+    @POST("settlements/{groupId}/request")
+    suspend fun addSettlement(@Body request: SettlementAddRequest): Response<SettlementAddResponseData>
+
     @POST("groups/entrance")
     suspend fun enterGroupWithInviteCode(@Body request: GroupEntranceRequest): Response<GroupEntranceResponseData>
 

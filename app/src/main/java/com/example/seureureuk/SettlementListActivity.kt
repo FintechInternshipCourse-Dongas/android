@@ -55,6 +55,8 @@ class SettlementListActivity : AppCompatActivity() {
         val addSettlementButton = findViewById<Button>(R.id.add_settlement_button)
         addSettlementButton.setOnClickListener {
             val intent = Intent(this, AddSettlementActivity::class.java)
+            intent.putExtra("groupMembers", groupMembers)
+            intent.putExtra("groupId", groupId)
             startActivity(intent)
         }
 

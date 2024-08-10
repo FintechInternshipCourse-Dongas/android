@@ -16,8 +16,6 @@ import com.example.seureureuk.data.model.GroupSettlementResponseData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
-import java.io.IOException
 
 class GroupViewModel : ViewModel() {
     private val _groups = MutableLiveData<List<GroupInfoResponse>>()
