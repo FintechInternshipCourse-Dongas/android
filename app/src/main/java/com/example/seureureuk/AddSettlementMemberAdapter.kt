@@ -3,6 +3,7 @@ package com.example.seureureuk
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ class AddSettlementMemberAdapter(
 
     class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val memberName: TextView = itemView.findViewById(R.id.member_name)
+        val memberImage: ImageView = itemView.findViewById(R.id.member_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
@@ -34,12 +36,21 @@ class AddSettlementMemberAdapter(
                 ContextCompat.getColor(holder.itemView.context, R.color.default_background)
         )
 
+        val icNum = (position % 6) + 1
+        val resourceId = holder.itemView.context.resources.getIdentifier(
+            "ic_member_$icNum",
+            "drawable",
+            holder.itemView.context.packageName
+        )
+        holder.memberImage.setImageResource(resourceId)
+
         holder.itemView.setOnClickListener {
             currentMember.isSelected = !currentMember.isSelected!!
             notifyItemChanged(position)
             onItemClick(currentMember)
         }
     }
+
 
     override fun getItemCount() = memberList.size
 }

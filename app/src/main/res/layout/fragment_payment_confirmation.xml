@@ -15,7 +15,7 @@
 
     <!-- 이름과 안내 텍스트 -->
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/guide_line"
@@ -27,10 +27,10 @@
         android:textColor="@android:color/black" />
 
     <TextView
-        android:id="@+id/tv_description"
+        android:id="@+id/group_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_name"
+        android:layout_below="@id/user_name"
         android:layout_centerHorizontal="true"
         android:text="핀인코 - 돈가스에서 정산을 요청하였습니다."
         android:textSize="14sp"
@@ -41,9 +41,9 @@
         android:id="@+id/table_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_description"
+        android:layout_below="@id/group_name"
         android:layout_marginTop="16dp"
-        android:background="@drawable/border_shape"
+        android:background="@drawable/rounded_bottom_sheet"
         android:padding="16dp">
 
         <!-- 요청 금액 -->
@@ -59,6 +59,7 @@
                 android:gravity="start" />
 
             <TextView
+                android:id="@+id/requested_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="17,750원"
@@ -69,7 +70,7 @@
                 android:gravity="end" />
         </TableRow>
 
-        <!-- 모임 명 -->
+        <!-- 정산 이름 -->
         <TableRow android:layout_marginTop="8dp">
             <TextView
                 android:layout_width="0dp"
@@ -81,6 +82,7 @@
                 android:gravity="start" />
 
             <TextView
+                android:id="@+id/settlement_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="닭날다"
@@ -102,6 +104,7 @@
                 android:gravity="start" />
 
             <TextView
+                android:id="@+id/grouping_at"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="2024.08.02"
@@ -123,6 +126,7 @@
                 android:gravity="start" />
 
             <TextView
+                android:id="@+id/total_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="106,500원"

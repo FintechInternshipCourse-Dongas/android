@@ -41,6 +41,38 @@ data class Participant(
     }
 }
 
+data class Participant2(
+    val id: Int,
+    val name: String,
+    val amount: Int
+): Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readString() ?: "",
+        parcel.readInt()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeString(name)
+        parcel.writeInt(amount)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Participant> {
+        override fun createFromParcel(parcel: Parcel): Participant {
+            return Participant(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Participant?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
 data class SettlementAddRequest(
     val settlementName: String,
     val totalAmount: Int,
@@ -167,4 +199,25 @@ data class SettlementDetailResponseData (
     val statusCode: Int,
     val message: String,
     val data: SettlementDetailResponse
+)
+
+data class Group(
+    val id: Int,
+    val groupName: String
+)
+
+data class RequestedSettlementResponse (
+    val settlementId: Int,
+    val settlementName: String,
+    val groupingAt: String,
+    val totalAmount: Int,
+    val group: Group,
+    val participant: Participant
+)
+
+data class RequestedSettlementResponseData(
+    val status: String,
+    val statusCode: Int,
+    val message: String,
+    val data: RequestedSettlementResponse
 )

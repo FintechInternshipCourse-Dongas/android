@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,12 +22,15 @@ import com.example.seureureuk.data.model.GroupInviteResponseData
 import com.example.seureureuk.data.model.GroupMemberResponse
 import com.example.seureureuk.data.model.GroupSettlementResponse
 import com.example.seureureuk.network.RetrofitInstance
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
+import com.example.seureureuk.ui.viewmodel.SettlementViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SettlementListActivity : AppCompatActivity() {
+    private val groupViewModel: GroupViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +45,7 @@ class SettlementListActivity : AppCompatActivity() {
         val groupMembers = intent.getParcelableArrayListExtra<GroupMemberResponse>("groupMembers") ?: arrayListOf()
         val groupSettlements = intent.getParcelableArrayListExtra<GroupSettlementResponse>("groupSettlements") ?: arrayListOf()
         val groupId = intent.getIntExtra("groupId", -1)
+        val groupName = intent.getStringExtra("groupName")
         if (groupSettlements != null) {
             adapter.updateData(groupSettlements)
             addMembersToLayout(groupMembers)
@@ -50,8 +55,16 @@ class SettlementListActivity : AppCompatActivity() {
             emptyStateTextView.visibility = View.VISIBLE
         }
 
+        val pageTitleTextView = findViewById<TextView>(R.id.page_title)
+        pageTitleTextView.text = groupName
+        if (groupName != null) {
+            Log.d("SettlementListActivity", groupName)
+        }
+
+
         val backButton = findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener {
+            groupViewModel.fetchAllGroups()
             finish()
         }
 

@@ -62,6 +62,7 @@ class GroupAdapter(
                                 intent.putExtra("groupMembers", ArrayList(membersResponse.data))
                                 intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
                                 intent.putExtra("groupId", group.id)
+                                intent.putExtra("groupName", group.groupName)
                                 context.startActivity(intent)
                             } else {
                                 Log.d("GroupAdapter", "정산 내역이 존재하지 않습니다.")

@@ -14,12 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.RequestedSettlementResponseData
 import com.example.seureureuk.ui.viewmodel.GroupViewModel
+import com.example.seureureuk.ui.viewmodel.SettlementViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private val groupViewModel: GroupViewModel by viewModels()
+    private val settlementViewModel: SettlementViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +48,37 @@ class MainActivity : AppCompatActivity() {
         groupViewModel.groups.observe(this) { groups ->
             if (groups.isNullOrEmpty()) {
                 createGroupView.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
             } else {
                 recyclerView.visibility = View.VISIBLE
+                createGroupView.visibility = View.GONE
                 adapter.updateData(groups)
             }
         }
 
         groupViewModel.error.observe(this) { errorMessage ->
             Log.e("MainActivity", errorMessage)
+        }
+
+        val alarmButton = findViewById<ImageView>(R.id.alarm_button)
+        alarmButton.setOnClickListener {
+            settlementViewModel.getRequestedSettlement()
+
+            settlementViewModel.getRequestedSettlementResponse.observe(this) { response ->
+                val bottomSheetFragment = PaymentConfirmationBottomSheet.newInstance(
+                    response.data.participant.participantName,
+                    response.data.group.groupName,
+                    response.data.participant.paymentAmount,
+                    response.data.settlementName,
+                    response.data.groupingAt,
+                    response.data.totalAmount
+                )
+                bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+            }
+
+            settlementViewModel.error.observe(this) { errorMessage ->
+                Log.e("MainActivity", errorMessage)
+            }
         }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_bar)
@@ -114,6 +140,7 @@ class MainActivity : AppCompatActivity() {
                                     intent.putExtra("groupMembers", ArrayList(membersResponse.data))
                                     intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
                                     intent.putExtra("groupId", groupId)
+                                    intent.putExtra("groupName", groupName)
                                     startActivity(intent)
                                 } else {
                                     Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")
@@ -169,6 +196,7 @@ class MainActivity : AppCompatActivity() {
 
                         groupViewModel.fetchGroupMembers(groupId)
                         groupViewModel.fetchGroupSettlements(groupId)
+                        groupViewModel.fetchAllGroups()
 
                         groupViewModel.groupMembers.observe(this) { membersResponse ->
                             if (membersResponse != null) {
@@ -178,6 +206,7 @@ class MainActivity : AppCompatActivity() {
                                         intent.putExtra("groupMembers", ArrayList(membersResponse.data))
                                         intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
                                         intent.putExtra("groupId", groupId)
+                                        intent.putExtra("groupName", "핀인코 - 돈가스")
                                         startActivity(intent)
                                     } else {
                                         Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")

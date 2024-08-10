@@ -2,6 +2,7 @@ package com.example.seureureuk
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -44,13 +45,6 @@ class SettlementDetailActivity: AppCompatActivity() {
             val locationValue: TextView = findViewById<View>(R.id.location_row).findViewById(R.id.value)
             locationLabel.text = "모임 장소:"
             locationValue.text = response.data.settlementPlace
-
-//            val members = listOf(
-//                com.example.seureureuk.data.model.SettlementParticipation("민선", "11,000원"),
-//                com.example.seureureuk.data.model.SettlementParticipation("가은", "12,000원"),
-//                com.example.seureureuk.data.model.SettlementParticipation("해성", "13,000원"),
-//                com.example.seureureuk.data.model.SettlementParticipation("나영", "14,000원")
-//            )
 
             val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this)

@@ -9,6 +9,7 @@ import com.example.seureureuk.data.model.GroupInfoResponseList
 import com.example.seureureuk.data.model.GroupInviteResponseData
 import com.example.seureureuk.data.model.GroupMemberResponseData
 import com.example.seureureuk.data.model.GroupSettlementResponseData
+import com.example.seureureuk.data.model.RequestedSettlementResponseData
 import com.example.seureureuk.data.model.ResultResponseUserLoginResponse
 import com.example.seureureuk.data.model.ResultResponseVoid
 import com.example.seureureuk.data.model.SettlementAddRequest
@@ -23,9 +24,16 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
+    @PUT("participant/{participantId}")
+    suspend fun confirmRequestedSettlement(@Path("participantId") participantId: Int): Response<Void>
+
+    @GET("settlements")
+    suspend fun getRequestedSettlement(): Response<RequestedSettlementResponseData>
+
     @GET("settlements/{settlementId}")
     suspend fun getSettlementDetail(@Path("settlementId") settlementId: Int): Response<SettlementDetailResponseData>
 

@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seureureuk.data.model.Participant
-import com.example.seureureuk.data.model.SettlementParticipation
 
 class SettlementDetailParticipationAdapter(
     private val context: Context,

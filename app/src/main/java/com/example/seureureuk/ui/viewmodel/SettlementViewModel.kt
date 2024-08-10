@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.seureureuk.data.model.RequestedSettlementResponse
+import com.example.seureureuk.data.model.RequestedSettlementResponseData
 import com.example.seureureuk.data.model.SettlementAddRequest
 import com.example.seureureuk.data.model.SettlementAddResponseData
 import com.example.seureureuk.data.model.SettlementCompletedResponseData
@@ -14,6 +16,9 @@ import com.example.seureureuk.network.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class SettlementViewModel: ViewModel() {
+    private val _getRequestedSettlementResponse = MutableLiveData<RequestedSettlementResponseData>()
+    val getRequestedSettlementResponse: LiveData<RequestedSettlementResponseData> get() = _getRequestedSettlementResponse
+
     private val _getSettlementDetailResponse = MutableLiveData<SettlementDetailResponseData>()
     val getSettlementDetailResponse: LiveData<SettlementDetailResponseData> get() = _getSettlementDetailResponse
 
@@ -28,6 +33,29 @@ class SettlementViewModel: ViewModel() {
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
+
+    fun getRequestedSettlement() {
+        viewModelScope.launch {
+            try {
+                val response = RetrofitInstance.api.getRequestedSettlement()
+
+                if (response.isSuccessful) {
+                    val getRequestedSettlementResponseData = response.body()
+                    if (getRequestedSettlementResponseData != null) {
+                        _getRequestedSettlementResponse.value = getRequestedSettlementResponseData
+                    } else {
+                        _error.value = "Error: getRequestedSettlementResponse is null"
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    _error.value = "Failed to get requested settlements: $errorBody"
+                }
+            } catch (e: Exception) {
+                _error.value = "getRequestedSettlementResponse Error: ${e.message}"
+            }
+        }
+    }
+
 
     fun getSettlementDetail(settlementId: Int) {
         viewModelScope.launch {
