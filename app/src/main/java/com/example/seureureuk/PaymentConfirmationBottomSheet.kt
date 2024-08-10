@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -17,12 +18,6 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
         private const val ARG_GROUPING_AT = "grouping_at"
         private const val ARG_TOTAL_AMOUNT = "total_amount"
 
-//        val settlementId: Int,
-//        val settlementName: String,
-//        val groupingAt: String,
-//        val totalAmount: Int,
-//        val group: Group,
-//        val participant: Participant
         fun newInstance(
             userName: String, groupName: String, requestedAmount: Int,
             settlementName: String, groupingAt: String, totalAmount: Int): PaymentConfirmationBottomSheet {
@@ -70,5 +65,10 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
         tvSettlementName.text = settlementName
         tvGroupingAt.text = groupingAt
         tvTotalAmount.text = "${totalAmount ?: 0}원"
+
+        val agreeButton = view.findViewById<Button>(R.id.btn_agree)
+        agreeButton.setOnClickListener {
+            dismiss()
+        }
     }
 }
