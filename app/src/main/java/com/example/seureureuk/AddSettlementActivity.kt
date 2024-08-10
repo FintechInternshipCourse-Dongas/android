@@ -104,6 +104,7 @@ class AddSettlementActivity : AppCompatActivity() {
                     val intent = Intent(this, RequestSettlementActivity::class.java)
                     val participants = response.data
                     intent.putParcelableArrayListExtra("participants", ArrayList(participants))
+                    intent.putExtra("settlementId", newSettlementId)
                     startActivity(intent)
                     finish()
                 }

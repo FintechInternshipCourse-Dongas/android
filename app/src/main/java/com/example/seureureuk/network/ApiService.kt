@@ -13,6 +13,7 @@ import com.example.seureureuk.data.model.ResultResponseUserLoginResponse
 import com.example.seureureuk.data.model.ResultResponseVoid
 import com.example.seureureuk.data.model.SettlementAddRequest
 import com.example.seureureuk.data.model.SettlementAddResponseData
+import com.example.seureureuk.data.model.SettlementCompletedResponseData
 import com.example.seureureuk.data.model.SettlementParticipantResponseData
 import com.example.seureureuk.data.model.UserLoginRequest
 import com.example.seureureuk.data.model.UserSignUpRequest
@@ -24,6 +25,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
+    @POST("settlements/{settlementId}")
+    suspend fun executeSettlementProcess(@Path("settlementId") settlementId: Int): Response<SettlementCompletedResponseData>
+
     // id: settlementId
     @GET("settlements/{id}/participants")
     suspend fun getSettlementParticipants(@Path("id") id: Int): Response<SettlementParticipantResponseData>
