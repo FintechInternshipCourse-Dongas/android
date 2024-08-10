@@ -85,7 +85,7 @@
             android:id="@+id/balance_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="스트륵 머니"
+            android:text="스르륵 머니"
             android:textSize="20sp"
             android:textColor="#B0B0B0"
             android:layout_alignParentStart="true"
