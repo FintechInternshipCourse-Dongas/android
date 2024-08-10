@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.data.model.SettlementParticipation
+import com.example.seureureuk.data.model.SettlementParticipantResponse
 
 class SettlementRequestParticipationAdapter(
     private val context: Context,
-    private val members: List<SettlementParticipation>
+    private val participants: List<SettlementParticipantResponse>
 ) : RecyclerView.Adapter<SettlementRequestParticipationAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -26,20 +26,26 @@ class SettlementRequestParticipationAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val member = members[position]
-        holder.memberName.text = member.name
-        holder.requestStatus.text = if (member.status == true) "동의 완료" else "요청 보냄"
+        val participant = participants[position]
+        holder.memberName.text = participant.participantName
+        holder.requestStatus.text = if (participant.agreementStatus) "동의 완료" else "요청 보냄"
 
         holder.requestStatus.setTextColor(
-            if (member.status == true) context.getColor(R.color.consent_complete) else context.getColor(
+            if (participant.agreementStatus) context.getColor(R.color.consent_complete) else context.getColor(
                 R.color.consent_waiting
             )
         )
 
-        holder.memberAvatar.setImageResource(R.drawable.ic_member)
+        val icNum = (participant.id % 6) + 1
+        val resourceId = context.resources.getIdentifier("ic_member_${icNum}", "drawable", context.packageName)
+        if (resourceId != 0) {
+            holder.memberAvatar.setImageResource(resourceId)
+        } else {
+            holder.memberAvatar.setImageResource(R.drawable.ic_member_1) // 기본 이미지 설정
+        }
     }
 
     override fun getItemCount(): Int {
-        return members.size
+        return participants.size
     }
 }

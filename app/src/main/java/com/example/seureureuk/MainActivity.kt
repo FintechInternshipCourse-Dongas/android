@@ -3,29 +3,83 @@ package com.example.seureureuk
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.RequestedSettlementResponseData
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
+import com.example.seureureuk.ui.viewmodel.SettlementViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private val groupViewModel: GroupViewModel by viewModels()
+    private val settlementViewModel: SettlementViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val CreateGroupButton = findViewById<ImageView>(R.id.button_add)
-        CreateGroupButton.setOnClickListener {
+        val createGroupButton = findViewById<ImageView>(R.id.button_add)
+        createGroupButton.setOnClickListener {
             showCreateGroupDialog()
         }
 
         val createGroupView = findViewById<CardView>(R.id.add_group_button)
         createGroupView.setOnClickListener {
             showCreateGroupDialog()
+        }
+
+        groupViewModel.fetchAllGroups()
+
+        val recyclerView: RecyclerView = findViewById(R.id.group_list)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = GroupAdapter(emptyList(), this)
+        recyclerView.adapter = adapter
+
+        groupViewModel.groups.observe(this) { groups ->
+            if (groups.isNullOrEmpty()) {
+                createGroupView.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                recyclerView.visibility = View.VISIBLE
+                createGroupView.visibility = View.GONE
+                adapter.updateData(groups)
+            }
+        }
+
+        groupViewModel.error.observe(this) { errorMessage ->
+            Log.e("MainActivity", errorMessage)
+        }
+
+        val alarmButton = findViewById<ImageView>(R.id.alarm_button)
+        alarmButton.setOnClickListener {
+            settlementViewModel.getRequestedSettlement()
+
+            settlementViewModel.getRequestedSettlementResponse.observe(this) { response ->
+                val bottomSheetFragment = PaymentConfirmationBottomSheet.newInstance(
+                    response.data.participant.participantName,
+                    response.data.group.groupName,
+                    response.data.participant.paymentAmount,
+                    response.data.settlementName,
+                    response.data.groupingAt,
+                    response.data.totalAmount,
+                    response.data.participant.id
+                )
+                bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+            }
+
+            settlementViewModel.error.observe(this) { errorMessage ->
+                Log.e("MainActivity", errorMessage)
+            }
         }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_bar)
@@ -65,9 +119,46 @@ class MainActivity : AppCompatActivity() {
 
         createGroupButton.setOnClickListener {
             val groupName = groupNameEditText.text.toString()
-            dialog.dismiss()
-            val intent = Intent(this, SettlementListActivity::class.java)
-            startActivity(intent)
+
+            if (groupName.isNotEmpty()) {
+                groupViewModel.createGroup(groupName)
+
+                groupViewModel.createGroupResponse.observe(this) { response ->
+                    val groupId = response.data.groupId
+                    Log.d("MainActivity", "Group created successfully! Group ID: $groupId")
+                    dialog.dismiss()
+
+                    groupViewModel.fetchAllGroups()
+
+                    groupViewModel.fetchGroupMembers(groupId)
+                    groupViewModel.fetchGroupSettlements(groupId)
+
+                    groupViewModel.groupMembers.observe(this) { membersResponse ->
+                        if (membersResponse != null) {
+                            groupViewModel.groupSettlements.observe(this) { settlementsResponse ->
+                                if (settlementsResponse != null) {
+                                    val intent = Intent(this, SettlementListActivity::class.java)
+                                    intent.putExtra("groupMembers", ArrayList(membersResponse.data))
+                                    intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
+                                    intent.putExtra("groupId", groupId)
+                                    intent.putExtra("groupName", groupName)
+                                    startActivity(intent)
+                                } else {
+                                    Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")
+                                }
+                            }
+                        } else {
+                            Log.d("MainActivity", "멤버 목록을 불러오는 데 실패했습니다.")
+                        }
+                    }
+                }
+
+                groupViewModel.error.observe(this) { errorMessage ->
+                    Log.e("MainActivity", errorMessage)
+                }
+            } else {
+                Log.d("MainActivity", "Failed to create group")
+            }
         }
 
         joinWithInviteCodeButton.setOnClickListener {
@@ -96,9 +187,46 @@ class MainActivity : AppCompatActivity() {
 
         groupJoinButton.setOnClickListener {
             val inviteCode = inviteCodeEditText.text.toString()
-            joinDialog.dismiss()
-            val intent = Intent(this, SettlementListActivity::class.java)
-            startActivity(intent)
+
+            if (inviteCode.isNotEmpty()) {
+                groupViewModel.enterGroupWithInviteCode(inviteCode)
+
+                groupViewModel.groupEntranceResponse.observe(this) { entranceResponse ->
+                    if (entranceResponse != null) {
+                        val groupId = entranceResponse.data.groupId
+
+                        groupViewModel.fetchGroupMembers(groupId)
+                        groupViewModel.fetchGroupSettlements(groupId)
+                        groupViewModel.fetchAllGroups()
+
+                        groupViewModel.groupMembers.observe(this) { membersResponse ->
+                            if (membersResponse != null) {
+                                groupViewModel.groupSettlements.observe(this) { settlementsResponse ->
+                                    if (settlementsResponse != null) {
+                                        val intent = Intent(this, SettlementListActivity::class.java)
+                                        intent.putExtra("groupMembers", ArrayList(membersResponse.data))
+                                        intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
+                                        intent.putExtra("groupId", groupId)
+                                        intent.putExtra("groupName", "핀인코 - 돈가스")
+                                        startActivity(intent)
+                                    } else {
+                                        Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")
+                                    }
+                                }
+                            } else {
+                                Log.d("MainActivity", "멤버 목록을 불러오는 데 실패했습니다.")
+                            }
+                        }
+                    }
+
+                    groupViewModel.error.observe(this) { errorMessage ->
+                        Log.e("MainActivity", errorMessage)
+                    }
+                }
+            } else {
+                Log.d("MainActivity", "Failed to enter group")
+            }
+
         }
     }
 }

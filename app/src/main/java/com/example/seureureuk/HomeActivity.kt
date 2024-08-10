@@ -3,20 +3,30 @@ package com.example.seureureuk
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.GroupInfoResponse
+import com.example.seureureuk.ui.viewmodel.GroupViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
+
+    private val groupViewModel: GroupViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val CreateGroupButton = findViewById<ImageView>(R.id.button_add)
-        CreateGroupButton.setOnClickListener {
+        val createGroupButton = findViewById<ImageView>(R.id.button_add)
+        createGroupButton.setOnClickListener {
             showCreateGroupDialog()
         }
 
@@ -34,6 +44,33 @@ class HomeActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        val recyclerView: RecyclerView = findViewById(R.id.group_list_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val adapter = GroupAdapter(emptyList(), this)
+        recyclerView.adapter = adapter
+
+        groupViewModel.groups.observe(this) { groups ->
+            groups?.let {
+                Log.d("HomeActivity", "Updating adapter with groups: $it")
+                adapter.updateData(it)
+            }
+        }
+
+        groupViewModel.error.observe(this) { error ->
+            error?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        val groups = intent.getParcelableArrayListExtra<GroupInfoResponse>("groups")
+        if (groups != null && groups.isNotEmpty()) {
+            groupViewModel.setAllGroups(groups)
+        } else {
+            groupViewModel.fetchAllGroups()
+        }
+
     }
 
     private fun showCreateGroupDialog() {
@@ -57,9 +94,45 @@ class HomeActivity : AppCompatActivity() {
 
         createGroupButton.setOnClickListener {
             val groupName = groupNameEditText.text.toString()
-            dialog.dismiss()
-            val intent = Intent(this, SettlementListActivity::class.java)
-            startActivity(intent)
+
+            if (groupName.isNotEmpty()) {
+                groupViewModel.createGroup(groupName)
+
+                groupViewModel.createGroupResponse.observe(this) { response ->
+                    val groupId = response.data.groupId
+                    Log.d("MainActivity", "Group created successfully! Group ID: $groupId")
+                    dialog.dismiss()
+
+                    groupViewModel.fetchAllGroups()
+
+                    groupViewModel.fetchGroupMembers(groupId)
+                    groupViewModel.fetchGroupSettlements(groupId)
+
+                    groupViewModel.groupMembers.observe(this) { membersResponse ->
+                        if (membersResponse != null) {
+                            groupViewModel.groupSettlements.observe(this) { settlementsResponse ->
+                                if (settlementsResponse != null) {
+                                    val intent = Intent(this, SettlementListActivity::class.java)
+                                    intent.putExtra("groupMembers", ArrayList(membersResponse.data))
+                                    intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
+                                    intent.putExtra("groupId", groupId)
+                                    startActivity(intent)
+                                } else {
+                                    Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")
+                                }
+                            }
+                        } else {
+                            Log.d("MainActivity", "멤버 목록을 불러오는 데 실패했습니다.")
+                        }
+                    }
+                }
+
+                groupViewModel.error.observe(this) { errorMessage ->
+                    Log.e("MainActivity", errorMessage)
+                }
+            } else {
+                Log.d("MainActivity", "Failed to create group")
+            }
         }
 
         joinWithInviteCodeButton.setOnClickListener {
@@ -67,7 +140,6 @@ class HomeActivity : AppCompatActivity() {
             showJoinWithInviteCodeDialog()
         }
     }
-
     private fun showJoinWithInviteCodeDialog() {
         val joinDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_input_invite_code, null)
 

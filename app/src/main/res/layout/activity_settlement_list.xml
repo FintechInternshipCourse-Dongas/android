@@ -25,7 +25,7 @@
             android:id="@+id/page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/header_dongas"
+            android:text = ""
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -71,21 +71,14 @@
         android:scrollbars="none">
 
         <LinearLayout
+            android:id="@+id/members_layout_inner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical">
-
-            <include
-                android:id="@+id/member1"
-                layout="@layout/member_item" />
-
-            <include
-                android:id="@+id/member2"
-                layout="@layout/member_item" />
-
         </LinearLayout>
     </HorizontalScrollView>
+
 
     <View
         android:id="@+id/divider_line"
@@ -116,7 +109,7 @@
                 android:id="@+id/participant_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/participants"
+                android:text="@string/settlement_list"
                 android:textColor="@android:color/holo_orange_dark"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"

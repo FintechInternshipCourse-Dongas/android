@@ -12,7 +12,7 @@
     android:background="@drawable/rounded_corner">
 
     <TextView
-        android:id="@+id/transaction_name"
+        android:id="@+id/settlement_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="버거킹"
@@ -20,12 +20,12 @@
         android:textColor="@android:color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/transaction_amount"
+        app:layout_constraintEnd_toStartOf="@id/settlement_amount"
         app:layout_constraintHorizontal_bias="0"
         tools:ignore="HardCodedText" />
 
     <TextView
-        android:id="@+id/transaction_amount"
+        android:id="@+id/settlement_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="54,000원"
@@ -37,14 +37,14 @@
         tools:ignore="HardCodedText"/>
 
     <TextView
-        android:id="@+id/transaction_date"
+        android:id="@+id/settlement_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2024.07.20"
         android:textSize="12sp"
         android:textColor="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/transaction_name"
-        app:layout_constraintStart_toStartOf="@id/transaction_name"
+        app:layout_constraintTop_toBottomOf="@id/settlement_name"
+        app:layout_constraintStart_toStartOf="@id/settlement_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0"
         tools:ignore="HardCodedText" />
