@@ -10,6 +10,10 @@ import com.example.seureureuk.data.model.GroupInviteResponseData
 import com.example.seureureuk.data.model.GroupMemberResponseData
 import com.example.seureureuk.data.model.GroupSettlementResponseData
 import com.example.seureureuk.data.model.RequestedSettlementResponseData
+import com.example.seureureuk.data.model.PointConversionRequest
+import com.example.seureureuk.data.model.ResultResponseListAccountResponse
+import com.example.seureureuk.data.model.ResultResponsePointConversionResponse
+import com.example.seureureuk.data.model.ResultResponsePointInfoResponse
 import com.example.seureureuk.data.model.ResultResponseUserLoginResponse
 import com.example.seureureuk.data.model.ResultResponseVoid
 import com.example.seureureuk.data.model.SettlementAddRequest
@@ -22,10 +26,12 @@ import com.example.seureureuk.data.model.UserSignUpRequest
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.PUT
+
 
 interface ApiService {
     @PUT("participant/{participantId}")
@@ -73,4 +79,19 @@ interface ApiService {
 
     @POST("accounts/register")
     fun registerAccount(@Body request: AccountRegisterRequest): Call<ResultResponseVoid>
+
+    @GET("points")
+    fun getPointInfo(): Call<ResultResponsePointInfoResponse>
+
+    @GET("accounts")
+    fun getAccounts(): Call<ResultResponseListAccountResponse>
+
+    @POST("points")
+    fun convertPoints(@Body request: PointConversionRequest): Call<ResultResponsePointConversionResponse>
+
+    @DELETE("accounts/{accountId}/delete")
+    fun deleteAccount(@Path("accountId") accountId: Long): Call<ResultResponseVoid>
+
+    @POST("points/exchange")
+    fun convertPoints2(@Body request: PointConversionRequest): Call<ResultResponsePointConversionResponse>
 }
