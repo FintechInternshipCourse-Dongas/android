@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import com.example.seureureuk.network.RetrofitInstance
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
@@ -17,10 +18,11 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
         private const val ARG_SETTLEMENT_NAME = "settlement_name"
         private const val ARG_GROUPING_AT = "grouping_at"
         private const val ARG_TOTAL_AMOUNT = "total_amount"
+        private const val ARG_PARTICIPANT_ID = "participant_id"
 
         fun newInstance(
             userName: String, groupName: String, requestedAmount: Int,
-            settlementName: String, groupingAt: String, totalAmount: Int): PaymentConfirmationBottomSheet {
+            settlementName: String, groupingAt: String, totalAmount: Int, participantId: Int): PaymentConfirmationBottomSheet {
             val fragment = PaymentConfirmationBottomSheet()
             val args = Bundle().apply {
                 putString(ARG_USER_NAME, userName)
@@ -29,6 +31,7 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
                 putString(ARG_SETTLEMENT_NAME, settlementName)
                 putString(ARG_GROUPING_AT, groupingAt)
                 putInt(ARG_TOTAL_AMOUNT, totalAmount)
+                putInt(ARG_PARTICIPANT_ID, participantId)
             }
             fragment.arguments = args
             return fragment
@@ -51,6 +54,7 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
         val settlementName = arguments?.getString(ARG_SETTLEMENT_NAME)
         val groupingAt = arguments?.getString(ARG_GROUPING_AT)
         val totalAmount = arguments?.getInt(ARG_TOTAL_AMOUNT)
+        val participantId = arguments?.getInt(ARG_PARTICIPANT_ID)
 
         val tvUserName: TextView = view.findViewById(R.id.user_name)
         val tvGroupName: TextView = view.findViewById(R.id.group_name)
@@ -68,6 +72,8 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
 
         val agreeButton = view.findViewById<Button>(R.id.btn_agree)
         agreeButton.setOnClickListener {
+            
+
             dismiss()
         }
     }

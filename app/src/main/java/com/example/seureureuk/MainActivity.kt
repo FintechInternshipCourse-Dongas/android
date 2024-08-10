@@ -71,7 +71,8 @@ class MainActivity : AppCompatActivity() {
                     response.data.participant.paymentAmount,
                     response.data.settlementName,
                     response.data.groupingAt,
-                    response.data.totalAmount
+                    response.data.totalAmount,
+                    response.data.participant.id
                 )
                 bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
             }

@@ -16,6 +16,10 @@ import com.example.seureureuk.network.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class SettlementViewModel: ViewModel() {
+    private val _confirmRequestedSettlementResponse = MutableLiveData<Void>()
+    val confirmRequestedSettlementResponse: LiveData<Void> get() = _confirmRequestedSettlementResponse
+
+
     private val _getRequestedSettlementResponse = MutableLiveData<RequestedSettlementResponseData>()
     val getRequestedSettlementResponse: LiveData<RequestedSettlementResponseData> get() = _getRequestedSettlementResponse
 
@@ -33,6 +37,28 @@ class SettlementViewModel: ViewModel() {
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
+
+    fun confirmRequestedSettlement(participantId: Int) {
+        viewModelScope.launch {
+            try {
+                val response = RetrofitInstance.api.confirmRequestedSettlement(participantId)
+
+                if (response.isSuccessful) {
+                    val confirmRequestedSettlementResponseData = response.body()
+                    if (confirmRequestedSettlementResponseData != null) {
+                        _confirmRequestedSettlementResponse.value = confirmRequestedSettlementResponseData
+                    } else {
+                        _error.value = "Error: getRequestedSettlementResponse is null"
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    _error.value = "Failed to get requested settlements: $errorBody"
+                }
+            } catch (e: Exception) {
+                _error.value = "getRequestedSettlementResponse Error: ${e.message}"
+            }
+        }
+    }
 
     fun getRequestedSettlement() {
         viewModelScope.launch {
