@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import com.example.seureureuk.network.RetrofitInstance
+import androidx.fragment.app.activityViewModels
+import com.example.seureureuk.ui.viewmodel.SettlementViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
+
+    private val settlementViewModel: SettlementViewModel by activityViewModels()
 
     companion object {
         private const val ARG_USER_NAME = "user_name"
@@ -72,8 +75,10 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
 
         val agreeButton = view.findViewById<Button>(R.id.btn_agree)
         agreeButton.setOnClickListener {
-            
-
+            participantId?.let {
+                // 정산 요청에 동의하는 API
+                settlementViewModel.confirmRequestedSettlement(it)
+            }
             dismiss()
         }
     }

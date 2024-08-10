@@ -76,9 +76,20 @@ class GroupAdapter(
 
             settleButton.setOnClickListener {
                 val intent = Intent(context, AddSettlementActivity::class.java)
-                intent.putExtra("group_id", group.id)
-                context.startActivity(intent)
+
+                val viewModel = ViewModelProvider(context as MainActivity).get(GroupViewModel::class.java)
+                viewModel.fetchGroupMembers(group.id)
+                viewModel.groupMembers.observe(context) { membersResponse ->
+                    if (membersResponse != null) {
+                        intent.putExtra("groupMembers", ArrayList(membersResponse.data))
+                        intent.putExtra("groupId", group.id)
+                        context.startActivity(intent)
+                    } else {
+                        Log.d("GroupAdapter", "멤버 목록을 불러오는 데 실패했습니다.")
+                    }
+                }
             }
         }
     }
 }
+

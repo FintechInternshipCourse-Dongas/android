@@ -15,6 +15,7 @@ import com.example.seureureuk.data.model.ResultResponseListAccountResponse
 import com.example.seureureuk.data.model.ResultResponsePointConversionResponse
 import com.example.seureureuk.data.model.ResultResponsePointInfoResponse
 import com.example.seureureuk.data.model.ResultResponseUserLoginResponse
+import com.example.seureureuk.data.model.ResultResponseUserMyPageResponse
 import com.example.seureureuk.data.model.ResultResponseVoid
 import com.example.seureureuk.data.model.SettlementAddRequest
 import com.example.seureureuk.data.model.SettlementAddResponseData
@@ -94,4 +95,8 @@ interface ApiService {
 
     @POST("points/exchange")
     fun convertPoints2(@Body request: PointConversionRequest): Call<ResultResponsePointConversionResponse>
+
+    @GET("users")
+    fun getUserMyPageInfo(): Call<ResultResponseUserMyPageResponse>
+
 }
