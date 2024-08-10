@@ -46,6 +46,7 @@ class RequestSettlementActivity : AppCompatActivity() {
             settlementViewModel.executeSettlementProcessResponse.observe(this) { response ->
                 if (response.data.settlementStatus == "SUCCESS") {
                     val intent = Intent(this, PaymentQRCodeActivity::class.java)
+                    intent.putExtra("settlementId", settlementId)
                     startActivity(intent)
                     finish()
                 }

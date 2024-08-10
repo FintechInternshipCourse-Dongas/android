@@ -151,3 +151,20 @@ data class SettlementCompletedResponseData (
     val message: String,
     val data: SettlementCompletedResponse
 )
+
+data class SettlementDetailResponse (
+    val id: Int,
+    val settlementName: String,
+    val totalAmount: Int,
+    val groupingAt: String,
+    val settlementAt: String,
+    val settlementPlace: String,
+    val participants: List<Participant>
+)
+
+data class SettlementDetailResponseData (
+    val status: String,
+    val statusCode: Int,
+    val message: String,
+    val data: SettlementDetailResponse
+)

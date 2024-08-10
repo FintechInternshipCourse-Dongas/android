@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -44,7 +45,9 @@ class SettlementListActivity : AppCompatActivity() {
             adapter.updateData(groupSettlements)
             addMembersToLayout(groupMembers)
         } else {
-            Log.d("SettlementListActivity", "정산 내역을 불러오는 데 실패했습니다.")
+            Log.d("SettlementListActivity", "정산 내역이 존재하지 않습니다.")
+            val emptyStateTextView = findViewById<TextView>(R.id.empty_state_text)
+            emptyStateTextView.visibility = View.VISIBLE
         }
 
         val backButton = findViewById<ImageView>(R.id.back_button)

@@ -1,5 +1,6 @@
 package com.example.seureureuk
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,13 @@ class SubSettlementAdapter(
             settlementName.text = settlement.settlementName
             settlementAmount.text = "${settlement.totalPaymentAmount}원"
             settlementDate.text = settlement.settlementAt
+
+            itemView.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, SettlementDetailActivity::class.java)
+                intent.putExtra("settlementId", settlement.id)  // settlement의 ID 전달
+                context.startActivity(intent)
+            }
         }
     }
 

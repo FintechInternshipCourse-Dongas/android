@@ -12,6 +12,8 @@ class PaymentConfirmationActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_confirmation)
 
+        val settlementId = intent.getIntExtra("settlementId", -1)
+
         val backButton = findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener {
             finish()
@@ -19,6 +21,7 @@ class PaymentConfirmationActivity: AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, SettlementDetailActivity::class.java)
+            intent.putExtra("settlementId", settlementId)
             startActivity(intent)
             finish()
         }, 2000)

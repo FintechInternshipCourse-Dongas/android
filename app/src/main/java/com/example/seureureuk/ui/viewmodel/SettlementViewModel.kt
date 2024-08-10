@@ -8,11 +8,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.seureureuk.data.model.SettlementAddRequest
 import com.example.seureureuk.data.model.SettlementAddResponseData
 import com.example.seureureuk.data.model.SettlementCompletedResponseData
+import com.example.seureureuk.data.model.SettlementDetailResponseData
 import com.example.seureureuk.data.model.SettlementParticipantResponseData
 import com.example.seureureuk.network.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class SettlementViewModel: ViewModel() {
+    private val _getSettlementDetailResponse = MutableLiveData<SettlementDetailResponseData>()
+    val getSettlementDetailResponse: LiveData<SettlementDetailResponseData> get() = _getSettlementDetailResponse
+
     private val _executeSettlementProcessResponse = MutableLiveData<SettlementCompletedResponseData>()
     val executeSettlementProcessResponse: LiveData<SettlementCompletedResponseData> get() = _executeSettlementProcessResponse
 
@@ -24,6 +28,44 @@ class SettlementViewModel: ViewModel() {
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
+
+    fun getSettlementDetail(settlementId: Int) {
+        viewModelScope.launch {
+            try {
+                val response = RetrofitInstance.api.getSettlementDetail(settlementId)
+
+                if (response.isSuccessful) {
+                    val getSettlementDetailResponseData = response.body()
+                    if (getSettlementDetailResponseData != null) {
+                        val getSettlementDetailResponse = getSettlementDetailResponseData.data
+                        if (getSettlementDetailResponse != null) {
+                            _getSettlementDetailResponse.value = getSettlementDetailResponseData
+                            Log.d("GroupViewModel", "Get Settlemet Detail: ${getSettlementDetailResponse}")
+                        } else {
+                            Log.e("GroupViewModel", "getSettlementDetailResponse is null")
+                            _error.value = "Error: getSettlementDetailResponse is null"
+                        }
+                    } else {
+                        Log.e("GroupViewModel", "getSettlementDetailResponse is null")
+                        _error.value = "Error: getSettlementDetailResponse is null"
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e(
+                        "GroupViewModel",
+                        "getSettlementParticipantsResponse failed with status: ${response.code()}"
+                    )
+                    _error.value = "Failed to get settlement participants: $errorBody"
+                }
+            } catch (e: Exception) {
+                Log.e(
+                    "GroupViewModel- getSettlementParticipantsResponse",
+                    "getSettlementParticipantsResponse Error: ${e.message}"
+                )
+                _error.value = "getSettlementParticipantsResponse Error: ${e.message}"
+            }
+        }
+    }
 
     fun executeSettlementProcess(settlementId: Int) {
         viewModelScope.launch {
@@ -49,9 +91,9 @@ class SettlementViewModel: ViewModel() {
                     val errorBody = response.errorBody()?.string()
                     Log.e(
                         "GroupViewModel",
-                        "getSettlementParticipantsResponse failed with status: ${response.code()}"
+                        "getSettlementDetailResponse failed with status: ${response.code()}"
                     )
-                    _error.value = "Failed to get settlement participants: $errorBody"
+                    _error.value = "Failed to get settlement detail: $errorBody"
                 }
             } catch (e: Exception) {
                 Log.e(
