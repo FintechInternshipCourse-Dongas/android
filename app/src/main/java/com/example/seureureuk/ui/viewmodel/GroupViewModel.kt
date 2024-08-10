@@ -16,6 +16,8 @@ import com.example.seureureuk.data.model.GroupSettlementResponseData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.io.IOException
 
 class GroupViewModel : ViewModel() {
     private val _groups = MutableLiveData<List<GroupInfoResponse>>()
@@ -161,31 +163,35 @@ class GroupViewModel : ViewModel() {
     fun enterGroupWithInviteCode(invitationCode: String) {
         viewModelScope.launch {
             try {
+                // GroupEntranceRequest 객체 생성
                 val request = GroupEntranceRequest(invitationCode)
-                val response = RetrofitInstance.api.enterGroupWithInviteCode(request).execute()
 
+                // 네트워크 요청을 코루틴 내에서 수행
+                val response = RetrofitInstance.api.enterGroupWithInviteCode(request)
+
+                // 응답 처리
                 if (response.isSuccessful) {
                     val groupEntranceResponseData = response.body()
                     if (groupEntranceResponseData != null) {
-                        val groupEntranceResponse = groupEntranceResponseData.data
-                        if (groupEntranceResponse != null) {
-                            _groupEntranceResponse.value = groupEntranceResponseData
-                            Log.d("GroupViewModel", "Entered Group: ${groupEntranceResponse.groupId}")
-                        } else {
-                            Log.e("GroupViewModel", "GroupEntranceResponse is null")
-                            _error.value = "Error: GroupEntranceResponse is null"
-                        }
+                        _groupEntranceResponse.value = groupEntranceResponseData
+                        Log.d("GroupViewModel", "Entered Group: ${groupEntranceResponseData.data.groupId}")
+                    } else {
+                        Log.e("GroupViewModel", "GroupEntranceResponseData is null")
+                        _error.value = "Error: GroupEntranceResponseData is null"
                     }
-
                 } else {
-                    Log.e("GroupViewModel", "GroupEntranceResponseData is null")
-                    _error.value = "Error: GroupEntranceResponseData is null"
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("GroupViewModel", "enterGroupWithInviteCode failed with status: ${response.code()} and error: $errorBody")
+                    _error.value = "Failed to enter group: $errorBody"
                 }
+
             } catch (e: Exception) {
-                    Log.e("GroupViewModel- enterGroupWithInviteCode", "enterGroupWithInviteCode Error: ${e.message}")
-                    _error.value = "enterGroupWithInviteCode Error: ${e.message}"
-                }
+                Log.e("GroupViewModel", "Unexpected error: ${e.message}")
+                _error.value = "Unexpected error: ${e.message}"
+            }
         }
     }
 
 }
+
+

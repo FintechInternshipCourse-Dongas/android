@@ -95,7 +95,8 @@
         app:cardElevation="4dp"
         app:cardBackgroundColor="#FFFFFF"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

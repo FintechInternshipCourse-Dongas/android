@@ -89,7 +89,7 @@ class SettlementListActivity : AppCompatActivity() {
             memberNameTextView.text = member.memberName
 
             val memberImageView = memberView.findViewById<ImageView>(R.id.member_image)
-            val icNum = member.id % 6
+            val icNum = (member.id % 6) + 1
             val resourceId = resources.getIdentifier("ic_member_${icNum}", "drawable", packageName)
             memberImageView.setImageResource(resourceId)
 

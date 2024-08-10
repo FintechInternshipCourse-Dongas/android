@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             if (groups.isNullOrEmpty()) {
                 createGroupView.visibility = View.VISIBLE
             } else {
-                createGroupView.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
                 adapter.updateData(groups)
             }

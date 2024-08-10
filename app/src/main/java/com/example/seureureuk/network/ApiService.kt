@@ -22,7 +22,7 @@ import retrofit2.http.Path
 
 interface ApiService {
     @POST("groups/entrance")
-    fun enterGroupWithInviteCode(@Body request: GroupEntranceRequest): Call<GroupEntranceResponseData>
+    suspend fun enterGroupWithInviteCode(@Body request: GroupEntranceRequest): Response<GroupEntranceResponseData>
 
     @POST("groups/{groupId}/invite")
     fun createInviteCode(@Path("groupId") groupId: Int): Call<GroupInviteResponseData>
