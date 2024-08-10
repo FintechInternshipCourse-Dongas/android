@@ -44,7 +44,7 @@
         android:paddingEnd="16dp" >
 
         <EditText
-            android:id="@+id/store_name_edit_text"
+            android:id="@+id/settlement_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="정산 이름"

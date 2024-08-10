@@ -7,6 +7,8 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.GroupMemberResponse
+import com.example.seureureuk.data.model.SettlementParticipantResponse
 
 class RequestSettlementActivity : AppCompatActivity() {
 
@@ -16,6 +18,8 @@ class RequestSettlementActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_request_settlement)
+
+        val participants = intent.getParcelableArrayListExtra<SettlementParticipantResponse>("participants") ?: arrayListOf()
 
         participantsRecyclerView = findViewById(R.id.participants_recycler_view)
         participantsRecyclerView.layoutManager = LinearLayoutManager(this)

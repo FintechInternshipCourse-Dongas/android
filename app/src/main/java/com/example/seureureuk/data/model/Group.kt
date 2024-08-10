@@ -7,7 +7,7 @@ data class GroupInfoResponse(
     val id: Int,
     val groupName: String,
     val createAt: String,
-    val numOfparticipantCount: Int,
+    val numOfParticipantCount: Int,
     val bookmark: Boolean
 ): Parcelable {
     constructor(parcel: Parcel) : this(
@@ -22,7 +22,7 @@ data class GroupInfoResponse(
         parcel.writeInt(id)
         parcel.writeString(groupName)
         parcel.writeString(createAt)
-        parcel.writeInt(numOfparticipantCount)
+        parcel.writeInt(numOfParticipantCount)
         parcel.writeByte(if (bookmark) 1 else 0)
     }
 

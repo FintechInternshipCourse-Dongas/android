@@ -45,7 +45,7 @@ class GroupAdapter(
         fun bind(group: GroupInfoResponse) {
             groupName.text = group.groupName
             groupDate.text = group.createAt.replace("-", ".")
-            groupMembers.text = "멤버 : ${group.numOfparticipantCount}명"
+            groupMembers.text = "멤버 : ${group.numOfParticipantCount}명"
 
             itemView.setOnClickListener {
                 val viewModel = ViewModelProvider(context as MainActivity).get(GroupViewModel::class.java)

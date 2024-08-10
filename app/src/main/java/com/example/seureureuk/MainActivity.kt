@@ -159,7 +159,6 @@ class MainActivity : AppCompatActivity() {
 
         groupJoinButton.setOnClickListener {
             val inviteCode = inviteCodeEditText.text.toString()
-//            joinDialog.dismiss()
 
             if (inviteCode.isNotEmpty()) {
                 groupViewModel.enterGroupWithInviteCode(inviteCode)
