@@ -5,38 +5,35 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.data.model.GroupMemberResponse
 import com.example.seureureuk.data.model.SettlementParticipantResponse
 
 class RequestSettlementActivity : AppCompatActivity() {
-
     private lateinit var participantsRecyclerView: RecyclerView
     private lateinit var settlementAdapter: SettlementRequestParticipationAdapter
+    private lateinit var paymentQRButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_request_settlement)
-
+        
         val participants = intent.getParcelableArrayListExtra<SettlementParticipantResponse>("participants") ?: arrayListOf()
 
         participantsRecyclerView = findViewById(R.id.participants_recycler_view)
+        paymentQRButton = findViewById(R.id.payment_qr_button)
         participantsRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        val members = listOf(
-            com.example.seureureuk.data.model.SettlementParticipation("민선", "5000", true),
-            com.example.seureureuk.data.model.SettlementParticipation("가온", "4500", false),
-            com.example.seureureuk.data.model.SettlementParticipation("해성", "7000", true),
-            com.example.seureureuk.data.model.SettlementParticipation("나영", "3000", false),
-            com.example.seureureuk.data.model.SettlementParticipation("한비", "6000", true),
-            com.example.seureureuk.data.model.SettlementParticipation("건", "4000", false)
-        )
-
-        settlementAdapter = SettlementRequestParticipationAdapter(this, members)
+        settlementAdapter = SettlementRequestParticipationAdapter(this, participants)
         participantsRecyclerView.adapter = settlementAdapter
 
-        val paymentQRButton: Button = findViewById(R.id.payment_qr_button)
+        if (participants.all { it.agreementStatus }) {
+            paymentQRButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.consent_complete))
+        } else {
+            paymentQRButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.consent_waiting))
+        }
+
         paymentQRButton.setOnClickListener {
             val intent = Intent(this, PaymentQRCodeActivity::class.java)
             startActivity(intent)
