@@ -13,7 +13,6 @@ class AccountRegistrationConfirmationActivity: AppCompatActivity() {
         val startBtn = findViewById<Button>(R.id.start_button)
         startBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }

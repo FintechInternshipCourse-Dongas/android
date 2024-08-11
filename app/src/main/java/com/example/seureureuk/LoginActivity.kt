@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
         val backBtn = findViewById<ImageView>(R.id.back_button)
         backBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 
@@ -47,7 +46,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
             val intent = Intent(this, PaymentMethodRegistrationActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }
@@ -93,7 +91,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun navigateToNextScreen() {
         val intent = Intent(this@LoginActivity, PaymentMethodRegistrationActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         finish()
     }

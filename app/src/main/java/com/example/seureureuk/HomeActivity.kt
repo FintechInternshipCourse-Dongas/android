@@ -116,7 +116,6 @@ class HomeActivity : AppCompatActivity() {
                                     intent.putExtra("groupMembers", ArrayList(membersResponse.data))
                                     intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
                                     intent.putExtra("groupId", groupId)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                     startActivity(intent)
                                 } else {
                                     Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")
@@ -163,7 +162,6 @@ class HomeActivity : AppCompatActivity() {
             val inviteCode = inviteCodeEditText.text.toString()
             joinDialog.dismiss()
             val intent = Intent(this, SettlementListActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }

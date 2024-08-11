@@ -39,20 +39,13 @@ class SettlementListActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.settlement_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        val adapter = GroupSettlementAdapter(emptyList(), this)
+        recyclerView.adapter = adapter
+
         val groupMembers = intent.getParcelableArrayListExtra<GroupMemberResponse>("groupMembers") ?: arrayListOf()
         val groupSettlements = intent.getParcelableArrayListExtra<GroupSettlementResponse>("groupSettlements") ?: arrayListOf()
         val groupId = intent.getIntExtra("groupId", -1)
         val groupName = intent.getStringExtra("groupName")
-
-        val adapter = GroupSettlementAdapter(
-            groupSettlements,
-            this,
-            groupMembers,
-            groupId,
-            groupName ?: ""
-        )
-        recyclerView.adapter = adapter
-
         if (groupSettlements != null) {
             adapter.updateData(groupSettlements)
             addMembersToLayout(groupMembers)
@@ -80,9 +73,7 @@ class SettlementListActivity : AppCompatActivity() {
             val intent = Intent(this, AddSettlementActivity::class.java)
             intent.putExtra("groupMembers", groupMembers)
             intent.putExtra("groupId", groupId)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
-            finish()
         }
 
         val memberAddButton = findViewById<ImageView>(R.id.member_add_button)

@@ -10,8 +10,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seureureuk.data.model.GroupMemberResponse
-import com.example.seureureuk.data.model.GroupSettlementResponse
 import com.example.seureureuk.ui.viewmodel.GroupViewModel
 import com.example.seureureuk.ui.viewmodel.SettlementViewModel
 
@@ -22,11 +20,6 @@ class SettlementDetailActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settlement_detail)
-
-        val groupMembers = intent.getParcelableArrayListExtra<GroupMemberResponse>("groupMembers") ?: arrayListOf()
-        val groupSettlements = intent.getParcelableArrayListExtra<GroupSettlementResponse>("groupSettlements") ?: arrayListOf()
-        val groupId = intent.getIntExtra("groupId", -1)
-        val groupName = intent.getStringExtra("groupName")
 
         val settlementId = intent.getIntExtra("settlementId", -1)
 
@@ -62,11 +55,6 @@ class SettlementDetailActivity: AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
             val intent = Intent(this, SettlementListActivity::class.java)
-            intent.putExtra("groupMembers", groupMembers)
-            intent.putExtra("groupSettlements", groupSettlements)
-            intent.putExtra("groupId", groupId)
-            intent.putExtra("groupName", groupName)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }

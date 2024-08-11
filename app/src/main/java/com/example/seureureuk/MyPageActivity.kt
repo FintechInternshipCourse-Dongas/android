@@ -33,14 +33,12 @@ class MyPageActivity : AppCompatActivity() {
         val backBtn = findViewById<ImageView>(R.id.back_button)
         backBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 
         val userInfoBtn = findViewById<Button>(R.id.manage_info_button)
         userInfoBtn.setOnClickListener {
             val intent = Intent(this, MyPageUserInfoActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 

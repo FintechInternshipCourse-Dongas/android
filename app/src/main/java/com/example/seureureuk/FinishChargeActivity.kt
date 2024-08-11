@@ -34,7 +34,6 @@ class FinishChargeActivity : AppCompatActivity() {
         val confirmBtn = findViewById<Button>(com.example.seureureuk.R.id.confirm_button)
         confirmBtn.setOnClickListener {
             val intent = Intent(this, com.example.seureureuk.MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 

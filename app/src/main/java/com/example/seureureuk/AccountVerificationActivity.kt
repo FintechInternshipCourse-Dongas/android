@@ -48,7 +48,6 @@ class AccountVerificationActivity : AppCompatActivity() {
         val verificationButton = findViewById<Button>(R.id.verification_button)
         verificationButton.setOnClickListener {
             val intent = Intent(this, AccountRegistrationConfirmationActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 

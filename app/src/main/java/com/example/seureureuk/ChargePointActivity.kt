@@ -96,7 +96,6 @@ class ChargePointActivity : AppCompatActivity() {
         val backBtn = findViewById<ImageView>(R.id.back_button)
         backBtn.setOnClickListener {
             val intent = Intent(this, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 
@@ -186,7 +185,6 @@ class ChargePointActivity : AppCompatActivity() {
         val intent = Intent(this, FinishChargeActivity::class.java)
         intent.putExtra("amount_text", formattedPoint)
         Log.d("ChargePointActivity", "충전 금액: $formattedPoint")
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }
 

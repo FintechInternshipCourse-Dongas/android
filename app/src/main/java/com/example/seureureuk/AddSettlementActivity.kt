@@ -105,7 +105,6 @@ class AddSettlementActivity : AppCompatActivity() {
                     val participants = response.data
                     intent.putParcelableArrayListExtra("participants", ArrayList(participants))
                     intent.putExtra("settlementId", newSettlementId)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                     finish()
                 }
