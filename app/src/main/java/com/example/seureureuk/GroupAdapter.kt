@@ -63,6 +63,7 @@ class GroupAdapter(
                                 intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
                                 intent.putExtra("groupId", group.id)
                                 intent.putExtra("groupName", group.groupName)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                 context.startActivity(intent)
                             } else {
                                 Log.d("GroupAdapter", "정산 내역이 존재하지 않습니다.")
@@ -83,6 +84,7 @@ class GroupAdapter(
                     if (membersResponse != null) {
                         intent.putExtra("groupMembers", ArrayList(membersResponse.data))
                         intent.putExtra("groupId", group.id)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         context.startActivity(intent)
                     } else {
                         Log.d("GroupAdapter", "멤버 목록을 불러오는 데 실패했습니다.")

@@ -142,6 +142,7 @@ class MainActivity : AppCompatActivity() {
                                     intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
                                     intent.putExtra("groupId", groupId)
                                     intent.putExtra("groupName", groupName)
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                     startActivity(intent)
                                 } else {
                                     Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")
@@ -208,6 +209,7 @@ class MainActivity : AppCompatActivity() {
                                         intent.putExtra("groupSettlements", ArrayList(settlementsResponse.data))
                                         intent.putExtra("groupId", groupId)
                                         intent.putExtra("groupName", "핀인코 - 돈가스")
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                         startActivity(intent)
                                     } else {
                                         Log.d("MainActivity", "정산 내역이 존재하지 않습니다.")

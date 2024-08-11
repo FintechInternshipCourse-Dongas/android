@@ -6,10 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seureureuk.data.model.GroupMemberResponse
 import com.example.seureureuk.data.model.GroupSettlementResponse
 
 class SubSettlementAdapter(
-    private val settlements: List<GroupSettlementResponse>
+    private val settlements: List<GroupSettlementResponse>,
+    private val groupMembers: ArrayList<GroupMemberResponse>,
+    private val groupSettlements: ArrayList<GroupSettlementResponse>,
+    private val groupId: Int,
+    private val groupName: String
 ) : RecyclerView.Adapter<SubSettlementAdapter.SubSettlementViewHolder>() {
 
     class SubSettlementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -17,7 +22,7 @@ class SubSettlementAdapter(
         val settlementAmount: TextView = itemView.findViewById(R.id.settlement_amount)
         val settlementDate: TextView = itemView.findViewById(R.id.settlement_date)
 
-        fun bind(settlement: GroupSettlementResponse) {
+        fun bind(settlement: GroupSettlementResponse, groupMembers: ArrayList<GroupMemberResponse>, groupSettlements: ArrayList<GroupSettlementResponse>, groupId: Int, groupName: String) {
             settlementName.text = settlement.settlementName
             settlementAmount.text = "${settlement.totalPaymentAmount}원"
             settlementDate.text = settlement.settlementAt
@@ -25,7 +30,13 @@ class SubSettlementAdapter(
             itemView.setOnClickListener {
                 val context = itemView.context
                 val intent = Intent(context, SettlementDetailActivity::class.java)
-                intent.putExtra("settlementId", settlement.id)  // settlement의 ID 전달
+
+                intent.putExtra("settlementId", settlement.id)
+                intent.putExtra("groupMembers", groupMembers)
+                intent.putExtra("groupSettlements", groupSettlements)
+                intent.putExtra("groupId", groupId)
+                intent.putExtra("groupName", groupName)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 context.startActivity(intent)
             }
         }
@@ -37,7 +48,7 @@ class SubSettlementAdapter(
     }
 
     override fun onBindViewHolder(holder: SubSettlementViewHolder, position: Int) {
-        holder.bind(settlements[position])
+        holder.bind(settlements[position], groupMembers, groupSettlements, groupId, groupName)
     }
 
     override fun getItemCount(): Int {
