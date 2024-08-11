@@ -44,6 +44,7 @@
         android:layout_marginBottom="16dp">
 
         <TextView
+            android:id="@+id/my_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="내 계좌"
@@ -51,28 +52,28 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
-        <LinearLayout
-            android:id="@+id/add_account_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="8dp">
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/add_account_button"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:layout_marginTop="8dp">-->
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_plus"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Add Account"/>
+        <!--            <ImageView-->
+        <!--                android:layout_width="24dp"-->
+        <!--                android:layout_height="24dp"-->
+        <!--                android:src="@drawable/ic_plus"-->
+        <!--                android:layout_marginEnd="8dp"-->
+        <!--                android:contentDescription="Add Account"/>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="계좌 추가"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:textStyle="bold"/>
-        </LinearLayout>
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="계좌 추가"-->
+        <!--                android:textSize="16sp"-->
+        <!--                android:textColor="#000000"-->
+        <!--                android:textStyle="bold"/>-->
+        <!--        </LinearLayout>-->
     </LinearLayout>
 </RelativeLayout>
