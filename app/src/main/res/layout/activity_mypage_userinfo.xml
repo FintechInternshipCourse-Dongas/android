@@ -61,7 +61,7 @@
                 android:id="@+id/name_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="김가은"
+                android:text="핀인코"
                 android:textSize="14sp"
                 android:textColor="#000000"/>
         </LinearLayout>
@@ -84,7 +84,7 @@
                 android:id="@+id/birthdate_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1988. 09. 17"
+                android:text="2000. 06. 29"
                 android:textSize="14sp"
                 android:textColor="#000000"/>
         </LinearLayout>
@@ -107,7 +107,7 @@
                 android:id="@+id/phone_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="010-****-9999"
+                android:text="010-****-0944"
                 android:textSize="14sp"
                 android:textColor="#000000"/>
         </LinearLayout>
