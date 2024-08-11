@@ -55,6 +55,7 @@
         <activity android:name=".AccountInfoInputActivity" />
         <activity android:name=".AccountVerificationActivity" />
         <activity android:name=".AccountRegistrationConfirmationActivity" />
+        <activity android:name=".CheckAgreementStatusActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -11,7 +11,7 @@ import com.example.seureureuk.data.model.SettlementParticipantResponse
 
 class SettlementRequestParticipationAdapter(
     private val context: Context,
-    private val participants: List<SettlementParticipantResponse>
+    private val participants: List<SettlementParticipantResponse>?
 ) : RecyclerView.Adapter<SettlementRequestParticipationAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -26,26 +26,29 @@ class SettlementRequestParticipationAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val participant = participants[position]
-        holder.memberName.text = participant.participantName
-        holder.requestStatus.text = if (participant.agreementStatus) "동의 완료" else "요청 보냄"
+        val participant = participants?.get(position)
 
-        holder.requestStatus.setTextColor(
-            if (participant.agreementStatus) context.getColor(R.color.consent_complete) else context.getColor(
-                R.color.consent_waiting
+        if (participant != null) {
+            holder.memberName.text = participant.participantName
+            holder.requestStatus.text = if (participant.agreementStatus) "동의 완료" else "요청 보냄"
+
+            holder.requestStatus.setTextColor(
+                if (participant.agreementStatus) context.getColor(R.color.consent_complete) else context.getColor(
+                    R.color.consent_waiting
+                )
             )
-        )
 
-        val icNum = (participant.id % 6) + 1
-        val resourceId = context.resources.getIdentifier("ic_member_${icNum}", "drawable", context.packageName)
-        if (resourceId != 0) {
-            holder.memberAvatar.setImageResource(resourceId)
-        } else {
-            holder.memberAvatar.setImageResource(R.drawable.ic_member_1) // 기본 이미지 설정
+            val icNum = (participant.id % 6) + 1
+            val resourceId = context.resources.getIdentifier("ic_member_${icNum}", "drawable", context.packageName)
+            if (resourceId != 0) {
+                holder.memberAvatar.setImageResource(resourceId)
+            } else {
+                holder.memberAvatar.setImageResource(R.drawable.ic_member_1) // 기본 이미지 설정
+            }
         }
     }
 
     override fun getItemCount(): Int {
-        return participants.size
+        return participants?.size ?: 0
     }
 }

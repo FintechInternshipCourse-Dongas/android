@@ -107,16 +107,16 @@ class SettlementViewModel: ViewModel() {
                     val errorBody = response.errorBody()?.string()
                     Log.e(
                         "GroupViewModel",
-                        "getSettlementParticipantsResponse failed with status: ${response.code()}"
+                        "getSettlementDetailResponse failed with status: ${response.code()}"
                     )
                     _error.value = "Failed to get settlement participants: $errorBody"
                 }
             } catch (e: Exception) {
                 Log.e(
-                    "GroupViewModel- getSettlementParticipantsResponse",
-                    "getSettlementParticipantsResponse Error: ${e.message}"
+                    "GroupViewModel- getSettlementDetailResponse",
+                    "getSettlementDetailResponse Error: ${e.message}"
                 )
-                _error.value = "getSettlementParticipantsResponse Error: ${e.message}"
+                _error.value = "getSettlementDetailResponse Error: ${e.message}"
             }
         }
     }
@@ -132,14 +132,14 @@ class SettlementViewModel: ViewModel() {
                         val executeSettlementProcessResponse = executeSettlementProcessResponseData.data
                         if (executeSettlementProcessResponse != null) {
                             _executeSettlementProcessResponse.value = executeSettlementProcessResponseData
-                            Log.d("GroupViewModel", "Settlement Participants: ${getSettlementParticipantsResponse}")
+                            Log.d("GroupViewModel", "Settlement Participants: ${executeSettlementProcessResponse}")
                         } else {
-                            Log.e("GroupViewModel", "getSettlementParticipantsResponse is null")
-                            _error.value = "Error: getSettlementParticipantsResponse is null"
+                            Log.e("GroupViewModel", "executeSettlementProcessResponse is null")
+                            _error.value = "Error: executeSettlementProcessResponse is null"
                         }
                     } else {
-                        Log.e("GroupViewModel", "getSettlementParticipantsResponse is null")
-                        _error.value = "Error: getSettlementParticipantsResponse is null"
+                        Log.e("GroupViewModel", "executeSettlementProcessResponse is null")
+                        _error.value = "Error: executeSettlementProcessResponse is null"
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
@@ -151,10 +151,10 @@ class SettlementViewModel: ViewModel() {
                 }
             } catch (e: Exception) {
                 Log.e(
-                    "GroupViewModel- getSettlementParticipantsResponse",
-                    "getSettlementParticipantsResponse Error: ${e.message}"
+                    "GroupViewModel- executeSettlementProcessResponse",
+                    "executeSettlementProcessResponse Error: ${e.message}"
                 )
-                _error.value = "getSettlementParticipantsResponse Error: ${e.message}"
+                _error.value = "gexecuteSettlementProcessResponse Error: ${e.message}"
             }
         }
     }
@@ -167,11 +167,9 @@ class SettlementViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     val getSettlementParticipantsResponseData = response.body()
                     if (getSettlementParticipantsResponseData != null) {
-                        val getSettlementParticipantsResponse =
-                            getSettlementParticipantsResponseData.data
+                        val getSettlementParticipantsResponse = getSettlementParticipantsResponseData.data
                         if (getSettlementParticipantsResponse != null) {
-                            _getSettlementParticipantsResponse.value =
-                                getSettlementParticipantsResponseData
+                            _getSettlementParticipantsResponse.value = getSettlementParticipantsResponseData
                             Log.d(
                                 "GroupViewModel",
                                 "Settlement Participants: ${getSettlementParticipantsResponse}"
