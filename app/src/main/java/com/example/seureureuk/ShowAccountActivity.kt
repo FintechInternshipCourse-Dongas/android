@@ -77,14 +77,7 @@ class ShowAccountActivity : AppCompatActivity() {
         val inflater = LayoutInflater.from(this)
         val parentLayout = findViewById<LinearLayout>(R.id.account_section)
 
-        // Sort the accountList by accountID in ascending order
-        val sortedAccountList = accountList.sortedBy { it.id }
-
-        // Find the "my_account" TextView
-        val myAccountTextView = findViewById<TextView>(R.id.my_account)
-        val insertPosition = parentLayout.indexOfChild(myAccountTextView) + 1
-
-        for (account in sortedAccountList) {
+        for ((index, account) in accountList.withIndex()) {
             val accountView = inflater.inflate(R.layout.item_account_transfer, parentLayout, false)
 
             val bankNameTextView = accountView.findViewById<TextView>(R.id.bank_name)
@@ -113,12 +106,9 @@ class ShowAccountActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-            // 동적으로 "my_account" 아래에 뷰를 추가
+            // 동적으로 "내 계좌" 아래에 뷰를 추가
             parentLayout.addView(accountView)
         }
-
-        val accountAddView = inflater.inflate(R.layout.item_account_add, parentLayout, false)
-        parentLayout.addView(accountAddView)
     }
 
     private fun getBankImageResource(bankName: String): Int {
