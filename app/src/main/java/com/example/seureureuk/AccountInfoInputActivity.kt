@@ -48,6 +48,7 @@ class AccountInfoInputActivity : AppCompatActivity(), BankSelectionBottomSheet.O
             }
 
             val intent = Intent(this, AccountVerificationActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 

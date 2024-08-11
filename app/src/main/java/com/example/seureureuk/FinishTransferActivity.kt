@@ -35,6 +35,7 @@ class FinishTransferActivity : AppCompatActivity() {
         val confirmBtn = findViewById<Button>(R.id.confirm_button)
         confirmBtn.setOnClickListener {
             val intent = Intent(this, MyPageActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 

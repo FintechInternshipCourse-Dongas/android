@@ -42,6 +42,7 @@ class CheckAgreementStatusActivity : AppCompatActivity() {
                 if (response.data.settlementStatus == "SUCCESS") {
                     val intent = Intent(this, PaymentQRCodeActivity::class.java)
                     intent.putExtra("settlementId", settlementId)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                     finish()
                 }
