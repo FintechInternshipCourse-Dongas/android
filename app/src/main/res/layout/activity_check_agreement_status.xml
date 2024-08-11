@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@id/header_layout"
-        android:layout_above="@id/check_agreement_status_button"
+        android:layout_above="@id/payment_qr_button"
         android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:nestedScrollingEnabled="true"
@@ -48,10 +48,10 @@
         android:paddingEnd="16dp" />
 
     <Button
-        android:id="@+id/check_agreement_status_button"
+        android:id="@+id/payment_qr_button"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="@string/check_agreement_status"
+        android:text="@string/pay_qr"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:backgroundTint="#1927EC"

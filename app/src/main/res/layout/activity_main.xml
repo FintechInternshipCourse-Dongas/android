@@ -58,17 +58,6 @@
         android:layout_below="@id/text_favorite_description"
         android:textColor="#000000" />
 
-    <TextView
-        android:id="@+id/text_group_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_0"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_toEndOf="@id/title_group"
-        android:layout_alignBottom="@id/title_group"
-        android:layout_marginStart="16dp"
-        android:textColor="#1F28A4" />
 
     <ImageView
         android:id="@+id/button_add"

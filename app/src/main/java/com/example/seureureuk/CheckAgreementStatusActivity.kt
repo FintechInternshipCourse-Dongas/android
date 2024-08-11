@@ -13,41 +13,42 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.seureureuk.data.model.SettlementParticipantResponse
 import com.example.seureureuk.ui.viewmodel.SettlementViewModel
 
-class RequestSettlementActivity : AppCompatActivity() {
+class CheckAgreementStatusActivity : AppCompatActivity() {
     private lateinit var participantsRecyclerView: RecyclerView
     private lateinit var settlementAdapter: SettlementRequestParticipationAdapter
-    private lateinit var checkAgreementStatusButton: Button
+    private lateinit var paymentQRButton: Button
     private val settlementViewModel: SettlementViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_request_settlement)
+        setContentView(R.layout.activity_check_agreement_status)
 
-        val participants = intent.getParcelableArrayListExtra<SettlementParticipantResponse>("participants") ?: arrayListOf()
+        val participants = intent.getParcelableArrayListExtra<SettlementParticipantResponse>("participants")
         val settlementId = intent.getIntExtra("settlementId", -1)
 
         participantsRecyclerView = findViewById(R.id.participants_recycler_view)
-        checkAgreementStatusButton = findViewById<Button>(R.id.check_agreement_status_button)
+        paymentQRButton = findViewById(R.id.payment_qr_button)
         participantsRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        settlementAdapter = SettlementRequestParticipationAdapter(this, participants)
+        val participantList: List<SettlementParticipantResponse>? = participants?.toList()
+        settlementAdapter = SettlementRequestParticipationAdapter(this, participantList)
         participantsRecyclerView.adapter = settlementAdapter
 
-        checkAgreementStatusButton.setOnClickListener {
-            // getSettlementParticipants 함수 연동 -> data agreementStatus 받아오기
-            settlementViewModel.getSettlementParticipants(settlementId)
-            settlementViewModel.getSettlementParticipantsResponse.observe(this) { response ->
-                val participantList = ArrayList<SettlementParticipantResponse>()
+        paymentQRButton.setOnClickListener {
+            // 넘어가기 전에 정산(결제) api 연동
+            settlementViewModel.executeSettlementProcess(settlementId)
 
-                response.data.forEach { participant ->
-                    participantList.add(participant)
+            settlementViewModel.executeSettlementProcessResponse.observe(this) { response ->
+                if (response.data.settlementStatus == "SUCCESS") {
+                    val intent = Intent(this, PaymentQRCodeActivity::class.java)
+                    intent.putExtra("settlementId", settlementId)
+                    startActivity(intent)
+                    finish()
                 }
+            }
 
-                val intent = Intent(this, CheckAgreementStatusActivity::class.java)
-                intent.putExtra("participants", participantList)
-                intent.putExtra("settlementId", settlementId)
-                startActivity(intent)
-                finish()
+            settlementViewModel.error.observe(this) { errorMessage ->
+                Log.e("CheckAgreementStatusActivity", errorMessage)
             }
         }
 

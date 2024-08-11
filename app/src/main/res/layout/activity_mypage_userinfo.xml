@@ -50,18 +50,18 @@
             android:layout_marginBottom="8dp">
 
             <TextView
-                android:layout_width="323dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="이름"
-                android:textColor="#B0B0B0"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="#B0B0B0"/>
 
             <TextView
                 android:id="@+id/name_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="조민선"
+                android:text="김가은"
                 android:textSize="14sp"
                 android:textColor="#000000"/>
         </LinearLayout>
@@ -84,7 +84,7 @@
                 android:id="@+id/birthdate_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2000. 06. 29"
+                android:text="1988. 09. 17"
                 android:textSize="14sp"
                 android:textColor="#000000"/>
         </LinearLayout>
@@ -107,7 +107,7 @@
                 android:id="@+id/phone_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="010-****-0944"
+                android:text="010-****-9999"
                 android:textSize="14sp"
                 android:textColor="#000000"/>
         </LinearLayout>
