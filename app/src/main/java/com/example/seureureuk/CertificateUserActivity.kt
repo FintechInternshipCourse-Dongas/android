@@ -18,6 +18,7 @@ class CertificateUserActivity : AppCompatActivity() {
         val backBtn = findViewById<ImageView>(com.example.seureureuk.R.id.back_button)
         backBtn.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 

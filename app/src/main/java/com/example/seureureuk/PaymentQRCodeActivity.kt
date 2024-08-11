@@ -22,6 +22,7 @@ class PaymentQRCodeActivity: AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, PaymentConfirmationActivity::class.java)
             intent.putExtra("settlementId", settlementId)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             finish()
         }, 3000)

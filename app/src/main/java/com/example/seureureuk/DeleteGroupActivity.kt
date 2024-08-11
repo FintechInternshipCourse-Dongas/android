@@ -14,6 +14,7 @@ class DeleteGroupActivity : AppCompatActivity() {
         val userInfoBtn = findViewById<Button>(R.id.confirm_button)
         userInfoBtn.setOnClickListener {
             val intent = Intent(this, MyPageGroupActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }

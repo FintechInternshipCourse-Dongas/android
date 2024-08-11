@@ -46,6 +46,7 @@ class RequestSettlementActivity : AppCompatActivity() {
                 val intent = Intent(this, CheckAgreementStatusActivity::class.java)
                 intent.putExtra("participants", participantList)
                 intent.putExtra("settlementId", settlementId)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
                 finish()
             }
