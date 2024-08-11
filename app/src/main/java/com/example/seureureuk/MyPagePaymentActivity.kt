@@ -30,6 +30,8 @@ class MyPagePaymentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mypage_payment)
 
         accountSection = findViewById(R.id.account_section)
+//        val myAccountTextView = findViewById<TextView>(R.id.my_account)
+//        val insertPosition = parentLayout.indexOfChild(myAccountTextView) + 1
 
         loadAccountData()
 
@@ -55,10 +57,8 @@ class MyPagePaymentActivity : AppCompatActivity() {
                     Log.d("MyPagePaymentActivity", "Account data loaded successfully: ${accountList.size} accounts found")
 
                     // Clear previous views and map entries
-                    accountSection.removeAllViews()
                     accountViewMap.clear()
 
-                    // Populate the views with the account data
                     populateAccountViews(accountList)
                 } else {
                     val errorMessage = response.errorBody()?.string()
@@ -82,7 +82,11 @@ class MyPagePaymentActivity : AppCompatActivity() {
         val inflater = LayoutInflater.from(this)
         val parentLayout = findViewById<LinearLayout>(R.id.account_section)
 
-        for ((index, account) in accountList.withIndex()) {
+        // Find the "my_account" TextView
+        val myAccountTextView = findViewById<TextView>(R.id.my_account)
+        val insertPosition = parentLayout.indexOfChild(myAccountTextView) + 1
+
+        for (account in accountList) {
             val accountView = inflater.inflate(R.layout.item_account_mypage, parentLayout, false)
 
             val bankNameTextView = accountView.findViewById<TextView>(R.id.bank_name)
@@ -97,23 +101,30 @@ class MyPagePaymentActivity : AppCompatActivity() {
             // 은행에 따라 이미지 설정
             bankImageView.setImageResource(getBankImageResource(account.bankName))
 
-            // 첫 번째 계좌는 주계좌로 지정
-            if (index == 0) {
+            // Check if the account is the main account
+            if (account.mainAccount) {
                 primaryAccountButton.visibility = View.VISIBLE
             } else {
                 primaryAccountButton.visibility = View.GONE
             }
 
-            // Store the view reference in the map
-            accountViewMap[account.id.toLong()] = accountView
-
-            // Append the view to the layout
-            parentLayout.addView(accountView)
-
+            // Set OnClickListener for remove button
             removeAccountButton.setOnClickListener {
                 showDeleteConfirmationDialog(account.id.toLong())
             }
+
+            // Store the view reference in the map
+            accountViewMap[account.id.toLong()] = accountView
+
+            parentLayout.addView(accountView)
         }
+
+        val accountAddView = inflater.inflate(R.layout.item_account_add, parentLayout, false)
+        parentLayout.addView(accountAddView)
+        val cardView = inflater.inflate(R.layout.item_card, parentLayout, false)
+        parentLayout.addView(cardView)
+        val cardAddView = inflater.inflate(R.layout.item_card_add, parentLayout, false)
+        parentLayout.addView(cardAddView)
     }
 
     private fun getBankImageResource(bankName: String): Int {
