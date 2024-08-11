@@ -94,7 +94,7 @@ interface ApiService {
     fun deleteAccount(@Path("accountId") accountId: Long): Call<ResultResponseVoid>
 
     @POST("points/exchange")
-    fun convertPoints2(@Body request: PointConversionRequest): Call<ResultResponsePointConversionResponse>
+    fun convertPointsExchange(@Body request: PointConversionRequest): Call<ResultResponsePointConversionResponse>
 
     @GET("users")
     fun getUserMyPageInfo(): Call<ResultResponseUserMyPageResponse>
