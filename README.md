@@ -1,4 +1,4 @@
-> ⚠️ 현재 페이지는 스르륵의 `android` repository입니다.<br>아래 링크를 통해 스르륵의 다른 repositories를 확인해주세요.
+> ⚠️ 현재 페이지는 스르륵의 `Android` repository입니다.<br>아래 링크를 통해 스르륵의 다른 repositories를 확인해주세요.
 
 - [FintechInternshipCourse-Dongas](https://github.com/orgs/FintechInternshipCourse-Dongas/repositories) : 스르륵 organization
 - [backend](https://github.com/FintechInternshipCourse-Dongas/backend) : Backend of 스르륵 with Spring
@@ -16,58 +16,48 @@
 따라서 제때 정산 받기 어려운 기존 더치페이 서비스의 문제점을 해결하고자 모임 QR을 통해 동시 분할 결제가 이루어지도록 선정산 더치페이 서비스(이하 `스르륵`)를 제안하게 되었습니다.
 
 ## 주요 기능
-- 지하도상가 점포별 상품 확인
-- 온라인 구매 서비스
-- 실시간 채팅을 통한 Q&A
-- 지하도상가 점포 위치 확인
-- 상품 카테고리별 점포 분류
+- N분의1 정산
+- QR 결제
+- 정산 내역 관리
+- 스르륵 머니 충전 및 계좌 송금
+>  ✨[발표영상](https://youtube.com/watch?v=NAMajFrSIO0&si=8-RDY1DZ8PjV-7TK)<br/>
 
 ## 팀원 및 역할분담
-|[@rlagksql219](https://github.com/rlagksql219)|[lye2i](https://github.com/lye2i)|[@y78462](https://github.com/y78462)|[@HwangJaeHwan](https://github.com/HwangJaeHwan)|
+|[@rlagksql219](https://github.com/rlagksql219)|[@nangeee](https://github.com/nangeee)|[@Woohahalife](https://github.com/Woohahalife)|[@joyulmoo](https://github.com/joyulmoo) &emsp; [@ubbba](https://github.com/ubbba) &emsp; [@gaeun0204](https://github.com/gaeun0204)|
 |-----|-----|-----|-----|
-|• 매장 검색 <br> • 채팅 기능 <br> • 데이터베이스 구축 |• 상품목록, 상점목록, 채팅목록 </br> • 데이터베이스 구축 |• 로그인, 마이페이지, 연관상품추천기능,  </br> • 웹서버 구축 |• 카테고리별 매장 분류 지도, 가게별 위치 맵핑기능  </br> • 웹서버 구축 및 데이터베이스 구축 
+|**Android** <br> • 홈화면 <br> • 로그인/회원가입 <br> • 마이페이지 <br> • 스르륵머니 충전 <br> • 계좌 송금 |**Android** <br> • 결제수단 등록 <br> • 모임 생성 <br> • 멤버 초대 <br> • 정산 프로세스 <br> • 결제 |**Backend** <br> • API 설계 및 구현 <br> • 시스템 아키텍쳐 설계 <br> • 데이터베이스 설계 및 최적화 <br> • 프로젝트 배포 및 운영 |**기획** <br> • 비즈니스 기획 <br> • UI/UX 기획
 <br/>
 
 
 # 💸프론트엔드 기능 구현 사항
->  ✨[demo video](https://youtu.be/QqWv3s2lpOw)<br/>
+`Kotlin`을 이용하여 `Android`를 개발하였습니다.
+>  ✨[demo video](https://youtube.com/watch?v=on4zdKuLYIg&si=OXFuJd4eoIW8CXMo)<br/>
 
 ## 주요 기능
 - **백엔드 연결**
-    - 지하도상가 점포 데이터베이스 구축
-    - `Firebase`를 이용해 웹서버 구축
+    - `Retrofit` 이용
 
-- **메인 페이지**
-    - 지도보기
-    - 쇼핑하기
-    - 로그인, 회원가입
+- **회원가입 & 로그인 페이지**
+    - 결제수단 등록
 
-- **지하도상가 지도**
-    - 매장 검색
-         - 위치정보
-         - 매장정보
-    - 카테고리별 매장 분류
-         - 패션의류, 음식점, 쇼핑미용, 기타매장, 디지털가전, 공방, 편의시설 등으로 분류
-    - 채팅을 통한 매장 Q&A
-         - 지도 내에서 점포 클릭 시, 페이지 전환
+- **Main 페이지**
+    - 모임 생성 및 모임 관리
 
-- **온라인 쇼핑**
-    - 상품목록
-    - 상점목록
-         - 상점 검색
-    - 채팅목록
-    - 마이페이지
-         - 개인정보 수정
-    - 채팅을 통한 상품 구매
-         - 연관상품 추천
+- **마이페이지**
+    - 내 정보 관리
+    - 스르륵 머니 충전
+    - 계좌 송금
+    - 결제수단 관리
+    - 모임 관리
 
+## 주요 기술
+- `JWT Token`
+- `Retrofit`
+- `MVVM Pattern`
+- `Gradle`
+<br>
 
-# 🛍️Screen 구성
-![layout](https://user-images.githubusercontent.com/69866091/152942764-c2f29cde-7a72-4605-9eaa-5a6848459a3c.png)
-![final](https://user-images.githubusercontent.com/69866091/152943277-617b2556-ec44-4d89-a432-08886c4bc3db.jpg)
-
-
-# 🛍️결과 화면
+# 💸결과 화면
 
 ### ✨로그인
 ![1 로그인](https://user-images.githubusercontent.com/69866091/152654409-4aedfbb5-07e2-4bf4-9143-7586896d0963.gif)
