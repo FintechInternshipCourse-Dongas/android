@@ -68,4 +68,56 @@
 
 # 💸결과 화면
 
+### ✨초기 화면
+<img src="https://github.com/user-attachments/assets/e2ffb816-5bcc-4dc9-a5d1-e26258672f33" alt="1" width="200" />
+
+### ✨회원가입
+<img src="https://github.com/user-attachments/assets/e65d6e6e-663b-4965-a9f0-06d55bd7a0e9" alt="2" width="200" />
+
 ### ✨로그인
+<img src="https://github.com/user-attachments/assets/4ae4a2c8-3184-4519-a932-c69f158c4306" alt="3" width="200" />
+
+### ✨결제수단 등록
+<img src="https://github.com/user-attachments/assets/572952fe-76dd-4c93-be8f-21fe8bf9974c" alt="4" width="200" />
+
+### ✨홈화면
+<img src="https://github.com/user-attachments/assets/80d5e175-76d8-4f30-a72f-409124314d98" alt="5" width="200" />
+
+### ✨마이페이지
+<img src="https://github.com/user-attachments/assets/1cf68f59-092f-4bba-b2e7-a9797f1b1a3a" alt="6" width="200" />
+
+### ✨내 정보 관리
+<img src="https://github.com/user-attachments/assets/cb5e31c6-8327-402d-bbf0-3de101a48224" alt="16" width="200" />
+
+### ✨결제수단 관리
+<img src="https://github.com/user-attachments/assets/121f573a-42a4-4390-973e-9fa603edcc71" alt="17" width="200" />
+
+### ✨스르륵 머니 충전
+<img src="https://github.com/user-attachments/assets/7400eed2-e6c8-40ec-8a1e-9278561e6b57" alt="7" width="200" />
+
+### ✨계좌로 송금
+<img src="https://github.com/user-attachments/assets/6b82c80f-6d9d-4592-8f2c-622b736d8f2d" alt="18" width="200" />
+
+### ✨모임 생성
+<img src="https://github.com/user-attachments/assets/a5fe4600-6848-473c-8aaf-cab732c3f767" alt="8" width="200" />
+
+### ✨멤버 초대
+<img src="https://github.com/user-attachments/assets/0631f89d-ca6b-4692-aebb-2d3b4d395715" alt="9" width="200" />
+
+### ✨초대 코드로 모임 참가
+<img src="https://github.com/user-attachments/assets/f1452de8-86ee-4727-b1fc-d5b51c4068aa" alt="10" width="200" />
+
+### ✨멤버들에게 정산 요청
+<img src="https://github.com/user-attachments/assets/efa8449d-323e-42a4-b114-5b80a10090fe" alt="11" width="200" />
+
+### ✨정산 요청 동의
+<img src="https://github.com/user-attachments/assets/9b189fd3-63d1-45bf-b347-db851747a4fe" alt="12" width="200" />
+
+### ✨멤버들의 정산 동의 여부 확인
+<img src="https://github.com/user-attachments/assets/44b8e9f5-cb32-40bb-811d-918e7b2bff5a" alt="13" width="200" />
+
+### ✨QR코드를 이용한 동시 분할 결제
+<img src="https://github.com/user-attachments/assets/2d14c4d4-0c63-4106-b43d-e857917cafa3" alt="14" width="200" />
+
+### ✨정산 상세 내역
+<img src="https://github.com/user-attachments/assets/e187d783-3094-494c-9035-846ccdb92fc9" alt="15" width="200" />
