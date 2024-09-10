@@ -80,7 +80,7 @@
 ### ✨결제수단 등록
 <img src="https://github.com/user-attachments/assets/572952fe-76dd-4c93-be8f-21fe8bf9974c" alt="4" width="200" />
 
-### ✨홈화면
+### ✨홈 화면
 <img src="https://github.com/user-attachments/assets/80d5e175-76d8-4f30-a72f-409124314d98" alt="5" width="200" />
 
 ### ✨마이페이지
