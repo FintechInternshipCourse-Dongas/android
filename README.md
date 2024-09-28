@@ -32,6 +32,7 @@
 # 💸프론트엔드 기능 구현 사항
 `Kotlin`을 이용하여 `Android`를 개발하였습니다.
 >  ✨[demo video](https://youtube.com/watch?v=on4zdKuLYIg&si=OXFuJd4eoIW8CXMo)<br/>
+>  ✨[기술블로그](https://velog.io/@rlagksql219/series/%EC%8A%A4%EB%A5%B4%EB%A5%B5)<br/>
 
 ## 주요 기능
 - **백엔드 연결**
